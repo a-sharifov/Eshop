@@ -32,7 +32,6 @@ public sealed class ValidationPipelineBehavior<TRequest, TResponse>
         _validators.Select(
             validator => validator.Validate(request))
         .SelectMany(result => result.Errors)
-        .Where(validationFailure => validationFailure is not null)
         .Select(failure => new Error(
             failure.PropertyName, 
             failure.ErrorMessage))

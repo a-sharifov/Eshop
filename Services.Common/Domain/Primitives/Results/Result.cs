@@ -26,7 +26,6 @@ public class Result
 
     public static Result<TValue> Success<TValue>(TValue value) => new Result<TValue>(value, true, Error.None);
 
-
     public static Result<TValue> Create<TValue>(TValue value, Error error)
         where TValue : class
         => value is null ? Failure<TValue>(error) : Success(value);
