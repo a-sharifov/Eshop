@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<Using Include="MediatR" />
+		<Using Include="Microsoft.Extensions.Logging" />
 		<Using Include="Newtonsoft.Json" />
 		<Using Include="Services.Common.Domain.Primitives" />
 		<Using Include="Services.Common.Domain.Primitives.Events" />

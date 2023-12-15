@@ -21,17 +21,17 @@ internal sealed class UnitOfWork(CatalogDbContext dbContext) : IUnitOfWork
         var outboxMessages = _dbContext.ChangeTracker
             .Entries<IHasDomainEvents>()
             .Select(x => x.Entity)
-            .SelectMany(aggregateRoot =>
+            .SelectMany(hasDomainEvents =>
             {
-                var domainEvents = aggregateRoot.DomainEvents;
-                aggregateRoot.ClearDomainEvents();
+                var domainEvents = hasDomainEvents.DomainEvents;
+                hasDomainEvents.ClearDomainEvents();
                 return domainEvents;
             })
-            .Select(domainEvents => new OutboxMessage(
+            .Select(domainEvent => new OutboxMessage(
                 id: Guid.NewGuid(),
                 createdAt: DateTime.Now,
-                type: domainEvents.GetType().Name,
-                message: JsonSerializer.SerializeObject(domainEvents))
+                type: domainEvent.GetType().Name,
+                message: JsonSerializer.SerializeObject(domainEvent))
             );
 
         await _dbContext

@@ -5,7 +5,6 @@ namespace Catalog.Api.Controllers;
 [Route("api/brands")]
 public sealed class BrandsController(ISender sender) : ApiController(sender)
 {
-
     [HttpPost]
     public async Task<IActionResult> CreateBrand(
         [FromBody] CreateBrandCommand createBrandCommand,

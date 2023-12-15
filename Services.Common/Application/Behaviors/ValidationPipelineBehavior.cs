@@ -36,7 +36,7 @@ public sealed class ValidationPipelineBehavior<TRequest, TResponse>
         .Select(failure => new Error(
             failure.PropertyName, 
             failure.ErrorMessage))
-        //.Distinct()
+        .Distinct()
         .ToArray();
 
 
