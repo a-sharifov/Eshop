@@ -6,7 +6,7 @@ services:
     image: ${DOCKER_REGISTRY-}catalogapp
     build:
       context: .
-      dockerfile: Catalog.App/Dockerfile
+      dockerfile: crs/Services/Catalog.App/Dockerfile
     # command: ["dotnet", "ef", "database update"]
     # networks:
     # - mssql-network
@@ -53,6 +53,9 @@ services:
     volumes:
     - ./redis:/data
 
+volumes:
+  mssql: 
+  redis:
 
 # networks:
 #   mssql-network:

@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>2aa93437-ddef-49c2-9956-582e4b12954b</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+		<PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="11.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+		<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
+		<PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+		<PackageReference Include="Serilog" Version="3.1.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+		<PackageReference Include="StackExchange.Redis" Version="2.7.4" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
+		<ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
+		<ProjectReference Include="..\Catalog.Persistence\Catalog.Persistence.csproj" />
+		<ProjectReference Include="..\Catalog.Presentation\Catalog.Presentation.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Using Include="Catalog.App.Configurations" />
+		<Using Include="Catalog.App.Configurations.Interfaces" />
+		<Using Include="Catalog.Infrastructure.BackgroundJobs" />
+		<Using Include="Catalog.Infrastructure.Idempotence" />
+		<Using Include="Catalog.Persistence" />
+		<Using Include="FluentValidation" />
+		<Using Include="MediatR" />
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Quartz" />
+		<Using Include="Services.Common.App" />
+		<Using Include="Services.Common.Application.Behaviors" />
+		<Using Include="Services.Common.Extensions" />
+		<Using Include="System.Reflection" />
+	</ItemGroup>
+
+</Project>

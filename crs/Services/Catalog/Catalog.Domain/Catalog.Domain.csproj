@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Catalog.Domain.AggregatesModel.Common.Errors" />
+		<Using Include="Catalog.Domain.AggregatesModel.Common.ValueObjects" />
+		<Using Include="Catalog.Domain.AggregatesModel.BrandAggregate" />
+		<Using Include="Catalog.Domain.AggregatesModel.BrandAggregate.DomainEvents" />
+		<Using Include="Catalog.Domain.AggregatesModel.BrandAggregate.Errors" />
+		<Using Include="Catalog.Domain.AggregatesModel.BrandAggregate.Ids" />
+		<Using Include="Catalog.Domain.AggregatesModel.BrandAggregate.ValueObjects" />
+		<Using Include="Catalog.Domain.AggregatesModel.SellerAggregate" />
+		<Using Include="Catalog.Domain.AggregatesModel.SellerAggregate.DomainEvents" />
+		<Using Include="Catalog.Domain.AggregatesModel.SellerAggregate.Errors" />
+		<Using Include="Catalog.Domain.AggregatesModel.SellerAggregate.Ids" />
+		<Using Include="Catalog.Domain.AggregatesModel.ProductAggregate" />
+		<Using Include="Catalog.Domain.AggregatesModel.ProductAggregate.DomainEvents" />
+		<Using Include="Catalog.Domain.AggregatesModel.ProductAggregate.Errors" />
+		<Using Include="Catalog.Domain.AggregatesModel.ProductAggregate.Ids" />
+		<Using Include="Catalog.Domain.AggregatesModel.ProductAggregate.ValueObjects" />
+		<Using Include="Catalog.Domain.AggregatesModel.CategoryAggregate" />
+		<Using Include="Catalog.Domain.AggregatesModel.CategoryAggregate.DomainEvents" />
+		<Using Include="Catalog.Domain.AggregatesModel.CategoryAggregate.Errors" />
+		<Using Include="Catalog.Domain.AggregatesModel.CategoryAggregate.Ids" />
+		<Using Include="Catalog.Domain.AggregatesModel.CategoryAggregate.ValueObjects" />
+		<Using Include="Catalog.Domain.AggregatesModel.SellerAggregate.ValueObjects" />
+		<Using Include="Services.Catalog.Domain.AggregatesModel.Common.Repositories" />
+		<Using Include="Services.Common.Domain" />
+		<Using Include="Services.Common.Domain.Primitives" />
+		<Using Include="Services.Common.Domain.Primitives.Events" />
+		<Using Include="Services.Common.Domain.Primitives.Results" />
+		<Using Include="Services.Common.Extensions" />
+		<Using Include="System.Text.RegularExpressions" />
+		<Using Include="System.Collections.Immutable" />
+	</ItemGroup>
+</Project>
