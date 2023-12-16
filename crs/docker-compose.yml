@@ -1,0 +1,65 @@
+version: '3.4'
+
+services:
+  catalog.app:
+    container_name: catalog.app
+    image: ${DOCKER_REGISTRY-}catalogapp
+    build:
+      context: .
+      dockerfile: /Services/Catalog/Catalog.App/Dockerfile
+    # command: ["dotnet", "ef", "database update"]
+    # networks:
+    # - mssql-network
+    # - redis-network
+    depends_on:
+    - mssql
+    - redis
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URLS=https://+:443;http://+:80
+    - ASPNETCORE_HTTPS_PORT=8081
+    - ASPNETCORE_HTTP_PORTS=8080
+    - ConnectionStrings__DefaultConnection=Server=mssql;Database=CatalogDb;User Id=sa;Password=Password123
+    - Redis__ConnectionString=redis:6379
+    ports:
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    # networks:
+    # - mssql-network
+    environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=mssql1Ipw
+    - MSSQL_DB=catalogDb
+    - MSSQL_USER=sa
+    volumes:
+    - ./mssql:/var/opt/mssql/data
+    ports:
+    - "1433:1433"
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+    - "6379:6379"
+    environment:
+    - REDIS_ARGS=--requirepass Password123
+    # networks:
+    # - redis-network
+    volumes:
+    - ./redis:/data
+
+volumes:
+  mssql: 
+  redis:
+
+# networks:
+#   mssql-network:
+#     driver: bridge
+#   redis-network:
+#     driver: bridge
+
