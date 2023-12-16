@@ -6,7 +6,7 @@ services:
     image: ${DOCKER_REGISTRY-}catalogapp
     build:
       context: .
-      dockerfile: /Services/Catalog/Catalog.App/Dockerfile
+      dockerfile: Services/Catalog/Catalog.App/Dockerfile
     # networks:
     # - mssql-network
     # - redis-network
