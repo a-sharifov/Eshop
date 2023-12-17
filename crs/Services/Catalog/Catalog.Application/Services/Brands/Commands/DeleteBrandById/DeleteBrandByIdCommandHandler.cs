@@ -15,7 +15,7 @@ internal sealed class DeleteBrandByIdCommandHandler(
 
         var brandId = new BrandId(id);
 
-        await _brandRepository.DeleteByIdAsync(brandId);
+        await _brandRepository.DeleteByIdAsync(brandId, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();

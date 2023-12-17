@@ -16,7 +16,7 @@ public class OutboxMessage(Guid id, DateTime createdAt, string type, string mess
 
     public void ErrorOccured(string? error)
     {
-        if (string.IsNullOrWhiteSpace(error))
+        if (error.IsNullOrWhiteSpace())
         {
             return;
         }

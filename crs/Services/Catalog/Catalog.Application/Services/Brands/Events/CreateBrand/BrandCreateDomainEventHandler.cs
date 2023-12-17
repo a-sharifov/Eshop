@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Application.Services.Brands.Events.CreateBrand;
 
-internal sealed class CreateBrandDomainEventHandler(
+internal sealed class BrandCreateDomainEventHandler(
     IBrandRepository brandRepository,
     IUnitOfWork unitOfWork) 
     : IDomainEventHandler<BrandCreatedDomainEvent>
@@ -14,7 +14,10 @@ internal sealed class CreateBrandDomainEventHandler(
 
         var brand = await _brandRepository.GetByIdAsync(brandId);
 
-        //add logic...
+        for (int i = 0; i < 1000; i++)
+        {
+            await Console.Out.WriteLineAsync("Hellooooooo");
+        }
 
     }
 }

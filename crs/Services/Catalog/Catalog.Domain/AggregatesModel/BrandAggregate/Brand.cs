@@ -8,17 +8,17 @@ public sealed class Brand : AggregateRoot<BrandId>
     /// <summary>
     /// Gets the name of the brand.
     /// </summary>
-    public BrandName Name { get; }
+    public BrandName Name { get; private set; }
 
     /// <summary>
     /// Gets the description of the brand.
     /// </summary>
-    public BrandDescription Description { get; }
+    public BrandDescription Description { get; private set; }
 
     /// <summary>
     /// Gets the list of products associated with the brand.
     /// </summary>
-    public List<Product> Products { get; }
+    public List<Product> Products { get; private set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Brand"/> class.

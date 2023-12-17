@@ -6,8 +6,8 @@ internal sealed class ApplicationServiceInstaller : IServiceInstaller
     { 
         services.AddMediatR(configuration => configuration
         .RegisterServicesFromAssembly(Application.AssemblyReference.Assembly)
-        .AddOpenBehavior(typeof(ValidationPipelineBehavior<,>))
-        .AddOpenBehavior(typeof(LoggingPipelineBehavior<,>))
+        //.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>))
+        //.AddOpenBehavior(typeof(LoggingPipelineBehavior<,>))
         );
 
         services.Decorate(typeof(INotificationHandler<>), typeof(IdempotentDomainEventHandler<>));

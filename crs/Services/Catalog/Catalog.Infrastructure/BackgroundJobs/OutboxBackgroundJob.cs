@@ -17,7 +17,7 @@ public sealed class OutboxBackgroundJob(
 
         var messages = await _dbContext
             .Set<OutboxMessage>()
-            .Where(message => message.ProcessedAt != null)
+            .Where(message => message.ProcessedAt == null)
             .OrderBy(message => message.Id)
             .Take(TakeLength)
             .ToListAsync(cancellationToken);

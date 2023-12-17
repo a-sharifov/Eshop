@@ -1,12 +1,13 @@
 ﻿namespace Services.Common.Serializers;
 
-public class JsonSerializer
+public sealed class JsonSerializer
 {
     private static JsonSerializerSettings GetSettings =>
        new JsonSerializerSettings
        {
            TypeNameHandling = TypeNameHandling.All,
-           ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+           ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+           ContractResolver = new PrivateSetterAndCtorContractResolver(),
        };
 
     public static string SerializeObject(object? obj) =>

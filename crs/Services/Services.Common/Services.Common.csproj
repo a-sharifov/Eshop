@@ -7,6 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Using Include="JsonNet.ContractResolvers" />
 		<Using Include="MediatR" />
 		<Using Include="Microsoft.Extensions.Logging" />
 		<Using Include="Newtonsoft.Json" />
@@ -25,6 +26,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.8.0" />
+		<PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
 		<PackageReference Include="MediatR" Version="12.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

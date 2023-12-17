@@ -6,15 +6,13 @@ public abstract class Entity<TStrongestId>
 {
     public virtual TStrongestId Id { get; protected set; }
 
-    private readonly List<IDomainEvent> _domainEvents;
+    private readonly List<IDomainEvent> _domainEvents = new();
 
     protected Entity() { }
 
-    protected Entity(TStrongestId id) =>
-       (Id, _domainEvents) = (id, new());
+    protected Entity(TStrongestId id) => Id = id;
 
-
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.ToList();
 
     protected void AddDomainEvent(IDomainEvent domainEvent) =>
        _domainEvents.Add(domainEvent);

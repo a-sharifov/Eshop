@@ -21,7 +21,7 @@ internal sealed class CreateBrandCommandHandler(
             brandDescriptionResult.Value,
             products: []);
 
-        await _brandRepository.AddAsync(brand);
+        await _brandRepository.AddAsync(brand, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
