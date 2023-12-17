@@ -6,17 +6,9 @@ public sealed class Startup(IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
-        //переместить в common
-        App.AssemblyConfiguration.Assembly
-            .DefinedTypes
-            .Where(IsServiceInstaller)
-            .Select(x => (IServiceInstaller)Activator.CreateInstance(x)!)
-            .Foreach(x => x.Install(services, _configuration));
-
-        static bool IsServiceInstaller(Type type) =>
-            !type.IsInterface &&
-            !type.IsAbstract &&
-            typeof(IServiceInstaller).IsAssignableFrom(type);
+        services.InstallServicesFromAssembly(
+            _configuration, 
+            App.AssemblyConfiguration.Assembly);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -30,11 +22,10 @@ public sealed class Startup(IConfiguration configuration)
 
         app.UseCors(SD.DefaultCorsPolicyName);
 
-        //migrate db
-        //don't forget to make extension method from this
-        using var scope = app.ApplicationServices.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-        dbContext.Database.Migrate();
+        app.MigrateDbContext<CatalogDbContext>();
+
+        CatalogDbContext catalogDbContext = new();
+        catalogDbContext.Database.Migrate();
 
         app.UseHttpsRedirection();
 

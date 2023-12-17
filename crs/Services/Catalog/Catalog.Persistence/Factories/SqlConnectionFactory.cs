@@ -1,6 +1,8 @@
 ﻿namespace Catalog.Persistence.Factories;
 
-internal sealed class SqlConnectionFactory : ISqlConnectionFactory
+internal sealed class SqlConnectionFactory : 
+    ISqlConnectionFactory, 
+    IDisposable
 {
     private readonly string _connectionString;
     private IDbConnection _connection = null!;
