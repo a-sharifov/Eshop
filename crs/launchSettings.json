@@ -4,7 +4,9 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "catalog.app": "StartDebugging"
+        "catalog.app": "StartDebugging",
+        "mssql": "StartWithoutDebugging",
+        "redis": "StartWithoutDebugging"
       }
     }
   }

@@ -4,8 +4,7 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection") ??
-            Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+        var connectionString = configuration["DefaultConnection"];
 
         services.AddDbContext<CatalogDbContext>(options =>
         options.UseSqlServer(connectionString));
@@ -17,17 +16,5 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         .AddClasses(false)
         .AsImplementedInterfaces()
         .WithScopedLifetime());
-
-        //alternative variant to migrate db
-        //install package FluentMigrator.Runner
-        //services.AddFluentMigratorCore()
-        // .ConfigureRunner(configure =>
-        // configure
-        // .AddSqlServer2016()
-        // .WithGlobalConnectionString(connectionString)
-        // .ScanIn(Persistence.AssemblyReference.Assembly)
-        // .For.Migrations())
-        // .AddLogging(configure => 
-        // configure.AddFluentMigratorConsole());
     }
 }

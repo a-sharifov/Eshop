@@ -24,9 +24,6 @@ public sealed class Startup(IConfiguration configuration)
 
         app.MigrateDbContext<CatalogDbContext>();
 
-        CatalogDbContext catalogDbContext = new();
-        catalogDbContext.Database.Migrate();
-
         app.UseHttpsRedirection();
 
         app.UseRouting();

@@ -10,10 +10,7 @@ internal sealed class DeleteBrandByIdCommandHandler(
 
     public async Task<Result> Handle(DeleteBrandByIdCommand request, CancellationToken cancellationToken)
     {
-        var id = Guid.Parse(
-            request.Id);
-
-        var brandId = new BrandId(id);
+        var brandId = new BrandId(request.Id);
 
         await _brandRepository.DeleteByIdAsync(brandId, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

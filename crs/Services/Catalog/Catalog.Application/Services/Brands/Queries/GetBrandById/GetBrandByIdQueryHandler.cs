@@ -6,7 +6,7 @@ internal sealed class GetBrandByIdQueryHandler(IBrandRepository brandRepository)
 
     public async Task<Result<Brand>> Handle(GetBrandByIdQuery request, CancellationToken cancellationToken)
     {
-        var brandId = request.Id;
+        var brandId = new BrandId(request.Id);
 
         return await _brandRepository.GetByIdAsync(brandId) ??
             Result.Failure<Brand>(
