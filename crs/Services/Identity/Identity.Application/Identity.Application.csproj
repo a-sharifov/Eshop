@@ -19,9 +19,11 @@
     <Using Include=" Services.Common.Application.Abstractions.Messaging.Query" />
     <Using Include="Identity.Application.Abstractions" />
     <Using Include="Identity.Domain.AggregatesModel.UserAggregate" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.DomainEvents" />
     <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Repositories" />
     <Using Include="Identity.Domain.AggregatesModel.UserAggregate.ValueObjects" />
     <Using Include="Services.Common.Application.Abstractions.Messaging.Command" />
+    <Using Include="Services.Common.Domain.Primitives.Events" />
     <Using Include="Services.Common.Domain.Primitives.Results" />
     <Using Include="System.Reflection" />
   </ItemGroup>

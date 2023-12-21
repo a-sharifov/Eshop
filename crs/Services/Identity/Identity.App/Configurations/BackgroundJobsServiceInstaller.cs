@@ -1,6 +1,6 @@
 ﻿namespace Identity.App.Configurations;
 
-public class BackgroundJobsServiceInstaller : IServiceInstaller
+internal sealed class BackgroundJobsServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
@@ -8,9 +8,12 @@ public class BackgroundJobsServiceInstaller : IServiceInstaller
         {
             var jobKey = new JobKey(nameof(OutboxBackgroundJob));
 
-            configure.AddJob<OutboxBackgroundJob>(jobKey).AddTrigger(
+            configure
+            .AddJob<OutboxBackgroundJob>(jobKey)
+            .AddTrigger(
                 trigger => trigger
-                .ForJob(jobKey).WithSimpleSchedule(
+                .ForJob(jobKey)
+                .WithSimpleSchedule(
                     schedule => schedule
                     .WithIntervalInSeconds(10)
                     .RepeatForever()));
