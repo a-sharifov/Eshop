@@ -2,4 +2,5 @@
 
 internal sealed class UserController
 {
+
 }
