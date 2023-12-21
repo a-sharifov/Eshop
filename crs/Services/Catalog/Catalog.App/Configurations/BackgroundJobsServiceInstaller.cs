@@ -1,6 +1,6 @@
 ﻿namespace Catalog.App.Configurations;
 
-internal sealed class BackgroundJobsInstaller : IServiceInstaller
+internal sealed class BackgroundJobsServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {

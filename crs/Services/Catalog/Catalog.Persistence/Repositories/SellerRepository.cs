@@ -16,9 +16,11 @@ internal sealed class SellerRepository(
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
         string query =
-            $"TOP 1" +
+            "TOP 1" +
             $"SELECT * FROM {_entityName}" +
-            $"WHERE [Name] = {name.Value}";
+            "WHERE [Name] = @SellerName";
+
+        var parameters = new { SellerName = name.Value };
 
         var entity = await sqlConnection
           .QueryFirstOrDefaultAsync<Seller>(query, cancellationToken);

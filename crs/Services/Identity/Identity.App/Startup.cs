@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace Identity.App;
+﻿namespace Identity.App;
 
 public sealed class Startup(IConfiguration configuration)
 {
@@ -8,30 +6,35 @@ public sealed class Startup(IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers();
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.InstallServicesFromAssembly(_configuration, AssemblyReference.Assembly);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (app.Environment.IsDevelopment())
+        if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint(
+              $"/swagger/{SD.ProjectVersion}/swagger.json",
+              $"{SD.ProjectName} {SD.ProjectVersion}"));
         }
+
+        app.MigrateDbContext<IdentityDbContext>();
 
         app.UseHttpsRedirection();
 
-        app.UseAuthorization();
+        app.UseCors(SD.DefaultCorsPolicyName);
 
         app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseEndpoints(configure =>
         {
             configure.MapControllers();
-        })
+        });
 
     }
 

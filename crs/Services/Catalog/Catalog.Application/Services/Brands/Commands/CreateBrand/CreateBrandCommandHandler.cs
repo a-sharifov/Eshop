@@ -12,14 +12,18 @@ internal sealed class CreateBrandCommandHandler(
     {
         var brandNameResult = BrandName.Create(request.Name);
         var brandDescriptionResult = BrandDescription.Create(request.Description);
-        var brandId = new BrandId(
-            Guid.NewGuid());
+        var brandId = new BrandId(Guid.NewGuid());
+
+        var isBrandNameUnique = await _brandRepository
+            .IsBrandNameUniqueAsync(brandNameResult.Value, cancellationToken);
 
         var brand = new Brand(
             brandId,
             brandNameResult.Value,
             brandDescriptionResult.Value,
-            products: []);
+            products: [],
+            isBrandNameUnique
+            );
 
         await _brandRepository.AddAsync(brand, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

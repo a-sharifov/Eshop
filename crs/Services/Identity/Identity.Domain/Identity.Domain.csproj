@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include=" Services.Common.Domain.Primitives.Events" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.DomainEvents" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Enums" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Errors" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Ids" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.ValueObjects" />
+    <Using Include="Microsoft.AspNetCore.Identity" />
+    <Using Include="Services.Common.Domain.Primitives" />
+    <Using Include="Services.Common.Domain.Primitives.Results" />
+    <Using Include="Services.Common.Extensions" />
+    <Using Include="System.Text.RegularExpressions" />
+  </ItemGroup>
+
+</Project>

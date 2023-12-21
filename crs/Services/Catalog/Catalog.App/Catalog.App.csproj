@@ -42,9 +42,11 @@
 		<Using Include="Catalog.Infrastructure.BackgroundJobs" />
 		<Using Include="Catalog.Infrastructure.Idempotence" />
 		<Using Include="Catalog.Persistence" />
+		<Using Include="Catalog.Persistence.Factories" />
 		<Using Include="FluentValidation" />
 		<Using Include="MediatR" />
 		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Microsoft.Extensions.Options" />
 		<Using Include="Quartz" />
 		<Using Include="Services.Common.App" />
 		<Using Include="Services.Common.App.Extensions" />

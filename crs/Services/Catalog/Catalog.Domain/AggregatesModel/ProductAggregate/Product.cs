@@ -36,6 +36,7 @@ public class Product : AggregateRoot<ProductId>
         ProductImage = productImage;
         Description = description;
 
-        AddDomainEvent(new ProductCreatedDomainEvent(Guid.NewGuid(), Id));
+        AddDomainEvent(
+            new ProductCreatedDomainEvent(Guid.NewGuid(), Id));
     }
 }

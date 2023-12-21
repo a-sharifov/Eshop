@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.AggregatesModel.BrandAggregate;
+﻿    namespace Catalog.Domain.AggregatesModel.BrandAggregate;
 
 /// <summary>
 /// Represents a brand within the catalog as an aggregate root.
@@ -39,7 +39,8 @@ public sealed class Brand : AggregateRoot<BrandId>
         BrandId id,
         BrandName name,
         BrandDescription description,
-        List<Product> products)
+        List<Product> products,
+        bool isBrandNameUnique)
         : base(id)
     {
         Name = name;

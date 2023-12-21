@@ -9,7 +9,7 @@ public static class BrandNameErrors
     /// Gets an error indicating that a brand name cannot be empty.
     /// </summary>
     public static Error CannotBeEmpty =>
-        new Error("Brand.Creator", "Name cannot be empty.");
+        new("Brand.Creator", "Name cannot be empty.");
 
     /// <summary>
     /// Creates an error indicating that a brand name cannot be longer than a specified maximum length.
@@ -17,5 +17,5 @@ public static class BrandNameErrors
     /// <param name="maxLength">The maximum allowed length for the brand name.</param>
     /// <returns>An error instance specifying the length constraint.</returns>
     public static Error CannotBeLongerThan(int maxLength) =>
-        new Error("Brand.Creator", $"Name cannot be longer than {maxLength} characters.");
+        new("Brand.Creator", $"Name cannot be longer than {maxLength} characters.");
 }

@@ -11,5 +11,5 @@ public static class BrandDescriptionErrors
     /// <param name="maxLength">The maximum allowed length for the brand description.</param>
     /// <returns>An error instance specifying the length constraint.</returns>
     public static Error CannotBeLongerThan(int maxLength) =>
-        new Error("Brand.Creator", $"name cannot be longer than {maxLength}");
+        new("Brand.Creator", $"name cannot be longer than {maxLength}");
 }

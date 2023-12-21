@@ -57,6 +57,7 @@
 		<Using Include="Microsoft.EntityFrameworkCore.Diagnostics" />
 		<Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
 		<Using Include="Microsoft.Extensions.Caching.Distributed" />
+		<Using Include="Microsoft.Extensions.Options" />
 		<Using Include="Services.Catalog.Domain.AggregatesModel.Common.Repositories" />
 		<Using Include="Services.Common.Domain" />
 		<Using Include="Services.Common.Domain.Primitives" />

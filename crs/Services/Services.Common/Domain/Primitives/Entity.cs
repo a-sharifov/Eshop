@@ -1,7 +1,8 @@
 ﻿namespace Services.Common.Domain.Primitives;
 
 public abstract class Entity<TStrongestId> 
-    : IHasDomainEvents
+    : IEntity<TStrongestId>,
+    IHasDomainEvents
     where TStrongestId : IStrongestId 
 {
     public virtual TStrongestId Id { get; protected set; }

@@ -8,7 +8,7 @@ public sealed class Startup(IConfiguration configuration)
     {
         services.InstallServicesFromAssembly(
             _configuration, 
-            App.AssemblyConfiguration.Assembly);
+            App.AssemblyReference.Assembly);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -17,7 +17,9 @@ public sealed class Startup(IConfiguration configuration)
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.App v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint(
+                $"/swagger/{SD.ProjectVersion}/swagger.json", 
+                $"{SD.ProjectName} {SD.ProjectVersion}"));
         }
 
         app.UseCors(SD.DefaultCorsPolicyName);

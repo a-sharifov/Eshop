@@ -15,7 +15,9 @@ internal sealed class PresentationServiceInstaller : IServiceInstaller
 
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new() { Title = "Catalog.App", Version = "v1" });
+            c.SwaggerDoc(
+                SD.ProjectVersion, 
+                new() { Title = SD.ProjectName, Version = SD.ProjectVersion });
         });
 
         services.AddControllers();

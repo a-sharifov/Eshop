@@ -68,12 +68,18 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
 
         var query =
             $"SELECT * FROM [{_entityName}]" +
-            $"ORDER BY [Id]" +
-            $"OFFSET {skip} ROWS" +
-            $"FETCH NEXT {take} ROWS ONLY";
+            "ORDER BY [Id]" +
+            "OFFSET @Skip ROWS" +
+            "FETCH NEXT @Take ROWS ONLY";
+
+        var parameters = new
+        {
+            Skip = skip,
+            Take = take
+        };
 
         var entities = await sqlConnection
-            .QueryAsync<TEntity>(query, cancellationToken);
+            .QueryAsync<TEntity>(query, parameters);
 
         await _cached
             .SetAsync(entities, _expirationTime, cancellationToken);
@@ -103,7 +109,9 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
 
         var query = 
             $"SELECT * FROM {_entityName}" +
-            $"WHERE [Id] = {id.Value}";
+            "WHERE [Id] = @Id";
+
+        var parameters = new { Id = id.Value };
 
         entity = await sqlConnection.QueryFirstAsync<TEntity>(query, cancellationToken);
 

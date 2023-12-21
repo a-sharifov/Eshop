@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+    <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include=" Identity.Domain.AggregatesModel.UserAggregate.ValueObjects" />
+    <Using Include=" Microsoft.EntityFrameworkCore.Metadata.Builders" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate" />
+    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Ids" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="Services.Common.Domain.Primitives" />
+    <Using Include="Services.Common.Domain.Primitives.Events" />
+    <Using Include="Services.Common.Extensions" />
+    <Using Include="Services.Common.Serializers" />
+    <Using Include="System.Reflection" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>

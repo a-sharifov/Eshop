@@ -5,4 +5,7 @@
 /// </summary>
 /// <param name="Id">The unique identifier of the domain event.</param>
 /// <param name="BrandId">The identifier of the newly created brand.</param>
-public record BrandCreatedDomainEvent(Guid Id, BrandId BrandId) : DomainEvent(Id);
+public sealed record BrandCreatedDomainEvent(
+    Guid Id, 
+    BrandId BrandId) 
+    : DomainEvent(Id);

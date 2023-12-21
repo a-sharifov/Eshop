@@ -4,7 +4,7 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration["DefaultConnection"];
+        var connectionString = configuration[SD.DbConfigurationKey];
 
         services.AddDbContext<CatalogDbContext>(options =>
         options.UseSqlServer(connectionString));

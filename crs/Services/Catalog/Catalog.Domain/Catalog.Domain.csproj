@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Using Include=" Services.Common.Domain.Primitives.Events" />
 		<Using Include="Catalog.Domain.AggregatesModel.Common.Errors" />
 		<Using Include="Catalog.Domain.AggregatesModel.Common.ValueObjects" />
 		<Using Include="Catalog.Domain.AggregatesModel.BrandAggregate" />

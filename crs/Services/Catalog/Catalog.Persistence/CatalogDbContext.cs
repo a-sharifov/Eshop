@@ -1,8 +1,9 @@
 ﻿namespace Catalog.Persistence;
 
-public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options) : DbContext(options)
+public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options) 
+    : DbContext(options)
 {
-    // CatalogDbContext
+    //CatalogDbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Seller> Sellers { get; set; }

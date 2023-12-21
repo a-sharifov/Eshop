@@ -16,12 +16,14 @@ internal sealed class BrandRepository(
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
         string query =
-            $"TOP 1" +
+            "TOP 1" +
             $"SELECT * FROM {_entityName}" +
-            $"WHERE [Name] = {name.Value}";
+            "WHERE [Name] = @BrandName";
+
+        var parameters = new { BrandName = name.Value };
 
         var entity = await sqlConnection
-            .QueryFirstOrDefaultAsync<Brand>(query, cancellationToken);
+            .QueryFirstOrDefaultAsync<Brand>(query, parameters);
 
         if(entity is null)
         {
@@ -32,5 +34,21 @@ internal sealed class BrandRepository(
             .SetAsync(entity, _expirationTime, cancellationToken);
 
         return entity;
+    }
+
+    public async Task<bool> IsBrandNameUniqueAsync(BrandName name, CancellationToken cancellationToken = default)
+    {
+        using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
+
+        string query =
+            $"SELECT COUNT(*) FROM {_entityName}" +
+            "WHERE [Name] = @BrandName";
+
+        var parameters = new { BrandName = name.Value };
+
+        var isUnigue = !await sqlConnection
+            .QueryFirstAsync<bool>(query, parameters);
+
+        return isUnigue;
     }
 }
