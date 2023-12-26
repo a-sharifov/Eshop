@@ -2,11 +2,11 @@
 
 [DisallowConcurrentExecution]
 public sealed class OutboxBackgroundJob(
-    IdentityDbContext dbContext,
+    UserDbContext dbContext,
     IPublisher publisher)
     : IJob
 {
-    private readonly IdentityDbContext _dbContext = dbContext;
+    private readonly UserDbContext _dbContext = dbContext;
     private readonly IPublisher _publisher = publisher;
     private const int TakeLength = 100;
     private const int RetryCount = 2;

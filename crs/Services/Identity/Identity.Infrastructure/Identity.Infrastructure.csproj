@@ -15,7 +15,8 @@
 
   <ItemGroup>
     <Using Include="Identity.Application.Abstractions" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate" />
+    <Using Include="Identity.Domain.UserAggregate" />
+    <Using Include="Identity.Persistence" />
     <Using Include="MediatR" />
     <Using Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <Using Include="Microsoft.EntityFrameworkCore" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
     <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+    <ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

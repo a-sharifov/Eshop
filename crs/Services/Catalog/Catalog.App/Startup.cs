@@ -22,11 +22,10 @@ public sealed class Startup(IConfiguration configuration)
                 $"{SD.ProjectName} {SD.ProjectVersion}"));
         }
 
+        app.UseHttpsRedirection();
         app.UseCors(SD.DefaultCorsPolicyName);
 
         app.MigrateDbContext<CatalogDbContext>();
-
-        app.UseHttpsRedirection();
 
         app.UseRouting();
 

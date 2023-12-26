@@ -16,12 +16,12 @@
 
   <ItemGroup>
     <Using Include=" Services.Common.Domain.Primitives.Events" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.DomainEvents" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Enums" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Errors" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.Ids" />
-    <Using Include="Identity.Domain.AggregatesModel.UserAggregate.ValueObjects" />
+    <Using Include="Identity.Domain.UserAggregate" />
+    <Using Include="Identity.Domain.UserAggregate.DomainEvents" />
+    <Using Include="Identity.Domain.UserAggregate.Enums" />
+    <Using Include="Identity.Domain.UserAggregate.Errors" />
+    <Using Include="Identity.Domain.UserAggregate.Ids" />
+    <Using Include="Identity.Domain.UserAggregate.ValueObjects" />
     <Using Include="Microsoft.AspNetCore.Identity" />
     <Using Include="Services.Common.Domain.Primitives" />
     <Using Include="Services.Common.Domain.Primitives.Results" />

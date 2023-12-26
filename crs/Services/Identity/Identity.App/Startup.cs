@@ -6,7 +6,9 @@ public sealed class Startup(IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.InstallServicesFromAssembly(_configuration, AssemblyReference.Assembly);
+        services.InstallServicesFromAssembly(
+            _configuration, 
+            App.AssemblyReference.Assembly);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -20,11 +22,10 @@ public sealed class Startup(IConfiguration configuration)
               $"{SD.ProjectName} {SD.ProjectVersion}"));
         }
 
-        app.MigrateDbContext<IdentityDbContext>();
-
         app.UseHttpsRedirection();
-
         app.UseCors(SD.DefaultCorsPolicyName);
+
+        app.MigrateDbContext<UserDbContext>();
 
         app.UseRouting();
 

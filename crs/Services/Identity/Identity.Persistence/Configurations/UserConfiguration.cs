@@ -1,4 +1,7 @@
-﻿namespace Identity.Persistence.Configurations;
+﻿using Identity.Domain.UserAggregate;
+using Identity.Domain.UserAggregate.ValueObjects;
+
+namespace Identity.Persistence.Configurations;
 
 internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {

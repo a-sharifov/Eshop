@@ -1,4 +1,4 @@
-﻿using Catalog.Application.Services.Brands.Commands.CreateBrand;
+﻿using Catalog.Application.Brands.Commands.CreateBrand;
 
 namespace Catalog.Api.Controllers;
 

@@ -1,4 +1,7 @@
-﻿namespace Catalog.Persistence.Configurations;
+﻿using Catalog.Domain.CategoryAggregate;
+using Catalog.Domain.CategoryAggregate.ValueObjects;
+
+namespace Catalog.Persistence.Configurations;
 
 internal sealed class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {

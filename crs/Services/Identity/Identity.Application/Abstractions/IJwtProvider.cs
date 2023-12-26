@@ -1,4 +1,6 @@
-﻿namespace Identity.Application.Abstractions;
+﻿using Identity.Domain.UserAggregate;
+
+namespace Identity.Application.Abstractions;
 
 public interface IJwtProvider
 {

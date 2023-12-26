@@ -1,4 +1,6 @@
-﻿namespace Catalog.Persistence.Repositories;
+﻿using Catalog.Domain.Common.Repositories;
+
+namespace Catalog.Persistence.Repositories;
 
 internal abstract class CatalogBaseRepository<TEntity, TStrongestId> 
     : ICatalogRepository<TEntity, TStrongestId>

@@ -1,4 +1,8 @@
-﻿namespace Catalog.Persistence.Configurations;
+﻿using Catalog.Domain.Common.ValueObjects;
+using Catalog.Domain.SellerAggregate;
+using Catalog.Domain.SellerAggregate.ValueObjects;
+
+namespace Catalog.Persistence.Configurations;
 
 internal sealed class SellerConfiguration : IEntityTypeConfiguration<Seller>
 {

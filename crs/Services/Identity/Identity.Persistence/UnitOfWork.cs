@@ -1,8 +1,8 @@
 ﻿namespace Identity.Persistence;
 
-public sealed class UnitOfWork(IdentityDbContext dbContext) : IUnitOfWork
+public sealed class UnitOfWork(UserDbContext dbContext) : IUnitOfWork
 {
-    private readonly IdentityDbContext _dbContext = dbContext;
+    private readonly UserDbContext _dbContext = dbContext;
 
     public int SaveChanges()
     {

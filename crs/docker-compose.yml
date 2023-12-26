@@ -39,6 +39,7 @@ services:
     ports:
     - "1433:1433"
 
+    # https://blog.christian-schou.dk/connect-postgresql-database-to-dot-net-6/
   postgres:
     container_name: postgres
     image: postgres

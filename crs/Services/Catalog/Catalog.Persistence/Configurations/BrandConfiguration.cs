@@ -1,4 +1,7 @@
-﻿namespace Catalog.Persistence.Configurations;
+﻿using Catalog.Domain.BrandAggregate;
+using Catalog.Domain.BrandAggregate.ValueObjects;
+
+namespace Catalog.Persistence.Configurations;
 
 internal sealed class BrandConfiguration : IEntityTypeConfiguration<Brand>
 {
