@@ -1,8 +1,4 @@
-﻿using Identity.Domain.UserAggregate;
-using Identity.Domain.UserAggregate.Ids;
-using Identity.Domain.UserAggregate.ValueObjects;
-
-namespace Identity.Domain.UserAggregate.Repositories;
+﻿namespace Identity.Domain.UserAggregate.Repositories;
 
 public interface IUserRepository
 {

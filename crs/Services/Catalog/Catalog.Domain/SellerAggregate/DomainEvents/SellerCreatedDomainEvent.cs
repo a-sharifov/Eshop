@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.SellerAggregate.Ids;
-
-namespace Catalog.Domain.SellerAggregate.DomainEvents;
+﻿namespace Catalog.Domain.SellerAggregate.DomainEvents;
 
 public sealed record SellerCreatedDomainEvent(
     Guid Id,

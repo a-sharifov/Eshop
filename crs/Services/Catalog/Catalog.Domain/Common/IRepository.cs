@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate;
-
-namespace Catalog.Domain.Common;
+﻿namespace Catalog.Domain.Common;
 
 public interface IRepository
 {

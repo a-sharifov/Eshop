@@ -1,8 +1,4 @@
-﻿using Identity.Domain.UserAggregate;
-using Identity.Domain.UserAggregate.Repositories;
-using Identity.Domain.UserAggregate.ValueObjects;
-
-namespace Identity.Application.Users.Commands.Login;
+﻿namespace Identity.Application.Users.Commands.Login;
 
 internal sealed class LoginCommandHandler(
     IUserRepository userRepository,
@@ -26,6 +22,7 @@ internal sealed class LoginCommandHandler(
         }
 
         var user = await _userRepository.GetUserByEmailAsync(email.Value);
+
         var passwordIsCorrect = _hashingService.Verify(
             request.Password, user.PasswordSalt.Value, user.PasswordHash.Value);
 

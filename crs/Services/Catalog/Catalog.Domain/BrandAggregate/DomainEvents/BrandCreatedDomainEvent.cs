@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.Ids;
-
-namespace Catalog.Domain.BrandAggregate.DomainEvents;
+﻿namespace Catalog.Domain.BrandAggregate.DomainEvents;
 
 /// <summary>
 /// Represents a domain event that is triggered when a new brand is created.

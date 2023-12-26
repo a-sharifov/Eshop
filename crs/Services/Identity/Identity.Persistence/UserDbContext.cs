@@ -1,6 +1,4 @@
-﻿using Identity.Domain.UserAggregate;
-
-namespace Identity.Persistence;
+﻿namespace Identity.Persistence;
 
 public sealed class UserDbContext(DbContextOptions<UserDbContext> options)
     : DbContext(options)

@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.SellerAggregate;
-using Catalog.Domain.SellerAggregate.Ids;
-using Catalog.Domain.SellerAggregate.Repositories;
-using Catalog.Domain.SellerAggregate.ValueObjects;
-
-namespace Catalog.Persistence.Repositories;
+﻿namespace Catalog.Persistence.Repositories;
 
 internal sealed class SellerRepository(
     CatalogDbContext dbContext,

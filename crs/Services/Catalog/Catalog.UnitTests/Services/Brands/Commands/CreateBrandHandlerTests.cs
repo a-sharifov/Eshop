@@ -1,7 +1,4 @@
-﻿using Moq;
-using Services.Common.Domain.Primitives;
-
-namespace Catalog.UnitTests.Services.Brands.Commands;
+﻿namespace Catalog.UnitTests.Services.Brands.Commands;
 
 public sealed class CreateBrandHandlerTests
 {

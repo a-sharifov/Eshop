@@ -13,6 +13,7 @@
 	<ItemGroup>
 		<Using Include=" Services.Common.Domain.Primitives.Events" />
 		<Using Include="Catalog.Domain.Common.Errors" />
+		<Using Include="Catalog.Domain.Common.Repositories" />
 		<Using Include="Catalog.Domain.Common.ValueObjects" />
 		<Using Include="Catalog.Domain.BrandAggregate" />
 		<Using Include="Catalog.Domain.BrandAggregate.DomainEvents" />

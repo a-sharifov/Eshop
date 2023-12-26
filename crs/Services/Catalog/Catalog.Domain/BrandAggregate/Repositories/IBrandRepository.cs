@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate;
-using Catalog.Domain.BrandAggregate.Ids;
-using Catalog.Domain.BrandAggregate.ValueObjects;
-using Catalog.Domain.Common.Repositories;
-
-namespace Catalog.Domain.BrandAggregate.Repositories;
+﻿namespace Catalog.Domain.BrandAggregate.Repositories;
 
 /// <summary>
 /// Interface for accessing and manipulating brand entities in the repository.

@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.CategoryAggregate.Errors;
-using Catalog.Domain.CategoryAggregate.Ids;
-using Catalog.Domain.CategoryAggregate.ValueObjects;
-using Catalog.Domain.ProductAggregate;
-
-namespace Catalog.Domain.CategoryAggregate;
+﻿namespace Catalog.Domain.CategoryAggregate;
 
 public sealed class Category : AggregateRoot<CategoryId>
 {

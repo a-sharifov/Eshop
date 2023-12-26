@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.ProductAggregate.Errors;
-
-namespace Catalog.Domain.ProductAggregate.ValueObjects;
+﻿namespace Catalog.Domain.ProductAggregate.ValueObjects;
 
 public sealed class ProductDescription : ValueObject
 {

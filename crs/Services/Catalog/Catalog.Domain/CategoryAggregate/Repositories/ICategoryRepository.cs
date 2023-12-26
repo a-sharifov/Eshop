@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.CategoryAggregate;
-using Catalog.Domain.CategoryAggregate.Ids;
-using Catalog.Domain.CategoryAggregate.ValueObjects;
-using Catalog.Domain.Common.Repositories;
-
-namespace Catalog.Domain.CategoryAggregate.Repositories;
+﻿namespace Catalog.Domain.CategoryAggregate.Repositories;
 
 public interface ICategoryRepository : ICatalogRepository<Category, CategoryId>
 {

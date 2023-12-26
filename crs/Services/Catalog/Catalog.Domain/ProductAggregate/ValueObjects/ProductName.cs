@@ -1,19 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ProductName.cs" company="Akber">
-// Copyright (c) Akber. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-// <copyright file="ProductName.cs" company="Akber">
-// Copyright (c) Akber. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-using Catalog.Domain.ProductAggregate.Errors;
-
-namespace Catalog.Domain.ProductAggregate.ValueObjects;
+﻿namespace Catalog.Domain.ProductAggregate.ValueObjects;
 
 /// <summary>
 /// Product name value object.

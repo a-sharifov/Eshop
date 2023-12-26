@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.ProductAggregate;
-using Catalog.Domain.ProductAggregate.Ids;
-using Catalog.Domain.ProductAggregate.Repositories;
-using Catalog.Domain.ProductAggregate.ValueObjects;
-
-namespace Catalog.Persistence.Repositories;
+﻿namespace Catalog.Persistence.Repositories;
 
 internal sealed class ProductRepository(
     CatalogDbContext dbContext, 

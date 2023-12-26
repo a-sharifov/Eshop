@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.ValueObjects;
-
-namespace Catalog.Application.Brands.Commands.CreateBrand;
+﻿namespace Catalog.Application.Brands.Commands.CreateBrand;
 
 internal sealed class CreateBrandValidator : AbstractValidator<CreateBrandCommand>
 {

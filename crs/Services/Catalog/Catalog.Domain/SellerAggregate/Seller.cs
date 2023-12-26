@@ -1,10 +1,4 @@
-﻿using Catalog.Domain.Common.ValueObjects;
-using Catalog.Domain.ProductAggregate;
-using Catalog.Domain.SellerAggregate.Errors;
-using Catalog.Domain.SellerAggregate.Ids;
-using Catalog.Domain.SellerAggregate.ValueObjects;
-
-namespace Catalog.Domain.SellerAggregate;
+﻿namespace Catalog.Domain.SellerAggregate;
 
 public sealed class Seller : AggregateRoot<SellerId>
 {

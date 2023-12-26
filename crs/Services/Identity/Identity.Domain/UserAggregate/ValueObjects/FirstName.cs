@@ -1,6 +1,4 @@
-﻿using Identity.Domain.UserAggregate.Errors;
-
-namespace Identity.Domain.UserAggregate.ValueObjects;
+﻿namespace Identity.Domain.UserAggregate.ValueObjects;
 
 public sealed class FirstName : ValueObject
 {

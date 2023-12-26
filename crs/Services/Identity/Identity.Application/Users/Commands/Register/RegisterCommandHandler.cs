@@ -1,6 +1,4 @@
-﻿using Identity.Domain.UserAggregate.Enums;
-
-namespace Identity.Application.Users.Commands.Register;
+﻿namespace Identity.Application.Users.Commands.Register;
 
 internal sealed class RegisterCommandHandler(
     IHashingService hashingService,

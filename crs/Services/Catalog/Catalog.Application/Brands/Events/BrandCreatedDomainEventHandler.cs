@@ -1,7 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.DomainEvents;
-using Catalog.Domain.BrandAggregate.Repositories;
-
-namespace Catalog.Application.Brands.Events;
+﻿namespace Catalog.Application.Brands.Events;
 
 internal sealed class BrandCreatedDomainEventHandler(
     IBrandRepository brandRepository)

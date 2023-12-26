@@ -3,7 +3,7 @@
 internal static class LoginErrors
 {
     public static Error UserDoesNotExist => new Error(
-        "LoginCommand.Handle",
+        "LoginErrors.UserDoesNotExist",
         "User does not exist."
         );
 }

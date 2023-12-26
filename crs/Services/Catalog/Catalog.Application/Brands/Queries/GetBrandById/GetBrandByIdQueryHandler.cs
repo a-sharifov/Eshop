@@ -1,7 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate;
-using Catalog.Domain.BrandAggregate.Repositories;
-
-namespace Catalog.Application.Brands.Queries.GetBrandById;
+﻿namespace Catalog.Application.Brands.Queries.GetBrandById;
 
 internal sealed class GetBrandByIdQueryHandler(IBrandRepository brandRepository) : IQueryHandler<GetBrandByIdQuery, Brand>
 {

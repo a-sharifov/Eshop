@@ -1,11 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate;
-using Catalog.Domain.CategoryAggregate;
-using Catalog.Domain.Common.ValueObjects;
-using Catalog.Domain.ProductAggregate.Ids;
-using Catalog.Domain.ProductAggregate.ValueObjects;
-using Catalog.Domain.SellerAggregate;
-
-namespace Catalog.Domain.ProductAggregate;
+﻿namespace Catalog.Domain.ProductAggregate;
 
 public class Product : AggregateRoot<ProductId>
 {

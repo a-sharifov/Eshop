@@ -1,7 +1,4 @@
-﻿using Identity.Domain.UserAggregate;
-using Identity.Domain.UserAggregate.ValueObjects;
-
-namespace Identity.Persistence.Configurations;
+﻿namespace Identity.Persistence.Configurations;
 
 internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
@@ -24,6 +21,11 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
             password => password.Value,
             value => PasswordHash.Create(value).Value)
             .HasMaxLength(PasswordHash.MaxLength)
+            .IsRequired();
+
+        builder.Property(x => x.PasswordSalt).HasConversion(
+            password => password.Value,
+            value => PasswordSalt.Create(value).Value)
             .IsRequired();
 
         builder.Property(x => x.FirstName).HasConversion(

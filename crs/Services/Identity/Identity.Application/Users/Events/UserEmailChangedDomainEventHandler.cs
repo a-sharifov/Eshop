@@ -1,6 +1,4 @@
-﻿using Identity.Domain.UserAggregate.DomainEvents;
-
-namespace Identity.Application.Users.Events;
+﻿namespace Identity.Application.Users.Events;
 
 internal sealed class UserEmailChangedDomainEventHandler
     : IDomainEventHandler<UserEmailChangedDomainEvent>

@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.Common.Errors;
-
-namespace Catalog.Domain.Common.ValueObjects;
+﻿namespace Catalog.Domain.Common.ValueObjects;
 
 public sealed class Money : ValueObject
 {

@@ -16,6 +16,7 @@
 		<Using Include="Identity.Application.Abstractions" />
 		<Using Include="Identity.Domain.UserAggregate" />
 		<Using Include="Identity.Domain.UserAggregate.DomainEvents" />
+		<Using Include="Identity.Domain.UserAggregate.Enums" />
 		<Using Include="Identity.Domain.UserAggregate.Repositories" />
 		<Using Include="Identity.Domain.UserAggregate.ValueObjects" />
 		<Using Include="Identity.Domain.UserAggregate.Ids" />

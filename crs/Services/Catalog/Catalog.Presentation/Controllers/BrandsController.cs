@@ -1,6 +1,4 @@
-﻿using Catalog.Application.Brands.Commands.CreateBrand;
-
-namespace Catalog.Api.Controllers;
+﻿namespace Catalog.Api.Controllers;
 
 [Route("api/brands")]
 public sealed class BrandsController(ISender sender) : ApiController(sender)

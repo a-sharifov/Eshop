@@ -1,7 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.Errors;
-using System.Runtime.CompilerServices;
-
-namespace Catalog.Domain.BrandAggregate.ValueObjects;
+﻿namespace Catalog.Domain.BrandAggregate.ValueObjects;
 
 /// <summary>
 /// Represents the name of a brand.

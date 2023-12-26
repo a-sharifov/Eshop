@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.Errors;
-using Catalog.Domain.BrandAggregate.Ids;
-using Catalog.Domain.BrandAggregate.ValueObjects;
-using Catalog.Domain.ProductAggregate;
-
-namespace Catalog.Domain.BrandAggregate;
+﻿namespace Catalog.Domain.BrandAggregate;
 
 /// <summary>
 /// Represents a brand within the catalog as an aggregate root.

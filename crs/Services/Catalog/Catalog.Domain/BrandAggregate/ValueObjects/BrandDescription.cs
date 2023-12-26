@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.Errors;
-
-namespace Catalog.Domain.BrandAggregate.ValueObjects;
+﻿namespace Catalog.Domain.BrandAggregate.ValueObjects;
 
 /// <summary>
 /// Represents the description of a brand.

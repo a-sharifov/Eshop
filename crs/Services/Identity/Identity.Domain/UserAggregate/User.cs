@@ -1,9 +1,4 @@
-﻿using Identity.Domain.UserAggregate.Enums;
-using Identity.Domain.UserAggregate.Errors;
-using Identity.Domain.UserAggregate.Ids;
-using Identity.Domain.UserAggregate.ValueObjects;
-
-namespace Identity.Domain.UserAggregate;
+﻿namespace Identity.Domain.UserAggregate;
 
 public sealed class User : AggregateRoot<UserId>
 {

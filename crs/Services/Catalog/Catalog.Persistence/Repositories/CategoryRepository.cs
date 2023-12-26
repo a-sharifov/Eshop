@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.CategoryAggregate;
-using Catalog.Domain.CategoryAggregate.Ids;
-using Catalog.Domain.CategoryAggregate.Repositories;
-using Catalog.Domain.CategoryAggregate.ValueObjects;
-
-namespace Catalog.Persistence.Repositories;
+﻿namespace Catalog.Persistence.Repositories;
 
 internal sealed class CategoryRepository(
     CatalogDbContext dbContext, 

@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.CategoryAggregate.Errors;
-
-namespace Catalog.Domain.CategoryAggregate.ValueObjects;
+﻿namespace Catalog.Domain.CategoryAggregate.ValueObjects;
 
 public sealed class CategoryName : ValueObject
 {

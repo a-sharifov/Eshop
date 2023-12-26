@@ -1,9 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate;
-using Catalog.Domain.BrandAggregate.Ids;
-using Catalog.Domain.BrandAggregate.Repositories;
-using Catalog.Domain.BrandAggregate.ValueObjects;
-
-namespace Catalog.Persistence.Repositories;
+﻿namespace Catalog.Persistence.Repositories;
 
 internal sealed class BrandRepository(
     CatalogDbContext dbContext, 

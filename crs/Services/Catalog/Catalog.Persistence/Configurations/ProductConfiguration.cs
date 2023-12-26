@@ -1,8 +1,4 @@
-﻿using Catalog.Domain.Common.ValueObjects;
-using Catalog.Domain.ProductAggregate;
-using Catalog.Domain.ProductAggregate.ValueObjects;
-
-namespace Catalog.Persistence.Configurations;
+﻿namespace Catalog.Persistence.Configurations;
 
 internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
 {

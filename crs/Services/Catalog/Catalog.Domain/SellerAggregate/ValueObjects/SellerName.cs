@@ -1,19 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SellerName.cs" company="Akber">
-// Copyright (c) Akber. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-// <copyright file="SellerName.cs" company="Akber">
-// Copyright (c) Akber. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
-
-using Catalog.Domain.SellerAggregate.Errors;
-
-namespace Catalog.Domain.SellerAggregate.ValueObjects;
+﻿namespace Catalog.Domain.SellerAggregate.ValueObjects;
 
 /// <summary>
 /// Seller name value object.

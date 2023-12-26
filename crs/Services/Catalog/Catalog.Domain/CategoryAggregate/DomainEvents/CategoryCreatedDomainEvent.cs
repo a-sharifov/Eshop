@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.CategoryAggregate.Ids;
-
-namespace Catalog.Domain.CategoryAggregate.DomainEvents;
+﻿namespace Catalog.Domain.CategoryAggregate.DomainEvents;
 
 public sealed record CategoryCreatedDomainEvent(
     Guid Id,

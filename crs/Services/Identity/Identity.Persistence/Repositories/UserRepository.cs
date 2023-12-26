@@ -1,9 +1,4 @@
-﻿using Identity.Domain.UserAggregate;
-using Identity.Domain.UserAggregate.Ids;
-using Identity.Domain.UserAggregate.Repositories;
-using Identity.Domain.UserAggregate.ValueObjects;
-
-namespace Identity.Persistence.Repositories;
+﻿namespace Identity.Persistence.Repositories;
 
 internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
 {

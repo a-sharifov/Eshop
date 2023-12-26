@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.BrandAggregate.Repositories;
-
-namespace Catalog.Application.Brands.Commands.DeleteBrandById;
+﻿namespace Catalog.Application.Brands.Commands.DeleteBrandById;
 
 internal sealed class DeleteBrandByIdCommandHandler(
     IBrandRepository brandRepository,
