@@ -13,13 +13,6 @@ internal sealed class PresentationServiceInstaller : IServiceInstaller
                 .AllowAnyHeader());
         });
 
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc(
-                SD.ProjectVersion, 
-                new() { Title = SD.ProjectName, Version = SD.ProjectVersion });
-        });
-
         services.AddControllers();
     }
 }

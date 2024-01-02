@@ -2,33 +2,44 @@
 
 internal sealed class LoginCommandHandler(
     IUserRepository userRepository,
+    IUnitOfWork unitOfWork,
     IHashingService hashingService,
     IJwtProvider jwtProvider)
-    : ICommandHandler<LoginCommand, string>
+    : ICommandHandler<LoginCommand, LoginCommanResponse>
 {
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IHashingService _hashingService = hashingService;
     private readonly IJwtProvider _jwtProvider = jwtProvider;
 
-    public async Task<Result<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<LoginCommanResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var email = Email.Create(request.Email);
-        var userExists = await _userRepository.IsUserExistsAsync(email.Value);
-
-        if (!userExists)
-        {
-            return Result.Failure<string>(
-                LoginErrors.UserDoesNotExist);
-        }
-
         var user = await _userRepository.GetUserByEmailAsync(email.Value);
+
+        if (user is null)
+        {
+            return Result.Failure<LoginCommanResponse>(
+                UserErrors.UserDoesNotExist);
+        }
 
         var passwordIsCorrect = _hashingService.Verify(
             request.Password, user.PasswordSalt.Value, user.PasswordHash.Value);
 
         var loginUser = User.Login(user, passwordIsCorrect);
 
-        var userToken = _jwtProvider.CreateToken(loginUser.Value);
-        return userToken;
+        if (loginUser.IsFailure)
+        {
+            return Result.Failure<LoginCommanResponse>(
+                loginUser.Error);
+        }
+
+        var refreshToken = _jwtProvider.CreateRefreshToken();
+
+        loginUser.Value.UpdateRefreshToken(refreshToken.Value);
+        var userToken = _jwtProvider.CreateTokenString(loginUser.Value);
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return new LoginCommanResponse(userToken, refreshToken.Value.Token);
     }
 }

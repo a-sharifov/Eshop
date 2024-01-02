@@ -1,55 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <UserSecretsId>3b4429b5-68de-4c7b-9a0b-e67530967187</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<UserSecretsId>3b4429b5-68de-4c7b-9a0b-e67530967187</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
-    <PackageReference Include="Quartz" Version="3.8.0" />
-    <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
-    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
-    <PackageReference Include="Scrutor" Version="4.2.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
+		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.0.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+		<PackageReference Include="Quartz" Version="3.8.0" />
+		<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
+		<PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+		<PackageReference Include="Serilog" Version="3.1.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
-    <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
-    <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
-    <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
-    <ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
+		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+		<ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+		<ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
+		<ProjectReference Include="..\Identity.Presentation\Identity.Presentation.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Using Include="FluentValidation" />
-    <Using Include="Identity.App.OptionsSetup" />
-    <Using Include="Identity.Infrastructure.Authentication" />
-    <Using Include="Identity.Infrastructure.BackgroundJobs" />
-    <Using Include="Identity.Infrastructure.Idempotence" />
-    <Using Include="Identity.Persistence" />
-    <Using Include="MediatR" />
-    <Using Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-    <Using Include="Microsoft.EntityFrameworkCore" />
-    <Using Include="Microsoft.Extensions.Options" />
-    <Using Include="Microsoft.IdentityModel.Tokens" />
-    <Using Include="Quartz" />
-    <Using Include="Services.Common.App.Extensions" />
-    <Using Include="System.Reflection" />
-    <Using Include="System.Text" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="FluentValidation" />
+		<Using Include="Identity.App.OptionsSetup" />
+		<Using Include="Identity.Infrastructure.Authentication" />
+		<Using Include="Identity.Infrastructure.BackgroundJobs" />
+		<Using Include="Identity.Infrastructure.Email" />
+		<Using Include="Identity.Infrastructure.Idempotence" />
+		<Using Include="Identity.Persistence" />
+		<Using Include="MediatR" />
+		<Using Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Microsoft.Extensions.Options" />
+		<Using Include="Microsoft.IdentityModel.Tokens" />
+		<Using Include="Microsoft.OpenApi.Models" />
+		<Using Include="Quartz" />
+		<Using Include="Services.Common.App.Extensions" />
+		<Using Include="Services.Common.App.Options" />
+		<Using Include="Services.Common.Application.Behaviors" />
+		<Using Include="System.Reflection" />
+		<Using Include="System.Text" />
+		<Using Include="Asp.Versioning" />
+		<Using Include="Asp.Versioning.ApiExplorer" />
+		<Using Include="Swashbuckle.AspNetCore.SwaggerGen" />
+		<Using Include=" Services.Common.Infrastructure.Middleware" />
+	</ItemGroup>
 
 </Project>

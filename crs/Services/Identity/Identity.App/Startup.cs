@@ -17,10 +17,10 @@ public sealed class Startup(IConfiguration configuration)
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint(
-              $"/swagger/{SD.ProjectVersion}/swagger.json",
-              $"{SD.ProjectName} {SD.ProjectVersion}"));
+            app.UseSwaggerUI();
         }
+
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
         app.UseCors(SD.DefaultCorsPolicyName);

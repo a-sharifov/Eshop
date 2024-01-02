@@ -3,8 +3,8 @@
 public static class SkuErrors
 {
     public static Error CannotBeEmpty =>
-        new("Sku.Creator", "Sku cannot be empty");
+        new("Sku.CannotBeEmpty", "Sku cannot be empty");
 
     public static Error CannotBeLongerThan(int maxLength) =>
-        new("Sku.Creator", $"Sku cannot be longer than {maxLength} characters");
+        new("Sku.CannotBeLongerThan", $"Sku cannot be longer than {maxLength} characters");
 }

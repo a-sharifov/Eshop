@@ -4,6 +4,10 @@ internal sealed class LoggingServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-
+        services.AddLogging(loggingBuilder =>
+        {
+            loggingBuilder.AddConsole();
+            loggingBuilder.AddDebug();
+        });
     }
 }

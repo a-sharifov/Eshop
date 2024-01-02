@@ -14,7 +14,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.Email).HasConversion(
             email => email.Value,
             value => Email.Create(value).Value)
-            .HasMaxLength(Email.EmailMaxLength)
+            .HasMaxLength(Email.MaxLength)
             .IsRequired();
 
         builder.Property(x => x.PasswordHash).HasConversion(
@@ -39,6 +39,17 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
             value => LastName.Create(value).Value)
             .HasMaxLength(LastName.MaxLength)
             .IsRequired();
+
+        builder.OwnsOne(x => x.RefreshToken, refreshTokenBuilder =>
+        {
+            refreshTokenBuilder.Property(x => x.Token)
+                .IsRequired();
+
+            refreshTokenBuilder.Property(x => x.Expired)
+            .IsRequired();
+        });
+
+        builder.Property(x => x.IsEmailConfirmed).IsRequired();
 
         builder.Property(x => x.Role).IsRequired();
     }

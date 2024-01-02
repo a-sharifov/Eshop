@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="Asp.Versioning" />
     <Using Include="Services.Common.App" />
     <Using Include="MediatR" />
     <Using Include="Microsoft.AspNetCore.Mvc" />

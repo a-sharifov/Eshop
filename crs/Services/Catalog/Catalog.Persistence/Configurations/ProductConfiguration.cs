@@ -23,7 +23,7 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.OwnsOne(p => p.Price, priceBuilder =>
         {
             priceBuilder.Property(m => m.Currency)
-            .IsRequired();
+            .IsRequired();  
 
             priceBuilder.Property(m => m.Amount)
             .HasColumnType("decimal(18,2)").IsRequired();

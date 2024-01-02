@@ -7,6 +7,7 @@ public sealed class User : AggregateRoot<UserId>
     public LastName LastName { get; private set; }
     public PasswordHash PasswordHash { get; private set; }
     public PasswordSalt PasswordSalt { get; private set; }
+    public RefreshToken? RefreshToken { get; private set; }
     public Role Role { get; private set; }
 
     public bool IsEmailConfirmed { get; private set; }
@@ -69,11 +70,11 @@ public sealed class User : AggregateRoot<UserId>
 
     public static Result<User> Login(User user, bool passwordIsCorrect)
     {
-        if (!user.IsEmailConfirmed)
-        {
-            return Result.Failure<User>(
-                UserErrors.EmailIsNotConfirmed);
-        }
+        //if (!user.IsEmailConfirmed)
+        //{
+        //    return Result.Failure<User>(
+        //        UserErrors.EmailIsNotConfirmed);
+        //}
 
         if (!passwordIsCorrect)
         {
@@ -97,4 +98,7 @@ public sealed class User : AggregateRoot<UserId>
         AddDomainEvent(
             new UserEmailChangedDomainEvent(Guid.NewGuid(), Id));
     }
+
+    public void UpdateRefreshToken(RefreshToken refreshToken) =>
+        RefreshToken = refreshToken;
 }

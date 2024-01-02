@@ -31,7 +31,7 @@ public sealed class UnitOfWork(UserDbContext dbContext) : IUnitOfWork
             })
             .Select(domainEvent => new OutboxMessage(
                 id: Guid.NewGuid(),
-                createdAt: DateTime.Now,
+                createdAt: DateTime.UtcNow,
                 type: domainEvent.GetType().Name,
                 message: JsonSerializer.SerializeObject(domainEvent))
             );

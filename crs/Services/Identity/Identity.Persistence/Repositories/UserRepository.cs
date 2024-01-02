@@ -36,12 +36,14 @@ internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
         throw new NotImplementedException();
     }
 
-    public Task<User> GetUserByEmailAsync(Email email, CancellationToken cancellationToken = default)
+    public async Task<User?> GetUserByEmailAsync(Email email, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _dbContext
+            .Set<User>()
+            .SingleOrDefaultAsync(u => u.Email == email, cancellationToken);
     }
 
-    public Task<User> GetUserByIdAsync(UserId userId, CancellationToken cancellationToken = default)
+    public Task<User?> GetUserByIdAsync(UserId userId, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
@@ -51,6 +53,13 @@ internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
         throw new NotImplementedException();
     }
 
+    public async Task<bool> IsEmailUnigueAsync(Email email, CancellationToken cancellationToken = default)
+    {
+        return !await _dbContext
+            .Set<User>()
+            .AnyAsync(u => u.Email == email, cancellationToken);
+    }
+
     public Task<bool> IsUserExistsAsync(UserId userId, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
@@ -58,7 +67,9 @@ internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
 
     public Task<bool> IsUserExistsAsync(Email userId, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return _dbContext
+            .Set<User>()
+            .AnyAsync(u => u.Email == userId, cancellationToken);
     }
 
     public Task UpdateUserAsync(User user, CancellationToken cancellationToken = default)

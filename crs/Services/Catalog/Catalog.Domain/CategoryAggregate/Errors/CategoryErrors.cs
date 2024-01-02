@@ -3,5 +3,5 @@
 public static class CategoryErrors
 {
     public static Error CategoryNameIsNotUnique =>
-        new("Category.Creator", "Category name is not unique.");
+        new("Category.CategoryNameIsNotUnique", "Category name is not unique.");
 }

@@ -3,8 +3,8 @@
 public static class CategoryNameErrors
 {
     public static Error CannotBeEmpty =>
-        new("Category.Creator", "name cannot be empty");
+        new("Category.CannotBeEmpty", "name cannot be empty");
 
     public static Error CannotBeLongerThan(int maxLength) =>
-        new("Category.Creator", $"name cannot be longer than {maxLength}");
+        new("Category.CannotBeLongerThan", $"name cannot be longer than {maxLength}");
 }

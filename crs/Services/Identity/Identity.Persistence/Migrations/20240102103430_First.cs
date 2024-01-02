@@ -36,6 +36,9 @@ public partial class First : Migration
                 FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                 LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                 PasswordHash = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                PasswordSalt = table.Column<string>(type: "text", nullable: false),
+                RefreshToken_Token = table.Column<string>(type: "text", nullable: true),
+                RefreshToken_Expired = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                 Role = table.Column<int>(type: "integer", nullable: false),
                 IsEmailConfirmed = table.Column<bool>(type: "boolean", nullable: false)
             },

@@ -10,7 +10,6 @@ public abstract class ValueObject :  IEquatable<ValueObject>
     public override bool Equals(object? obj) =>
         obj is ValueObject other && ValuesAreEqual(other);
 
-
     public override int GetHashCode() =>
         GetEqualityComponents()
         .Aggregate(default(int), HashCode.Combine);
@@ -19,4 +18,10 @@ public abstract class ValueObject :  IEquatable<ValueObject>
         GetEqualityComponents()
         .SequenceEqual(
             other.GetEqualityComponents());
+
+    public static bool operator ==(ValueObject? left, ValueObject? right) =>
+        Equals(left, right);
+
+    public static bool operator !=(ValueObject? left, ValueObject? right) =>
+        !Equals(left, right);
 }

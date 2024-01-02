@@ -13,23 +13,20 @@ internal sealed class PresentationServiceInstaller : IServiceInstaller
                 .AllowAnyHeader());
         });
 
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc(
-                SD.ProjectVersion, 
-                new() { Title = SD.ProjectName, Version = SD.ProjectVersion });
-        });
-
-
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer();
-
-        services.AddAuthorization();
-
-        services.ConfigureOptions<JwtOptionsSetup>();
-        services.ConfigureOptions<JwtBearerOptionsSetup>();
-
-
         services.AddControllers();
+
+        services.AddApiVersioning(setup =>
+        {
+            setup.DefaultApiVersion = ApiVersion.Default;
+            setup.AssumeDefaultVersionWhenUnspecified = true;
+            setup.ReportApiVersions = true;
+            setup.UnsupportedApiVersionStatusCode = StatusCodes.Status400BadRequest;
+            setup.ApiVersionReader = new HeaderApiVersionReader("x-version");
+        }).AddMvc()
+        .AddApiExplorer(setup =>
+        {
+            setup.GroupNameFormat = "'v'VVV";
+            setup.SubstituteApiVersionInUrl = true;
+        });
     }
 }

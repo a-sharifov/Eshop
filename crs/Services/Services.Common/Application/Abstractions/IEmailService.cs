@@ -2,5 +2,6 @@
 
 public interface IEmailService
 {
-    Task SendEmailAsync(string email, string subject, string? htmlMessage = default, CancellationToken cancellationToken = default);
+    public Task SendAsync(string to, string subject, string body, CancellationToken cancellationToken = default);
+    public Task<bool> CheckIsEmailExistsAsync(string email, CancellationToken cancellationToken = default);
 }

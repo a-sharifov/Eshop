@@ -3,7 +3,7 @@
 public sealed class LoggingPipelineBehavior<TRequest, TResponse>
     (ILogger<LoggingPipelineBehavior<TRequest, TResponse>> logger)
     : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TRequest>
+    where TRequest : IRequest<TResponse>
     where TResponse : Result
 {
     private readonly ILogger<LoggingPipelineBehavior<TRequest, TResponse>> _logger = logger;
@@ -28,8 +28,9 @@ public sealed class LoggingPipelineBehavior<TRequest, TResponse>
         }
 
         _logger.LogError(
-            "Handled {@RequestName}, {@DateTimeUtcNow} error",
+            "Handled {@RequestName}, {@Error} {@DateTimeUtcNow} error",
             typeof(TRequest).Name,
+            response.Error,
             DateTime.UtcNow);
 
         return response;

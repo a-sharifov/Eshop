@@ -1,4 +1,6 @@
-﻿namespace Identity.App.Configurations;
+﻿using Identity.Application.Abstractions;
+
+namespace Identity.App.Configurations;
 
 internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
@@ -7,7 +9,9 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         var connectionString = configuration[SD.DbConfigurationKey];
 
         services.AddDbContext<UserDbContext>(options =>
-        options.UseNpgsql(connectionString));
+            options.UseNpgsql(connectionString));
+
+        services.AddTransient<IIdentityEmailService, IdentityEmailService>();
 
         services.Scan(selector =>
         selector.FromAssemblies(
@@ -16,5 +20,7 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         .AddClasses(false)
         .AsImplementedInterfaces()
         .WithScopedLifetime());
+
+        services.ConfigureOptions<EmailOptionsSetup>();
     }
 }

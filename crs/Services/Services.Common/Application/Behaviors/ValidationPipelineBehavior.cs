@@ -3,7 +3,7 @@
 public sealed class ValidationPipelineBehavior<TRequest, TResponse>
     (IEnumerable<IValidator<TRequest>> validators) 
     : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TRequest>
+    where TRequest : IRequest<TResponse>
     where TResponse : Result
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators = validators;

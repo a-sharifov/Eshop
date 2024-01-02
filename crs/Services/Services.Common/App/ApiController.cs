@@ -1,5 +1,6 @@
 ﻿namespace Services.Common.App;
 
+[ApiController]
 public abstract class ApiController : ControllerBase
 {
     protected readonly ISender _sender;

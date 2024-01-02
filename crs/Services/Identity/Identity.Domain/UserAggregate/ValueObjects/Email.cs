@@ -3,7 +3,7 @@
 public sealed class Email : ValueObject
 {
     private const string EmailPattern = @"^(.+)@(.+)$";
-    public const int EmailMaxLength = 100;
+    public const int MaxLength = 100;
 
     public string Value { get; private set; }
 
@@ -19,10 +19,10 @@ public sealed class Email : ValueObject
 
         email = email.Trim();
 
-        if (email.Length > EmailMaxLength)
+        if (email.Length > MaxLength)
         {
             return Result.Failure<Email>(
-                EmailErrors.CannotBeLongerThan(EmailMaxLength));
+                EmailErrors.CannotBeLongerThan(MaxLength));
         }
 
         if (!IsEmail(email))

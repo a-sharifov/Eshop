@@ -14,10 +14,10 @@ public class HashingService : IHashingService
     public string Hash(string password, string salt)
     {
         var saltBytes = ConvertToBytes(salt);
-
-        using var hmac = new HMACSHA256(saltBytes);
         var passwordBytes = ConvertToBytes(password);
-        return Convert.ToBase64String(passwordBytes);
+        using var hmac = new HMACSHA256(saltBytes);
+        var hash = hmac.ComputeHash(passwordBytes);
+        return Convert.ToBase64String(hash);
     }
 
     public bool Verify(string password, string salt, string hash)
@@ -28,9 +28,8 @@ public class HashingService : IHashingService
     }
 
     private static byte[] ConvertToBytes(string value) =>
-        Encoding.UTF8.GetBytes(value);
+        Convert.FromBase64String(value);
 
     private static string ConvertToString(byte[] value) =>
-        Encoding.UTF8.GetString(value);
-
+        Convert.ToBase64String(value);
 }

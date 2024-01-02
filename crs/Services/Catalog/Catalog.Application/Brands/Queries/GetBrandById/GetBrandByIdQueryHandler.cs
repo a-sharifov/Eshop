@@ -11,6 +11,6 @@ internal sealed class GetBrandByIdQueryHandler(IBrandRepository brandRepository)
         var brand = await _brandRepository.GetByIdAsync(brandId);
 
         return brand ?? Result.Failure<Brand>(
-            GetBrandByIdErrors.BrandNotFound);
+            BrandErrors.BrandNotFound);
     }
 }
