@@ -36,7 +36,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
+	  <ProjectReference Include="..\..\crs\Services\Catalog\Catalog.Domain\Catalog.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Using Include=" FluentAssertions" />
 	</ItemGroup>
 
 </Project>
