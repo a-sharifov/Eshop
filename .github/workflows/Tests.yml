@@ -17,7 +17,7 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies for Catalog app
-      run: dotnet restore  ./crs/Services/Catalog/Catalog.App/Identity.App.csproj
+      run: dotnet restore  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj
     - name: Build Identity app
       run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj --no-restore
     - name: Unit test Identity app
