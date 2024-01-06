@@ -16,17 +16,16 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Restore dependencies 
-      run: dotnet restore Eshop.sln
-      
-    - name: Build Catalog app
-      run: dotnet build Eshop.sln --no-restore
-    - name: Unit test Catalog app
-      run: dotnet build ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-restore
-
-  #  - name: Restore dependencies for Identity app
-  #   run: dotnet restore  ./crs/Services/Catalog/Identity.App/Identity.App.sln
-  # - name: Build Identity app
-  #   run: dotnet build  ./crs/Services/Identity/Identity.App/Identity.App.sln --no-restore
+    - name: Restore dependencies for Catalog app
+      run: dotnet restore  ./crs/Services/Catalog/Catalog.App/Identity.App.csproj
+    - name: Build Identity app
+      run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj --no-restore
     - name: Unit test Identity app
-      run: dotnet build ./tests/Identity.UnitTests/Identity.UnitTests.csproj --no-restore
+      run: dotnet test ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-build --verbosity normal
+      
+    - name: Restore dependencies for Identity app
+      run: dotnet restore  ./crs/Services/Identity/Identity.App/Identity.App.csproj
+    - name: Build Identity app
+      run: dotnet build  ./crs/Services/Identity/Identity.App/Identity.App.csproj --no-restore
+    - name: Unit test Identity app
+      run: dotnet test ./tests/Identity.UnitTests/Identity.UnitTests.csproj --no-build --verbosity normal
