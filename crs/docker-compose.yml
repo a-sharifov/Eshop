@@ -1,4 +1,4 @@
-version: '3.4'
+﻿version: '3.4'
 
 services:
   catalog.app:
@@ -7,30 +7,29 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.App/Dockerfile
-    # networks:
-    # - mssql-network
-    # - redis-network
+    networks:
+    - mssql-network
+    - redis-network
     depends_on:
     - mssql
     - redis
+    - elasticsearch 
     environment:
-    - ASPNETCORE_ENVIRONMENT=Development
-    - ASPNETCORE_URLS=https://+:443;http://+:80
-    - ASPNETCORE_HTTPS_PORT=8081
-    - ASPNETCORE_HTTP_PORTS=8080
-    - ConnectionStrings__DefaultConnection=Server=mssql;Database=CatalogDb;User Id=sa;Password=Password123
-    - Redis__ConnectionString=redis:6379
+    - DefaultConnection=Data Source=mssql;Initial Catalog=catalogDb;User ID=sa;Password=mssql1Ipw;TrustServerCertificate=true
+    - RedisConnection=localhost:6379,password=Password123
     ports:
-      - "8080"
-      - "8081"
+    #redact ports
+    - "7061:80"
+    - "7060:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
   mssql:
     container_name: mssql
     image: mcr.microsoft.com/mssql/server:2019-latest
-    # networks:
-    # - mssql-network
+    networks:
+    - mssql-network
     environment:
     - ACCEPT_EULA=Y
     - SA_PASSWORD=mssql1Ipw
@@ -40,6 +39,22 @@ services:
     - ./mssql:/var/opt/mssql/data
     ports:
     - "1433:1433"
+
+  # https://blog.christian-schou.dk/connect-postgresql-database-to-dot-net-6/
+  postgres:
+    container_name: postgres
+    image: postgres
+    networks:
+    - mssql-network
+    environment:
+    - POSTGRES_PASSWORD=postgres1Ipw
+    - POSTGRES_DB=identityDb
+    - POSTGRES_USER=postgres
+    volumes:
+    - ./postgres:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
+
   redis:
     container_name: redis
     image: redis
@@ -47,18 +62,47 @@ services:
     - "6379:6379"
     environment:
     - REDIS_ARGS=--requirepass Password123
-    # networks:
-    # - redis-network
+    networks:
+    - redis-network
     volumes:
     - ./redis:/data
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    ports:
+    - 9200:9200
+    volumes:
+    - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+    - xpack.monitoring.enabled=true
+    - xpack.watcher.enabled=false
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - discovery.type=single-node
+    networks:
+    - elastic
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:8.11.3
+    ports:
+    - 5601:5601
+    depends_on:
+    - elasticsearch
+    environment:
+    - ELASTICSEARCH_URL=http://localhost:9200
+    networks:
+    - elastic
 
 volumes:
   mssql: 
   redis:
+  elasticsearch-data:
 
-# networks:
-#   mssql-network:
-#     driver: bridge
-#   redis-network:
-#     driver: bridge
-
+networks:
+  mssql-network:
+    driver: bridge
+  redis-network:
+    driver: bridge
+  elastic:
+    driver: bridge

@@ -4,6 +4,7 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
+        builder.ToTable(nameof(Product));
         builder.HasKey(p => p.Id);
 
         builder.Property(p => p.Id).HasConversion(
@@ -22,7 +23,7 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.OwnsOne(p => p.Price, priceBuilder =>
         {
             priceBuilder.Property(m => m.Currency)
-            .IsRequired();
+            .IsRequired();  
 
             priceBuilder.Property(m => m.Amount)
             .HasColumnType("decimal(18,2)").IsRequired();

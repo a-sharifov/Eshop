@@ -4,6 +4,7 @@ internal sealed class SellerConfiguration : IEntityTypeConfiguration<Seller>
 {
     public void Configure(EntityTypeBuilder<Seller> builder)
     {
+        builder.ToTable(nameof(Seller));
         builder.HasKey(s => s.Id);
 
         builder.Property(s => s.Id).HasConversion(

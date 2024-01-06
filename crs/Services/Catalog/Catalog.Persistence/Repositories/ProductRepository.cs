@@ -16,9 +16,11 @@ internal sealed class ProductRepository(
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
         string query =
-            $"TOP 1" +
+            "TOP 1" +
             $"SELECT * FROM {_entityName}" +
-            $"WHERE [Name] = {name.Value}";
+            "WHERE [Name] = @ProductName";
+
+        var parameters = new { ProductName = name.Value };
 
         var entity = await sqlConnection
             .QueryFirstOrDefaultAsync<Product>(query, cancellationToken);

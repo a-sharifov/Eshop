@@ -18,18 +18,20 @@ internal sealed class UnitOfWork(CatalogDbContext dbContext) : IUnitOfWork
 
     private async Task SendDomainEventsToOutboxMessagesAsync(CancellationToken cancellationToken = default)
     {
-        var outboxMessages = _dbContext.ChangeTracker
-            .Entries<IHasDomainEvents>()
+        var entityEntryChange = _dbContext.ChangeTracker
+            .Entries<IHasDomainEvents>().ToList();
+
+        var outboxMessages = entityEntryChange
             .Select(x => x.Entity)
             .SelectMany(hasDomainEvents =>
             {
-                var domainEvents = hasDomainEvents.DomainEvents;
+                var domainEvents =  hasDomainEvents.DomainEvents;
                 hasDomainEvents.ClearDomainEvents();
                 return domainEvents;
             })
             .Select(domainEvent => new OutboxMessage(
                 id: Guid.NewGuid(),
-                createdAt: DateTime.Now,
+                createdAt: DateTime.UtcNow,
                 type: domainEvent.GetType().Name,
                 message: JsonSerializer.SerializeObject(domainEvent))
             );

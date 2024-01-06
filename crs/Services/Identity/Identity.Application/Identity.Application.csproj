@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include=" Services.Common.Application.Abstractions.Messaging.Query" />
+		<Using Include="Identity.Application.Abstractions" />
+		<Using Include="Identity.Domain.UserAggregate" />
+		<Using Include="Identity.Domain.UserAggregate.DomainEvents" />
+		<Using Include="Identity.Domain.UserAggregate.Enums" />
+		<Using Include="Identity.Domain.UserAggregate.Errors" />
+		<Using Include="Identity.Domain.UserAggregate.Repositories" />
+		<Using Include="Identity.Domain.UserAggregate.ValueObjects" />
+		<Using Include="Identity.Domain.UserAggregate.Ids" />
+		<Using Include="Services.Common.Application.Abstractions" />
+		<Using Include="Services.Common.Application.Abstractions.Messaging.Command" />
+		<Using Include="Services.Common.Domain.Primitives" />
+		<Using Include="Services.Common.Domain.Primitives.Events" />
+		<Using Include="Services.Common.Domain.Primitives.Results" />
+		<Using Include="FluentValidation" />
+		<Using Include="System.IdentityModel.Tokens.Jwt" />
+		<Using Include="System.Reflection" />
+		<Using Include="System.Security.Claims" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+	</ItemGroup>
+
+</Project>

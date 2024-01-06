@@ -4,6 +4,7 @@ internal sealed class BrandConfiguration : IEntityTypeConfiguration<Brand>
 {
     public void Configure(EntityTypeBuilder<Brand> builder)
     {
+        builder.ToTable(nameof(Brand));
         builder.HasKey(b => b.Id);
 
         builder.Property(b => b.Id)

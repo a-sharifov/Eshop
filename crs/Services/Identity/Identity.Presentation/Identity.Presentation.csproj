@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Asp.Versioning" />
+		<Using Include="MediatR" />
+		<Using Include="Services.Common.App" />
+		<Using Include="System.ComponentModel.DataAnnotations" />
+		<Using Include="System.Reflection" />
+		<Using Include="Microsoft.AspNetCore.Mvc" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="V1\Templates\ConfirmEmailTemplate.html">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

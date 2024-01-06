@@ -13,11 +13,23 @@ internal sealed class PresentationServiceInstaller : IServiceInstaller
                 .AllowAnyHeader());
         });
 
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new() { Title = "Catalog.App", Version = "v1" });
-        });
-
         services.AddControllers();
+
+        services.AddApiVersioning(setup =>
+        {
+            setup.DefaultApiVersion = ApiVersion.Default;
+            setup.AssumeDefaultVersionWhenUnspecified = true;
+            setup.ReportApiVersions = true;
+            setup.UnsupportedApiVersionStatusCode = StatusCodes.Status400BadRequest;
+            setup.ApiVersionReader =
+            ApiVersionReader.Combine(
+            new UrlSegmentApiVersionReader(),
+            new HeaderApiVersionReader("x-version"));
+        }).AddMvc()
+        .AddApiExplorer(setup =>
+        {
+            setup.GroupNameFormat = "'v'VVV";
+            setup.SubstituteApiVersionInUrl = true;
+        });
     }
 }

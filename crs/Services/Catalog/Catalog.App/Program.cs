@@ -1,4 +1,3 @@
-using Catalog.App;
 
 CreateHostBuilder(args).Build().Run();
 

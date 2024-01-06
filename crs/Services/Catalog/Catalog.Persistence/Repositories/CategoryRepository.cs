@@ -16,12 +16,14 @@ internal sealed class CategoryRepository(
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
         string query =
-            $"TOP 1" +
+            "TOP 1" +
             $"SELECT * FROM {_entityName}" +
-            $"WHERE [Name] = {name.Value}";
+            "WHERE [Name] = @CategoryName";
+
+        var parameters = new { CategoryName = name.Value };
 
         var entity = await sqlConnection
-           .QueryFirstOrDefaultAsync<Category>(query, cancellationToken);
+           .QueryFirstOrDefaultAsync<Category>(query, parameters);
 
         if (entity is null)
         {
@@ -32,5 +34,21 @@ internal sealed class CategoryRepository(
             .SetAsync(entity, _expirationTime, cancellationToken);
 
         return entity;
+    }
+
+    public async Task<bool> IsCategoryNameUniqueAsync(CategoryName name, CancellationToken cancellationToken = default)
+    {
+        using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
+
+        string query =
+            $"SELECT COUNT(*) FROM {_entityName}" +
+            "WHERE [Name] = @CategoryName";
+
+        var parameters = new { CategoryName = name.Value };
+
+        var isUnigue = !await sqlConnection
+            .QueryFirstAsync<bool>(query, parameters);
+
+        return isUnigue;
     }
 }

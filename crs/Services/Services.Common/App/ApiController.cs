@@ -1,11 +1,28 @@
 ﻿namespace Services.Common.App;
 
+/// <summary>
+/// Base class for API controllers.
+/// </summary>
+[ApiController]
 public abstract class ApiController : ControllerBase
 {
+    /// <summary>
+    /// The sender.
+    /// </summary>
     protected readonly ISender _sender;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ApiController"/> class.
+    /// </summary>
+    /// <param name="sender"> The sender.</param>
     protected ApiController(ISender sender) => _sender = sender;
 
+    /// <summary>
+    /// Handles the result of a request.
+    /// </summary>
+    /// <param name="result"> The result.</param>
+    /// <returns> The result.</returns>
+    /// <exception cref="InvalidCastException"> Thrown when the result is a success.</exception>
     protected IActionResult HandleFailure(Result result)
     {
         if (result.IsSuccess)
@@ -34,11 +51,14 @@ public abstract class ApiController : ControllerBase
         );
     }
 
-    // ProblemDetails is a new type in .NET 5 that allows you to return a
-    // structured error response without having to create a custom type.
-    // The ProblemDetails type is a good choice for returning errors that
-    // occur in response to client requests. For errors within your code,
-    // you should continue to use the Exception class.
+    /// <summary>
+    /// Handles the result of a request.
+    /// </summary>
+    /// <param name="title"> The title.</param>
+    /// <param name="status"> The status.</param>
+    /// <param name="error"> The error.</param>
+    /// <param name="errors"> The errors.</param>
+    /// <returns></returns>
     private static ProblemDetails CreateProblemDetails(
         string title,
         int status,
