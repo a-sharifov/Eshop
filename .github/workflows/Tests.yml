@@ -20,10 +20,10 @@ jobs:
       run: dotnet restore ./Eshop.sln
       
     - name: Build Identity unit test
-      run: dotnet build ./Eshop.sln --configuration ./tests/Identity.UnitTests/Identity.UnitTests.csproj
+      run: dotnet build ./Eshop.sln --configuration Debug
       
     - name: Identity unit test
-      run: dotnet test ./Eshop.sln --configuration ./tests/Identity.UnitTests/Identity.UnitTests.csproj --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test ./Eshop.sln --configuration Debug --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Test Report
       uses: dorny/test-reporter@v1
