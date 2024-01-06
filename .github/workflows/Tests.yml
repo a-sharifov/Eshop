@@ -27,7 +27,7 @@ jobs:
       
     - name: Test Report
       uses: dorny/test-reporter@v1
-      if: always()
+      if: success() || failure() 
       with:
         name: DotNET Tests
         path: "**/test-results.trx"                            
