@@ -16,7 +16,7 @@ internal sealed class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions)
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = _jwtOptions.Issuer,
-            ValidAudience = _jwtOptions.Audience,
+            ValidAudiences = _jwtOptions.Audiences,
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_jwtOptions.Key)),
         };

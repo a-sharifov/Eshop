@@ -45,7 +45,9 @@ internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
 
     public Task<User?> GetUserByIdAsync(UserId userId, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return _dbContext
+            .Set<User>()
+            .SingleOrDefaultAsync(u => u.Id == userId, cancellationToken);
     }
 
     public Task<bool> IsEmailConfirmedAsync(UserId userId, CancellationToken cancellationToken = default)
@@ -72,8 +74,10 @@ internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
             .AnyAsync(u => u.Email == userId, cancellationToken);
     }
 
-    public Task UpdateUserAsync(User user, CancellationToken cancellationToken = default)
+    public void UpdateUser(User user)
     {
-        throw new NotImplementedException();
+        _dbContext
+            .Set<User>()
+            .Update(user);
     }
 }

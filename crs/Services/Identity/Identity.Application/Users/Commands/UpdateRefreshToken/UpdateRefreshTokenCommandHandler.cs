@@ -12,9 +12,10 @@ internal sealed class UpdateRefreshTokenCommandHandler(
 
     public async Task<Result<UpdateRefreshTokenCommandResponse>> Handle(UpdateRefreshTokenCommand request, CancellationToken cancellationToken)
     {
-        var claimsPrincipal = _jwtProvider.GetPrincipalFromExpiredToken(request.Token);
-        var emailString = claimsPrincipal.Claims
-            .First(x => x.Type == ClaimTypes.Email).Value;
+        var claims = _jwtProvider.GetClaimsInToken(request.Token);
+
+        var emailString = claims.First(x => 
+        x.Type == JwtRegisteredClaimNames.Email).Value;
 
         var email = Email.Create(emailString);
 
@@ -33,14 +34,14 @@ internal sealed class UpdateRefreshTokenCommandHandler(
                 UserErrors.RefreshTokenIsExpired);
         }
 
-        var refreshTokenValue = _jwtProvider.CreateRefreshToken();
+        var refreshTokenResult = _jwtProvider.CreateRefreshToken();
         var userToken = _jwtProvider.CreateTokenString(user);
 
-        user.UpdateRefreshToken(refreshTokenValue.Value);
+        user.UpdateRefreshToken(refreshTokenResult.Value);
 
-        await _userRepository.UpdateUserAsync(user, cancellationToken);
+        _userRepository.UpdateUser(user);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return new UpdateRefreshTokenCommandResponse(userToken, refreshTokenValue.Value.Token);
+        return new UpdateRefreshTokenCommandResponse(userToken, refreshTokenResult.Value.Token);
     }
 }

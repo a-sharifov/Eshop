@@ -12,7 +12,7 @@ public interface IBrandRepository : ICatalogRepository<Brand, BrandId>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task representing the asynchronous operation.
     /// The task result contains the retrieved brand, or null if not found.</returns>
-    public Task<Brand?> GetBrandByNameAsync(BrandName name, CancellationToken cancellationToken = default);
+    Task<Brand?> GetBrandByNameAsync(BrandName name, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Asynchronously determines whether a brand name is unique.
@@ -21,5 +21,5 @@ public interface IBrandRepository : ICatalogRepository<Brand, BrandId>
     /// <param name="cancellationToken"></param>
     /// <returns>A task representing the asynchronous operation. 
     /// The task result contains true if the brand name is unique, otherwise false.</returns>
-    public Task<bool> IsBrandNameUniqueAsync(BrandName name, CancellationToken cancellationToken = default);
+    Task<bool> IsBrandNameUniqueAsync(BrandName name, CancellationToken cancellationToken = default);
 }

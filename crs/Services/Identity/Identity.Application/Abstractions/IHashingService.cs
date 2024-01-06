@@ -2,7 +2,7 @@
 
 public interface IHashingService
 {
-    public string Hash(string password, string salt);
-    public bool Verify(string password, string salt, string hash);
-    public string GenerateSalt();
+    string Hash(string password, string salt);
+    bool Verify(string password, string salt, string hash);
+    string GenerateSalt();
 }

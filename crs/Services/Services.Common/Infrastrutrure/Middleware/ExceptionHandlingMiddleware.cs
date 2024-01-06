@@ -1,14 +1,29 @@
-﻿using System.Reflection;
+﻿namespace Services.Common.Infrastructure.Middleware;
 
-namespace Services.Common.Infrastructure.Middleware;
-
+/// <summary>
+/// Class for exception handling middleware.
+/// </summary>
+/// <param name="next"> The next request delegate.</param>
+/// <param name="logger"> The logger.</param>
 public sealed class ExceptionHandlingMiddleware(
     RequestDelegate next,
     ILogger<ExceptionHandlingMiddleware> logger)
 {
+    /// <summary>
+    /// The next request delegate.
+    /// </summary>
     private readonly RequestDelegate _next = next;
+
+    /// <summary>
+    /// The logger.
+    /// </summary>
     private readonly ILogger<ExceptionHandlingMiddleware> _logger = logger;
 
+    /// <summary>
+    /// Invoke async the middleware.
+    /// </summary>
+    /// <param name="context"> The <see cref="HttpContext"/>.</param>
+    /// <returns> A <see cref="Task"/> representing the asynchronous operation.</returns>
     public async Task InvokeAsync(HttpContext context)
     {
         try
@@ -18,7 +33,7 @@ public sealed class ExceptionHandlingMiddleware(
         catch (Exception ex)
         {
             _logger.LogError(ex, ex.Message);
-
+           
             var problemDetails = new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,
@@ -28,6 +43,7 @@ public sealed class ExceptionHandlingMiddleware(
 
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
+            // write the problem details response
             await context.Response.WriteAsJsonAsync(problemDetails);
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Catalog.UnitTests.Services.Brands.Commands;
 
-public sealed class CreateBrandHandlerTests
+public sealed class CreateBrandCommandHandlerTests
 {
 
     //[Fact]

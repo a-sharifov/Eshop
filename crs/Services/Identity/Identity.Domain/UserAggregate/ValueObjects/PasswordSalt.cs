@@ -9,7 +9,7 @@ public sealed class PasswordSalt : ValueObject
 
     public static Result<PasswordSalt> Create(string value)
     {
-        if (string.IsNullOrWhiteSpace(value))
+        if (value.IsNullOrWhiteSpace())
         {
             return Result.Failure<PasswordSalt>(
                 PasswordSaltError.CannotBeEmpty);

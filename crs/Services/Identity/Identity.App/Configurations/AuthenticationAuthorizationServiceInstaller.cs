@@ -15,7 +15,7 @@ internal sealed class AuthenticationAuthorizationServiceInstaller : IServiceInst
                     ValidIssuer = configuration[SD.JwtIssuerKey],
 
                     ValidateAudience = true,
-                    ValidAudience = configuration[SD.JwtAudienceKey],
+                    ValidAudiences = configuration.GetSection(SD.JwtAudiencesKey).Get<string[]>(),
 
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(

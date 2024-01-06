@@ -12,7 +12,7 @@
 	<ItemGroup>
 		<PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
 		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.0.0" />
-		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
@@ -27,7 +27,10 @@
 		<PackageReference Include="Scrutor" Version="4.2.2" />
 		<PackageReference Include="Serilog" Version="3.1.1" />
 		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -41,6 +44,7 @@
 
 	<ItemGroup>
 		<Using Include="FluentValidation" />
+		<Using Include="Identity.App" />
 		<Using Include="Identity.App.OptionsSetup" />
 		<Using Include="Identity.Infrastructure.Authentication" />
 		<Using Include="Identity.Infrastructure.BackgroundJobs" />
@@ -54,6 +58,8 @@
 		<Using Include="Microsoft.IdentityModel.Tokens" />
 		<Using Include="Microsoft.OpenApi.Models" />
 		<Using Include="Quartz" />
+		<Using Include="Serilog" />
+		<Using Include="Serilog.Sinks.Elasticsearch" />
 		<Using Include="Services.Common.App.Extensions" />
 		<Using Include="Services.Common.App.Options" />
 		<Using Include="Services.Common.Application.Behaviors" />

@@ -10,8 +10,7 @@ internal sealed class ConfirmEmailCommandHandler(
 
     public async Task<Result> Handle(ConfirmEmailCommand request, CancellationToken cancellationToken)
     {
-        var userId = new UserId(request.UserId);
-        var user = await _userRepository.GetUserByIdAsync(userId);
+        var user = await GetUserByIdAsync(request.UserId);
 
         if (user is null)
         {
@@ -19,9 +18,26 @@ internal sealed class ConfirmEmailCommandHandler(
                 UserErrors.UserDoesNotExist);
         }
 
-        user.ConfirmEmail();
-        _unitOfWork.SaveChanges();
+        var requestEmailConfirmationTokenResult =
+            EmailConfirmationToken.Create(request.EmailConfirmationToken);
+
+        var confirmEmailResult = user.ConfirmEmail(
+            requestEmailConfirmationTokenResult.Value);
+
+        if (confirmEmailResult.IsFailure)
+        {
+            return Result.Failure(
+                confirmEmailResult.Error);
+        }
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
+    }
+
+    private async Task<User?> GetUserByIdAsync(Guid id)
+    {
+        var userId = new UserId(id);
+        return await _userRepository.GetUserByIdAsync(userId);
     }
 }

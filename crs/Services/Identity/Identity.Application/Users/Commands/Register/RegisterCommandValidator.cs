@@ -28,5 +28,10 @@ internal sealed class RegisterCommandValidator : AbstractValidator<RegisterComma
         RuleFor(x => x.ConfirmPassword)
             .Equal(x => x.Password)
             .WithMessage("Passwords do not match");
+
+        RuleFor(x => x.EmailConfirmPagePath)
+            .NotEmpty();
+
+        RuleFor(x => x.ReturnUrl);
     }
 }

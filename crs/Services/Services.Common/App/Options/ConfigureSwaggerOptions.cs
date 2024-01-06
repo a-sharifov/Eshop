@@ -16,7 +16,7 @@ public sealed class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provi
     /// <summary>
     /// Configure each API discovered for Swagger Documentation.
     /// </summary>
-    /// <param name="options"></param>
+    /// <param name="options"> Swagger options.</param>
     public void Configure(SwaggerGenOptions options)
     {
         // add swagger document for every API version discovered
@@ -31,8 +31,8 @@ public sealed class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provi
     /// <summary>
     /// Configure Swagger Options. Inherited from the Interface.
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="options"></param>
+    /// <param name="name"> Name of the options.</param>
+    /// <param name="options"> Swagger options.</param>
     public void Configure(string? name, SwaggerGenOptions options)
     {
         Configure(options);
@@ -41,7 +41,7 @@ public sealed class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provi
     /// <summary>
     /// Create information about the version of the API.
     /// </summary>
-    /// <param name="description"></param>
+    /// <param name="desc"> Description of the API.</param>
     /// <returns>Information about the API.</returns>
     private OpenApiInfo CreateVersionInfo(
             ApiVersionDescription desc)

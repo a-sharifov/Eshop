@@ -1,4 +1,4 @@
-﻿namespace Catalog.Presentation.Controllers.V1;
+﻿namespace Catalog.Presentation.V1.Controllers;
 
 [Route("api/v{version:apiVersion}/sellers")]
 [ApiVersion("1.0")]

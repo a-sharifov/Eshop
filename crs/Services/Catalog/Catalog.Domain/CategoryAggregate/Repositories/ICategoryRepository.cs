@@ -2,6 +2,6 @@
 
 public interface ICategoryRepository : ICatalogRepository<Category, CategoryId>
 {
-    public Task<Category?> GetCategoryByNameAsync(CategoryName name, CancellationToken cancellationToken = default);
-    public Task<bool> IsCategoryNameUniqueAsync(CategoryName name, CancellationToken cancellationToken = default);
+    Task<Category?> GetCategoryByNameAsync(CategoryName name, CancellationToken cancellationToken = default);
+    Task<bool> IsCategoryNameUniqueAsync(CategoryName name, CancellationToken cancellationToken = default);
 }

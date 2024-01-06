@@ -22,4 +22,10 @@ public static class UserErrors
 
     public static Error RefreshTokenIsExpired => 
         new("User.RefreshTokenIsNotValid", $"Refresh token is expired.");
+
+    public static Error EmailConfirmationtokenIsnotCorrect =>
+        new("User.EmailConfirmationtokenIsnotCorrect", $"Email confirmation token is not correct.");
+
+    public static Error EmailIsAlreadyConfirmed =>
+        new("User.EmailIsAlreadyConfirmed", $"Email is already confirmed.");
 }

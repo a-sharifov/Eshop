@@ -15,5 +15,6 @@ internal sealed class ApplicationServiceInstaller : IServiceInstaller
         services.AddValidatorsFromAssembly(
             Application.AssemblyReference.Assembly,
             includeInternalTypes: true);
+
     }
 }

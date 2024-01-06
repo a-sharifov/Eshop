@@ -1,4 +1,3 @@
-using Identity.App;
 
 CreateHostBuilder(args).Build().Run();
 

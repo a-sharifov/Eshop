@@ -1,8 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿namespace Services.Common.App.Extensions;
 
-namespace Services.Common.App.Extensions;
-
+/// <summary>
+/// Interface for service installers.
+/// </summary>
 public interface IServiceInstaller
 {
-    public void Install(IServiceCollection services, IConfiguration configuration);
+    /// <summary>
+    /// Installs the services.
+    /// </summary>
+    /// <param name="services"> The <see cref="IServiceCollection" />.</param>
+    /// <param name="configuration"> The <see cref="IConfiguration" />.</param>
+    void Install(IServiceCollection services, IConfiguration configuration);
 }

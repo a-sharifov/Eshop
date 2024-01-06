@@ -1,7 +1,17 @@
 ﻿namespace Services.Common.Application.Abstractions;
 
+/// <summary>
+/// Interface for email service.
+/// </summary>
 public interface IEmailService
 {
-    public Task SendAsync(string to, string subject, string body, CancellationToken cancellationToken = default);
-    public Task<bool> CheckIsEmailExistsAsync(string email, CancellationToken cancellationToken = default);
+    /// <summary>
+    /// Send email async.
+    /// </summary>
+    /// <param name="to"> The email address to send to.</param>
+    /// <param name="subject"> The email subject.</param>
+    /// <param name="body"> The email body.</param>
+    /// <param name="cancellationToken"> The <see cref="CancellationToken"/>.</param>
+    /// <returns> A <see cref="Task"/> representing the asynchronous operation.</returns>
+    Task SendAsync(string to, string subject, string body, CancellationToken cancellationToken = default);
 }

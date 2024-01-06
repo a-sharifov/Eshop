@@ -6,5 +6,7 @@ public sealed record RegisterCommand(
     string ConfirmPassword,
     string FirstName,
     string LastName,
-    string Role
+    string Role,
+    string EmailConfirmPagePath,
+    string ReturnUrl
     ) : ICommand;

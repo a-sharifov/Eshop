@@ -11,7 +11,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
-		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
 		<PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="11.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
@@ -25,7 +25,7 @@
 		<PackageReference Include="Scrutor" Version="4.2.2" />
 		<PackageReference Include="Serilog" Version="3.1.1" />
 		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
-		<PackageReference Include="StackExchange.Redis" Version="2.7.4" />
+		<PackageReference Include="StackExchange.Redis" Version="2.7.10" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
@@ -39,6 +39,8 @@
 
 
 	<ItemGroup>
+		<Using Include=" Catalog.App" />
+		<Using Include="Asp.Versioning" />
 		<Using Include="Catalog.App.Configurations" />
 		<Using Include="Catalog.Infrastructure.BackgroundJobs" />
 		<Using Include="Catalog.Infrastructure.Idempotence" />

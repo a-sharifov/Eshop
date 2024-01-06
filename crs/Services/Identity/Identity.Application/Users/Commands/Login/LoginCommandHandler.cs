@@ -14,8 +14,7 @@ internal sealed class LoginCommandHandler(
 
     public async Task<Result<LoginCommanResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var email = Email.Create(request.Email);
-        var user = await _userRepository.GetUserByEmailAsync(email.Value);
+        var user = await GetUserByEmailAsync(request.Email, cancellationToken);
 
         if (user is null)
         {
@@ -23,23 +22,34 @@ internal sealed class LoginCommandHandler(
                 UserErrors.UserDoesNotExist);
         }
 
-        var passwordIsCorrect = _hashingService.Verify(
-            request.Password, user.PasswordSalt.Value, user.PasswordHash.Value);
+        var loginResult = Login(user, request.Password);
 
-        var loginUser = User.Login(user, passwordIsCorrect);
-
-        if (loginUser.IsFailure)
+        if (loginResult.IsFailure)
         {
             return Result.Failure<LoginCommanResponse>(
-                loginUser.Error);
+                loginResult.Error);
         }
 
-        var refreshToken = _jwtProvider.CreateRefreshToken();
+        var refreshToken = _jwtProvider.CreateRefreshToken().Value;
 
-        loginUser.Value.UpdateRefreshToken(refreshToken.Value);
-        var userToken = _jwtProvider.CreateTokenString(loginUser.Value);
+        user.UpdateRefreshToken(refreshToken);
+        var userToken = _jwtProvider.CreateTokenString(user);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-        return new LoginCommanResponse(userToken, refreshToken.Value.Token);
+        return new LoginCommanResponse(userToken, refreshToken.Token);
+    }
+
+    private async Task<User?> GetUserByEmailAsync(string emailString, CancellationToken cancellationToken = default)
+    {
+        var emailResult = Email.Create(emailString);
+        return await _userRepository.GetUserByEmailAsync(emailResult.Value);
+    }
+
+    private Result Login(User user ,string password)
+    {
+        var passwordIsCorrect = _hashingService.Verify(
+            password, user.PasswordSalt.Value, user.PasswordHash.Value);
+
+        return User.Login(user, passwordIsCorrect);
     }
 }

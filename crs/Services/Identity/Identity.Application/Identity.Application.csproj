@@ -27,12 +27,13 @@
 		<Using Include="Services.Common.Domain.Primitives.Events" />
 		<Using Include="Services.Common.Domain.Primitives.Results" />
 		<Using Include="FluentValidation" />
+		<Using Include="System.IdentityModel.Tokens.Jwt" />
 		<Using Include="System.Reflection" />
 		<Using Include="System.Security.Claims" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Users\Queries\" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
 	</ItemGroup>
 
 </Project>

@@ -2,5 +2,5 @@
 
 public interface ISellerRepository : ICatalogRepository<Seller, SellerId>
 {
-    public Task<Seller?> GetSellerByNameAsync(SellerName name, CancellationToken cancellationToken = default);
+    Task<Seller?> GetSellerByNameAsync(SellerName name, CancellationToken cancellationToken = default);
 }

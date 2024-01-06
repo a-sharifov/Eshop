@@ -2,6 +2,6 @@
 
 public interface IIdentityEmailService : IEmailService
 {
-    public Task SendConfirmationEmailAsync(User user, CancellationToken cancellationToken = default);
-    public Task SendResetPasswordEmailAsync(User user, CancellationToken cancellationToken = default);
+    Task SendConfirmationEmailAsync(User user, string emailConfirmPagePath, string returnUrl, CancellationToken cancellationToken = default);
+    EmailConfirmationToken CreateConfirmationEmailToken();
 }

@@ -1,6 +1,12 @@
 ﻿namespace Services.Common.Domain.Primitives;
 
+/// <summary>
+/// Interface for strongest id.
+/// </summary>
 public interface IStrongestId  
 {
-    public Guid Value { get; }
+    /// <summary>
+    /// Gets the value of the id.
+    /// </summary>
+    Guid Value { get; }
 }

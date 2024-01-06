@@ -8,7 +8,11 @@ internal sealed class DocumentationServiceInstaller : IServiceInstaller
         {
             setup.SwaggerDoc(
                 SD.ProjectVersion,
-                new() { Title = SD.ProjectName, Version = SD.ProjectVersion });
+                new()
+                {
+                    Title = SD.ProjectName,
+                    Version = $"{SD.ProjectMinorVersion}.{SD.ProjectMajorVersion}"
+                });
 
             setup.AddSecurityDefinition(
                 JwtBearerDefaults.AuthenticationScheme,

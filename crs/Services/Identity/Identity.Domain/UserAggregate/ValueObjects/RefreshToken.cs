@@ -27,6 +27,10 @@ public sealed class RefreshToken : ValueObject
         return new RefreshToken(value, expires);
     }
 
+    public static implicit operator string(RefreshToken token) =>
+        token.Token;
+
+
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Token;

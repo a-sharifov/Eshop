@@ -14,22 +14,28 @@ internal sealed class RegisterCommandHandler(
 
     public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var user = await CreateUser(request);
+        var userResult = await CreateUserResult(request);
 
-        if (user.IsFailure)
+        if (userResult.IsFailure)
         {
-            return Result.Failure(user.Error);
+            return Result.Failure(userResult.Error);
         }
 
-        await _userRepository.AddUserAsync(user.Value, cancellationToken);
+        var user = userResult.Value;
+
+        await _userRepository.AddUserAsync(user, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        //await _emailService.SendConfirmationEmailAsync(user.Value, cancellationToken);
+        await _emailService.SendConfirmationEmailAsync(
+            user,
+            request.EmailConfirmPagePath,
+            request.ReturnUrl,
+            cancellationToken);
 
         return Result.Success();
     }
 
-    private async Task<Result<User>> CreateUser(
+    private async Task<Result<User>> CreateUserResult(
         RegisterCommand request , 
         CancellationToken cancellationToken = default)
     {
@@ -44,6 +50,8 @@ internal sealed class RegisterCommandHandler(
         var hash = _hashingService.Hash(request.Password, generateSalt);
         var passwordHashResult = PasswordHash.Create(hash);
 
+        var emailConfirmationToken = _emailService.CreateConfirmationEmailToken();
+
         var isEmailUnique = await _userRepository
             .IsEmailUnigueAsync(emailResult.Value, cancellationToken);
 
@@ -54,8 +62,9 @@ internal sealed class RegisterCommandHandler(
             lastNameResult.Value,
             passwordHashResult.Value,
             passwordSaltResult.Value,
-            Enum.Parse<Role>(request.Role),
-            isEmailUnique);
+            emailConfirmationToken,
+            isEmailUnique,
+            Enum.Parse<Role>(request.Role));
 
         return user;
     }

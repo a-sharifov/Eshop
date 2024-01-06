@@ -49,6 +49,11 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
         });
 
+        builder.Property(x => x.EmailConfirmationToken).HasConversion(
+            token => token.Value,
+            value => EmailConfirmationToken.Create(value).Value)
+            .IsRequired();
+
         builder.Property(x => x.IsEmailConfirmed).IsRequired();
 
         builder.Property(x => x.Role).IsRequired();

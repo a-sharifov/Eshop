@@ -27,8 +27,6 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
             key, SecurityAlgorithms.HmacSha256Signature);
 
         var token = new JwtSecurityToken(
-            issuer: _jwtOptions.Issuer,
-            audience: _jwtOptions.Audience,
             claims: claims,
             expires: DateTime.UtcNow.AddMinutes(TokenExpirationTimeMinutes),
             signingCredentials: signingCredentials
@@ -40,15 +38,25 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
         return tokenValue;
     }
 
-    private static Claim[] CreateClaims(User user) =>
-        [
+    private Claim[] CreateClaims(User user)
+    {
+        Claim[] claims = [
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.Value.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email.Value),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Iss, _jwtOptions.Issuer),
             new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(),
-                           ClaimValueTypes.Integer64),
+            ClaimValueTypes.Integer64),
             new Claim(ClaimTypes.Role, user.Role.ToString())
-        ];
+                ];
+
+        foreach (var item in _jwtOptions.Audiences)
+        {
+            claims.Append(new Claim(JwtRegisteredClaimNames.Aud, item));
+        }
+
+        return claims;
+    }
 
     public string CreateRefreshTokenString()
     {
@@ -58,7 +66,7 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
         return Convert.ToBase64String(randomNumber);
     }
 
-    public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+    public IEnumerable<Claim> GetClaimsInToken(string token)
     {
         var tokenValidationParameters = new TokenValidationParameters
         {
@@ -70,16 +78,14 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
-        var principal = tokenHandler.ValidateToken
-            (token, tokenValidationParameters, out SecurityToken securityToken);
+        var securityToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
 
-        if (securityToken is not JwtSecurityToken jwtSecurityToken 
-            || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+        if (securityToken is null)
         {
             throw new SecurityTokenException("Invalid token");
         }
 
-        return principal;
+        return securityToken.Claims;
     }
 
     public Result<RefreshToken> CreateRefreshToken()

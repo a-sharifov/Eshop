@@ -17,7 +17,7 @@ public static class SD
     //Jwt configuration
     public const string JwtSectionKey = "Jwt";
     public const string JwtIssuerKey = "Jwt:Issuer";
-    public const string JwtAudienceKey = "Jwt:Audience";
+    public const string JwtAudiencesKey = "Jwt:Audiences";
     public const string JwtSecurityKey = "Jwt:Key";
 
     //Default cors policy name

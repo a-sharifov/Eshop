@@ -21,7 +21,10 @@ internal sealed class PresentationServiceInstaller : IServiceInstaller
             setup.AssumeDefaultVersionWhenUnspecified = true;
             setup.ReportApiVersions = true;
             setup.UnsupportedApiVersionStatusCode = StatusCodes.Status400BadRequest;
-            setup.ApiVersionReader = new HeaderApiVersionReader("x-version");
+            setup.ApiVersionReader = 
+            ApiVersionReader.Combine(
+            new UrlSegmentApiVersionReader(), 
+            new HeaderApiVersionReader("x-version"));
         }).AddMvc()
         .AddApiExplorer(setup =>
         {

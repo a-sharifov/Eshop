@@ -2,11 +2,11 @@
 
 public interface IJwtProvider
 {
-    public int TokenExpirationTimeMinutes { get; }
-    public int RefreshTokenExpirationTimeMinutes { get; }
+    int TokenExpirationTimeMinutes { get; }
+    int RefreshTokenExpirationTimeMinutes { get; }
 
-    public string CreateTokenString(User user);
-    public string CreateRefreshTokenString();
-    public Result<RefreshToken> CreateRefreshToken();   
-    public ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
+    string CreateTokenString(User user);
+    string CreateRefreshTokenString();
+    Result<RefreshToken> CreateRefreshToken();   
+    IEnumerable<Claim> GetClaimsInToken(string token);
 }
