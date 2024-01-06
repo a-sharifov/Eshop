@@ -21,11 +21,11 @@ jobs:
     - name: Build Catalog app
       run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj --no-restore
     - name: Unit test Catalog app
-      run: dotnet test ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-build --verbosity normal
+      run: dotnet test ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-build --verbosity diag
       
     - name: Restore dependencies for Identity app
       run: dotnet restore  ./crs/Services/Identity/Identity.App/Identity.App.csproj
     - name: Build Identity app
       run: dotnet build  ./crs/Services/Identity/Identity.App/Identity.App.csproj --no-restore
     - name: Unit test Identity app
-      run: dotnet test ./tests/Identity.UnitTests/Identity.UnitTests.csproj --no-build --verbosity normal
+      run: dotnet test ./tests/Identity.UnitTests/Identity.UnitTests.csproj --no-build --verbosity diag
