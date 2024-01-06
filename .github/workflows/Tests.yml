@@ -16,16 +16,20 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Restore dependencies for Catalog app
-      run: dotnet restore  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj
-    - name: Build Catalog app
-      run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj --no-restore
-    - name: Unit test Catalog app
-      run: dotnet test ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-build --verbosity normal
+    - name: Restore dependencies 
+      run: dotnet restore ./Eshop.sln
       
-    - name: Restore dependencies for Identity app
-      run: dotnet restore  ./crs/Services/Identity/Identity.App/Identity.App.csproj
-    - name: Build Identity app
-      run: dotnet build  ./crs/Services/Identity/Identity.App/Identity.App.csproj --no-restore
-    - name: Unit test Identity app
-      run: dotnet test ./tests/Identity.UnitTests/Identity.UnitTests.csproj --no-build --verbosity normal
+    - name: Build Identity unit test
+      run: dotnet build ./Eshop.sln --configuration ./tests/Identity.UnitTests/Identity.UnitTests.csproj
+      
+    - name: Identity unit test
+      run: dotnet test ./Eshop.sln --configuration ./tests/Identity.UnitTests/Identity.UnitTests.csproj --logger "trx;LogFileName=test-results.trx" || true
+      
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true
