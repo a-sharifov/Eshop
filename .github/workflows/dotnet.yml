@@ -17,15 +17,15 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies for Catalog app
-      run: dotnet restore ./crs/Services/Catalog/Catalog.App/Catalog.App.sln
+      run: dotnet restore ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj
     - name: Build Catalog app
-      run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.sln --no-restore
+      run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj --no-restore
     - name: Unit test Catalog app
       run:  dotnet build ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-restore
 
     - name: Restore dependencies for Identity app
-      run: dotnet restore  ./crs/Services/Catalog/Identity.App/Identity.App.sln
+      run: dotnet restore  ./crs/Services/Catalog/Identity.App/Identity.App.csproj
     - name: Build Identity app
-      run: dotnet build  ./crs/Services/Identity/Identity.App/Identity.App.sln --no-restore
+      run: dotnet build  ./crs/Services/Identity/Identity.App/Identity.App.csproj --no-restore
     - name: Unit test Identity app
       run: dotnet build ./tests/Identity.UnitTests/Identity.UnitTests.csproj --no-restore
