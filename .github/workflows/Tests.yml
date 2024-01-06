@@ -18,9 +18,9 @@ jobs:
 
     - name: Restore dependencies for Catalog app
       run: dotnet restore  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj
-    - name: Build Identity app
+    - name: Build Catalog app
       run: dotnet build  ./crs/Services/Catalog/Catalog.App/Catalog.App.csproj --no-restore
-    - name: Unit test Identity app
+    - name: Unit test Catalog app
       run: dotnet test ./tests/Catalog.UnitTests/Catalog.UnitTests.csproj --no-build --verbosity normal
       
     - name: Restore dependencies for Identity app
