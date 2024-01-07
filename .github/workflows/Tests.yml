@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "master" ]
 
+permissions:
+  checks: write
+
 jobs:
   build:
 
