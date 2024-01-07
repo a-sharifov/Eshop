@@ -1,13 +1,18 @@
 name: Tests
 
-on:
-  push:
-    branches: [ "master" ]
+on: [push, pull_request]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    permissions:
+      statuses: write
+      checks: write
+      contents: write
+      pull-requests: write
+      actions: write
 
     steps:
     - uses: actions/checkout@v4.1.1
@@ -16,17 +21,17 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Restore dependencies 
+    - name: Restore dependencies solution
       run: dotnet restore ./Eshop.sln
       
-    - name: Build Identity unit test
-      run: dotnet build ./Eshop.sln --configuration ./tests/Identity.UnitTests/Identity.UnitTests.csproj
+    - name: Build solution
+      run: dotnet build ./Eshop.sln --configuration Debug
       
-    - name: Identity unit test
-      run: dotnet test ./Eshop.sln --configuration ./tests/Identity.UnitTests/Identity.UnitTests.csproj --logger "trx;LogFileName=test-results.trx" || true
+    - name: Test
+      run: dotnet test ./Eshop.sln --configuration Debug --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Test Report
-      uses: dorny/test-reporter@v1
+      uses:  dorny/test-reporter@v1.7.0
       if: always()
       with:
         name: DotNET Tests
