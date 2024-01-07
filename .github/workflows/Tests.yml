@@ -16,13 +16,13 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Restore dependencies 
+    - name: Restore dependencies solution
       run: dotnet restore ./Eshop.sln
       
-    - name: Build Identity unit test
+    - name: Build solution
       run: dotnet build ./Eshop.sln --configuration Debug
       
-    - name: Identity unit test
+    - name: Test
       run: dotnet test ./Eshop.sln --configuration Debug --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Test Report
