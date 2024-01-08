@@ -5,27 +5,32 @@
 /// </summary>
 public static class SD
 {
-    //Project name
+    //Is default values
+    public const string EmailSectionKey = "Email";
+    public const string DefaultCorsPolicyName = "CorsPolicy";
     public const string ProjectName = "Identity.App";
+    public static string ProjectVersion => $"v{1}.{0}";
 
-    //Project version
-    public const int ProjectMajorVersion = 1;
-    public const int ProjectMinorVersion = 0;
-    public static string ProjectVersion =>
-      $"v{ProjectMajorVersion}.{ProjectMinorVersion}";
-
-    //Jwt configuration
+    //Jwt default configuration
     public const string JwtSectionKey = "Jwt";
     public const string JwtIssuerKey = "Jwt:Issuer";
     public const string JwtAudiencesKey = "Jwt:Audiences";
     public const string JwtSecurityKey = "Jwt:Key";
 
-    //Default cors policy name
-    public const string DefaultCorsPolicyName = "CorsPolicy";
+    //Is required environments
+    public static string POSTGRES_USER = GetEnvironmentVariable("POSTGRES_USER");
+    public static string POSTGRES_PASSWORD = GetEnvironmentVariable("POSTGRES_PASSWORD");
+    public static string POSTGRES_DB = GetEnvironmentVariable("POSTGRES_DB");
 
-    //Connection string
-    public const string DbConfigurationKey = "DefaultConnection";
+    private static string GetEnvironmentVariable(string key)
+    {
+        var environment = Environment.GetEnvironmentVariable(key);
 
-    //Email configuration
-    public const string EmailSectionKey = "Email";
+        if (environment is null)
+        {
+            throw new ArgumentNullException($"Environment {environment} not add.");
+        }
+
+        return environment;
+    }
 }

@@ -20,6 +20,8 @@ public sealed class Startup(IConfiguration configuration)
             app.UseSwaggerUI();
         }
 
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+
         app.UseHttpsRedirection();
         app.UseCors(SD.DefaultCorsPolicyName);
 
@@ -27,7 +29,7 @@ public sealed class Startup(IConfiguration configuration)
 
         app.UseRouting();
 
-        app.UseAuthorization();
+        //app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {

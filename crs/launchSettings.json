@@ -6,7 +6,8 @@
       "serviceActions": {
         "catalog.app": "StartDebugging",
         "mssql": "StartWithoutDebugging",
-        "redis": "StartWithoutDebugging"
+        "redis": "StartWithoutDebugging",
+        "identity.app": "StartDebugging"
       }
     }
   }

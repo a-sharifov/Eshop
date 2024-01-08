@@ -24,9 +24,7 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
         _expirationTime = expirationTime;
     }
 
-    public async Task AddAsync(
-        TEntity entity,
-        CancellationToken cancellationToken = default)
+    public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await _cached.SetAsync(entity, _expirationTime, cancellationToken);
 

@@ -1,4 +1,4 @@
-﻿version: '3.4'
+version: '3.4'
 
 services:
   catalog.app:
@@ -7,65 +7,29 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.App/Dockerfile
-    networks:
-    - mssql-network
-    - redis-network
     depends_on:
     - mssql
     - redis
-    - elasticsearch 
-    environment:
-    - DefaultConnection=Data Source=mssql;Initial Catalog=catalogDb;User ID=sa;Password=mssql1Ipw;TrustServerCertificate=true
-    - RedisConnection=localhost:6379,password=Password123
-    ports:
-    #redact ports
-    - "7061:80"
-    - "7060:443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  identity.app:
+    image: ${DOCKER_REGISTRY-}identityapp
+    build:
+      context: ..
+      dockerfile: crs/Services/Identity/Identity.App/Dockerfile
+    depends_on:
+    - postgres
 
   mssql:
     container_name: mssql
     image: mcr.microsoft.com/mssql/server:2019-latest
-    networks:
-    - mssql-network
-    environment:
-    - ACCEPT_EULA=Y
-    - SA_PASSWORD=mssql1Ipw
-    - MSSQL_DB=catalogDb
-    - MSSQL_USER=sa
-    volumes:
-    - ./mssql:/var/opt/mssql/data
-    ports:
-    - "1433:1433"
 
-  # https://blog.christian-schou.dk/connect-postgresql-database-to-dot-net-6/
   postgres:
     container_name: postgres
     image: postgres
-    networks:
-    - mssql-network
-    environment:
-    - POSTGRES_PASSWORD=postgres1Ipw
-    - POSTGRES_DB=identityDb
-    - POSTGRES_USER=postgres
-    volumes:
-    - ./postgres:/var/lib/postgresql/data
-    ports:
-    - "5432:5432"
 
   redis:
     container_name: redis
     image: redis
-    ports:
-    - "6379:6379"
-    environment:
-    - REDIS_ARGS=--requirepass Password123
-    networks:
-    - redis-network
-    volumes:
-    - ./redis:/data
 
   elasticsearch:
     container_name: elasticsearch
@@ -94,15 +58,7 @@ services:
     networks:
     - elastic
 
-volumes:
-  mssql: 
-  redis:
-  elasticsearch-data:
-
 networks:
-  mssql-network:
-    driver: bridge
-  redis-network:
-    driver: bridge
   elastic:
     driver: bridge
+

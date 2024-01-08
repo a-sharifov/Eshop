@@ -6,7 +6,13 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration[SD.DbConfigurationKey];
+        var connectionString = 
+            $"Server=postgres;" +
+            $"Port=5432;" +
+            $"Database={SD.POSTGRES_DB};" +
+            $"Username={SD.POSTGRES_USER};" +
+            $"Password={SD.POSTGRES_PASSWORD}" +
+            $";TimeZone=UTC;";
 
         services.AddDbContext<UserDbContext>(options =>
             options.UseNpgsql(connectionString));

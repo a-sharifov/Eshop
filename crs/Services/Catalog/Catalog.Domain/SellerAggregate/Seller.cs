@@ -6,9 +6,9 @@ public sealed class Seller : AggregateRoot<SellerId>
     public Email Email { get; private set; }
     public List<Product> Products { get; private set; }
 
-    private Seller()
-    {
-    }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Seller() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     private Seller(
         SellerId id,

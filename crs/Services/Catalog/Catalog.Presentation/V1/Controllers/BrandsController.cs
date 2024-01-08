@@ -7,7 +7,7 @@ namespace Catalog.Presentation.V1.Controllers;
 [ApiVersion("1.0")]
 public sealed class BrandsController(ISender sender) : ApiController(sender)
 {
-    [HttpPost]
+    [HttpPost("create-brand")]
     public async Task<IActionResult> CreateBrand(
         [FromBody] CreateBrandRequest request,
         CancellationToken cancellationToken)

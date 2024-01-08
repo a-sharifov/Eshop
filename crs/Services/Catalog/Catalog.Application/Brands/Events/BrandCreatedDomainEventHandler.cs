@@ -6,8 +6,8 @@ internal sealed class BrandCreatedDomainEventHandler(
 {
     private readonly IBrandRepository _brandRepository = brandRepository;
 
-    public async Task Handle(BrandCreatedDomainEvent notification, CancellationToken cancellationToken)
+    public Task Handle(BrandCreatedDomainEvent notification, CancellationToken cancellationToken)
     {
-        //add logic... 
+        throw new NotImplementedException();
     }
 }

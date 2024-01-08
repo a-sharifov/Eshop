@@ -23,10 +23,9 @@ public sealed class Brand : AggregateRoot<BrandId>
     /// <summary>
     /// Initializes a new instance of the <see cref="Brand"/> class.
     /// </summary>
-    private Brand()
-    {
-        // Required for Entity Framework Core
-    }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Brand() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Brand"/> class.
@@ -69,7 +68,7 @@ public sealed class Brand : AggregateRoot<BrandId>
                 BrandErrors.BrandNameIsNotUnique);
         }
 
-        Brand brand = new Brand(id, name, description, products);
+        var brand = new Brand(id, name, description, products);
 
         // Raise a domain event indicating the creation of a new brand
         brand.AddDomainEvent(
