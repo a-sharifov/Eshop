@@ -40,14 +40,22 @@ internal sealed class BrandRepository(
     {
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
+        for (int i = 0; i < 100; i++)
+        {
+            await Console.Out.WriteLineAsync(_entityName);
+        }
+
         string query =
-            $"SELECT COUNT(*) FROM {_entityName}" +
-            "WHERE [Name] = @BrandName";
+            $"""
+            SELECT COUNT(*) 
+            FROM {_entityName} 
+            WHERE [Name] = @BrandName
+            """;
 
         var parameters = new { BrandName = name.Value };
 
         var isUnigue = !await sqlConnection
-            .QueryFirstAsync<bool>(query, parameters);
+            .ExecuteScalarAsync<bool>(query, parameters);
 
         return isUnigue;
     }
