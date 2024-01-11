@@ -15,18 +15,4 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Catalog.Persistence\Catalog.Persistence.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Using Include=" Services.Common.Serializers" />
-		<Using Include="Catalog.Persistence" />
-		<Using Include="Catalog.Persistence.Factories.Interfaces" />
-		<Using Include="MediatR" />
-		<Using Include="Microsoft.EntityFrameworkCore" />
-		<Using Include="Polly" />
-		<Using Include="Quartz" />
-		<Using Include="Services.Common.Domain.Primitives" />
-		<Using Include="Services.Common.Domain.Primitives.Events" />
-		<Using Include="System.Reflection" />
-	</ItemGroup>
-
 </Project>

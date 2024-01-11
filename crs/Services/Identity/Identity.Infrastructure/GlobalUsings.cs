@@ -1,0 +1,16 @@
+﻿global using Identity.Application.Abstractions;
+global using Identity.Domain.UserAggregate;
+global using Identity.Persistence;
+global using MailKit.Net.Smtp;
+global using MediatR;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Polly;
+global using Quartz;
+global using Services.Common.Domain.Primitives;
+global using Services.Common.Domain.Primitives.Events;
+global using Services.Common.Serializers;
+global using System.Reflection;
+global using System.Text;
+global using Microsoft.Extensions.Options;
+global using Identity.Domain.UserAggregate.ValueObjects;

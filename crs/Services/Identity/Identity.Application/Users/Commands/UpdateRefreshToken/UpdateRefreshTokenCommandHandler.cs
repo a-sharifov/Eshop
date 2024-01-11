@@ -12,14 +12,10 @@ internal sealed class UpdateRefreshTokenCommandHandler(
 
     public async Task<Result<UpdateRefreshTokenCommandResponse>> Handle(UpdateRefreshTokenCommand request, CancellationToken cancellationToken)
     {
-        var claims = _jwtProvider.GetClaimsInToken(request.Token);
+        var emailString = _jwtProvider.GetEmailFromToken(request.Token);
+        var emailResult = Email.Create(emailString);
 
-        var emailString = claims.First(x => 
-        x.Type == JwtRegisteredClaimNames.Email).Value;
-
-        var email = Email.Create(emailString);
-
-        var user = await _userRepository.GetUserByEmailAsync(email.Value, cancellationToken);
+        var user = await _userRepository.GetUserByEmailAsync(emailResult.Value, cancellationToken);
 
         if (user is null ||
             user.RefreshToken?.Token != request.RefreshToken)
@@ -35,7 +31,7 @@ internal sealed class UpdateRefreshTokenCommandHandler(
         }
 
         var refreshTokenResult = _jwtProvider.CreateRefreshToken();
-        var userToken = _jwtProvider.CreateTokenString(user);
+        var userToken = _jwtProvider.CreateTokenString(user, request.Audience);
 
         user.UpdateRefreshToken(refreshTokenResult.Value);
 

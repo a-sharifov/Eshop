@@ -2,5 +2,6 @@
 
 public sealed record UpdateRefreshTokenCommand(
     string Token,
-    string RefreshToken) 
+    string RefreshToken,
+    string Audience) 
     : ICommand<UpdateRefreshTokenCommandResponse>;

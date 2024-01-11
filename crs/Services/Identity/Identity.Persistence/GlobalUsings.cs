@@ -1,0 +1,13 @@
+﻿global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Identity.Domain.UserAggregate.ValueObjects;
+global using Identity.Domain.UserAggregate;
+global using Identity.Domain.UserAggregate.Ids;
+global using Identity.Domain.UserAggregate.Repositories;
+global using Identity.Persistence;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+global using Services.Common.Domain.Primitives;
+global using Services.Common.Domain.Primitives.Events;
+global using Services.Common.Extensions;
+global using Services.Common.Serializers;
+global using System.Reflection;

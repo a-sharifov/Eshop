@@ -14,19 +14,4 @@
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include=" Services.Common.Domain.Primitives.Events" />
-    <Using Include="Identity.Domain.UserAggregate" />
-    <Using Include="Identity.Domain.UserAggregate.DomainEvents" />
-    <Using Include="Identity.Domain.UserAggregate.Enums" />
-    <Using Include="Identity.Domain.UserAggregate.Errors" />
-    <Using Include="Identity.Domain.UserAggregate.Ids" />
-    <Using Include="Identity.Domain.UserAggregate.ValueObjects" />
-    <Using Include="Microsoft.AspNetCore.Identity" />
-    <Using Include="Services.Common.Domain.Primitives" />
-    <Using Include="Services.Common.Domain.Primitives.Results" />
-    <Using Include="Services.Common.Extensions" />
-    <Using Include="System.Text.RegularExpressions" />
-  </ItemGroup>
-
 </Project>

@@ -7,7 +7,7 @@ public sealed class Startup(IConfiguration configuration)
     public void ConfigureServices(IServiceCollection services)
     {
         services.InstallServicesFromAssembly(
-            _configuration, 
+            _configuration,
             App.AssemblyReference.Assembly);
     }
 
@@ -36,7 +36,6 @@ public sealed class Startup(IConfiguration configuration)
         {
             configure.MapControllers();
         });
-
     }
 
 }

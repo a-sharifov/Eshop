@@ -7,10 +7,14 @@ services:
     - ASPNETCORE_HTTP_PORTS=7060
     - ASPNETCORE_HTTPS_PORT=7061
     - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - REDIS_PASSWORD=${REDIS_PASSWORD}
     - MSSQL_INITIAL_CATALOG=${MSSQL_INITIAL_CATALOG}
     - MSSQL_USER_ID=${MSSQL_USER_ID}
     - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
-    - REDIS_PASSWORD=${REDIS_PASSWORD}
+    - AUTH_ISSUER=${AUTH_ISSUER}
+    - WEB_AUDIENCE=${WEB_AUDIENCE}
+    - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -22,18 +26,38 @@ services:
   identity.app:
     environment:
     - ASPNETCORE_URLS=http://+:80;https://+:443
-    - ASPNETCORE_ENVIRONMENT=Development
     - ASPNETCORE_HTTP_PORTS=8080
     - ASPNETCORE_HTTPS_PORTS=8081
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
     - POSTGRES_USER=${POSTGRES_USER}
     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     - POSTGRES_DB=${POSTGRES_DB}
+    - AUTH_ISSUER=${AUTH_ISSUER}
+    - WEB_AUDIENCE=${WEB_AUDIENCE}
+    - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
     ports:
     - "8080:80"
     - "8081:443"
     volumes:
     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+
+
+
+  gateways.web:
+    environment:
+      - ASPNETCORE_URL=http://+:80;https://+:443
+      - ASPNETCORE_HTTP_PORTS=5039
+      - ASPNETCORE_HTTPS_PORTS=5040
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5039:80"
+      - "5040:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
   
   mssql:
@@ -69,3 +93,4 @@ volumes:
   mssql: 
   redis:
   elasticsearch-data: 
+

@@ -1,0 +1,10 @@
+﻿global using Services.Common.Serializers;
+global using Catalog.Persistence;
+global using Catalog.Persistence.Factories.Interfaces;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using Polly;
+global using Quartz;
+global using Services.Common.Domain.Primitives;
+global using Services.Common.Domain.Primitives.Events;
+global using System.Reflection;

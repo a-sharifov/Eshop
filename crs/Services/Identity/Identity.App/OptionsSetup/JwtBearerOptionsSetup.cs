@@ -7,18 +7,19 @@ internal sealed class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions)
 
     public void Configure(JwtBearerOptions options)
     {
-        options.RequireHttpsMetadata = false;
+        options.RequireHttpsMetadata = true;
         options.SaveToken = true;
         options.TokenValidationParameters = new()
         {
             ValidateIssuer = true,
+            ValidIssuer = Env.AUTH_ISSUER,
+            ValidAudiences = [Env.WEB_AUDIENCE],
+
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = _jwtOptions.Issuer,
-            ValidAudiences = _jwtOptions.Audiences,
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_jwtOptions.Key)),
+                Encoding.UTF8.GetBytes(Env.JWT_SECURITY_KEY)),
         };
     }
 }

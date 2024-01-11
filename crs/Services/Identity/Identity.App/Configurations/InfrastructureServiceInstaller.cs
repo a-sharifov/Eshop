@@ -9,9 +9,9 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         var connectionString = 
             $"Server=postgres;" +
             $"Port=5432;" +
-            $"Database={SD.POSTGRES_DB};" +
-            $"Username={SD.POSTGRES_USER};" +
-            $"Password={SD.POSTGRES_PASSWORD}" +
+            $"Database={Env.POSTGRES_DB};" +
+            $"Username={Env.POSTGRES_USER};" +
+            $"Password={Env.POSTGRES_PASSWORD}" +
             $";TimeZone=UTC;";
 
         services.AddDbContext<UserDbContext>(options =>

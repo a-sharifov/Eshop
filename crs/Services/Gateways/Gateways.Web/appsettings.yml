@@ -1,0 +1,31 @@
+
+Logging:
+  LogLevel:
+    Default: "Information"
+    Microsoft.AspNetCore: "Warning"
+
+ReverseProxy:
+  Routes:
+    catalogroute:
+      ClusterId: catalogservice
+      Match:
+        Path: "{**catch-all}"
+      Transforms:
+        - PathRemovePrefix: "/api"
+    identityroute:
+      ClusterId: identityservice
+      Match:
+        Path: "{**catch-all}"
+      Transforms:
+        - PathRemovePrefix: "/api"
+  Clusters:
+    catalogservice:
+      Destinations:
+        catalogservice-1:
+          Address: "https://localhost:5001"
+    identityservice:
+      Destinations:
+        identityservice-1:
+          Address: "https://localhost:5002"
+
+AllowedHosts: "*"

@@ -7,7 +7,8 @@
         "catalog.app": "StartDebugging",
         "mssql": "StartWithoutDebugging",
         "redis": "StartWithoutDebugging",
-        "identity.app": "StartDebugging"
+        "identity.app": "StartDebugging",
+        "gateways.web": "StartDebugging"
       }
     }
   }

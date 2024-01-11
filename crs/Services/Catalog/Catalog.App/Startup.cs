@@ -29,7 +29,8 @@ public sealed class Startup(IConfiguration configuration)
 
         app.UseRouting();
 
-        //app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {

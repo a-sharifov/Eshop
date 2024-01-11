@@ -38,7 +38,7 @@ internal sealed class DocumentationServiceInstaller : IServiceInstaller
                             Type = ReferenceType.SecurityScheme
                         }
                     },
-                    new string[] {}
+                    Array.Empty<string>()
                 }
             });
 

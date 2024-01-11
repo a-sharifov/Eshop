@@ -19,6 +19,13 @@ services:
     depends_on:
     - postgres
 
+
+  gateways.web:
+    image: ${DOCKER_REGISTRY-}gatewaysweb
+    build:
+      context: ..
+      dockerfile: crs/Services/Gateways/Gateways.Web/Dockerfile
+
   mssql:
     container_name: mssql
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -61,4 +68,5 @@ services:
 networks:
   elastic:
     driver: bridge
+
 

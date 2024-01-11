@@ -1,0 +1,12 @@
+﻿global using Services.Common.Domain.Primitives.Events;
+global using Identity.Domain.UserAggregate;
+global using Identity.Domain.UserAggregate.DomainEvents;
+global using Identity.Domain.UserAggregate.Enums;
+global using Identity.Domain.UserAggregate.Errors;
+global using Identity.Domain.UserAggregate.Ids;
+global using Identity.Domain.UserAggregate.ValueObjects;
+global using Microsoft.AspNetCore.Identity;
+global using Services.Common.Domain.Primitives;
+global using Services.Common.Domain.Primitives.Results;
+global using Services.Common.Extensions;
+global using System.Text.RegularExpressions;
