@@ -25,3 +25,5 @@ global using Asp.Versioning.ApiExplorer;
 global using Swashbuckle.AspNetCore.SwaggerGen;
 global using Services.Common.Infrastructure.Middleware;
 global using System.Security.Claims;
+global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;

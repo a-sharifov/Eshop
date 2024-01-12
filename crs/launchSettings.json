@@ -8,7 +8,8 @@
         "mssql": "StartWithoutDebugging",
         "redis": "StartWithoutDebugging",
         "identity.app": "StartDebugging",
-        "gateways.web": "StartDebugging"
+        //"gateways.web": "StartDebugging",
+        "monitoring.app": "StartDebugging"
       }
     }
   }

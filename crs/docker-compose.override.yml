@@ -22,7 +22,6 @@ services:
     - "7060:80"
     - "7061:443"
 
-
   identity.app:
     environment:
     - ASPNETCORE_URLS=http://+:80;https://+:443
@@ -42,24 +41,32 @@ services:
     volumes:
     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-
-
-
-
-  gateways.web:
+ 
+  monitoring.app:
     environment:
-      - ASPNETCORE_URL=http://+:80;https://+:443
-      - ASPNETCORE_HTTP_PORTS=5039
-      - ASPNETCORE_HTTPS_PORTS=5040
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5065
+      - ASPNETCORE_HTTPS_PORTS=5066
     ports:
-      - "5039:80"
-      - "5040:443"
+      - "5065:80"
+      - "5066:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
-  
+  # gateways.web:
+  #   environment:
+  #     - ASPNETCORE_URL=http://+:80;https://+:443
+  #     - ASPNETCORE_HTTP_PORTS=5039
+  #     - ASPNETCORE_HTTPS_PORTS=5040
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #   ports:
+  #     - "5039:80"
+  #     - "5040:443"
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
   mssql:
     environment:
     - ACCEPT_EULA=Y
@@ -89,8 +96,17 @@ services:
     ports:
     - "6379:6379"
 
+  # influx:
+  #   environment:
+  #    - INFLUXDB_USER=${INFLUXDB_USER}
+  #    - INFLUXDB_USER_PASSWORD=${INFLUXDB_USER_PASSWORD}
+  #    - INFLUXDB_DB=${INFLUXDB_DATABASE}
+  #   ports:
+  #   - 8086:8086
+  #   volumes:
+  #   - influx-data:/var/lib/influxdb
+
 volumes:
   mssql: 
   redis:
   elasticsearch-data: 
-

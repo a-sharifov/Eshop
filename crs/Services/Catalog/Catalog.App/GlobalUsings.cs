@@ -20,3 +20,5 @@ global using System.Reflection;
 global using System.Security.Claims;
 global using System.Text;
 global using Microsoft.IdentityModel.Tokens;
+global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;

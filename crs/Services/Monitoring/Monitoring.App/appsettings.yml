@@ -1,0 +1,15 @@
+
+Logging:
+  LogLevel:
+    Default: Information
+    Microsoft.AspNetCore: Warning
+
+HealthChecksUi:
+    Healthchecks:
+    - Name: "Catalog.App"
+      Uri: "https://host.docker.internal:7061/health"
+    - Name: "Identity.App"
+      Uri: "https://host.docker.internal:8081/health"
+    evaluationTimeInSeconds: 10
+
+AllowedHosts: "*"

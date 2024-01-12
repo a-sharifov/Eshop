@@ -12,19 +12,29 @@ services:
     - redis
 
   identity.app:
+    container_name: identity.app
     image: ${DOCKER_REGISTRY-}identityapp
     build:
       context: ..
       dockerfile: crs/Services/Identity/Identity.App/Dockerfile
     depends_on:
-    - postgres
+    - postgres 
 
-
-  gateways.web:
-    image: ${DOCKER_REGISTRY-}gatewaysweb
+  monitoring.app:
+    container_name: monitoring.app
+    image: ${DOCKER_REGISTRY-}monitoringapp
     build:
       context: ..
-      dockerfile: crs/Services/Gateways/Gateways.Web/Dockerfile
+      dockerfile: crs/Services/Monitoring/Monitoring.App/Dockerfile
+    depends_on:
+    - catalog.app
+    - identity.app
+
+  # gateways.web:
+  #   image: ${DOCKER_REGISTRY-}gatewaysweb
+  #   build:
+  #     context: ..
+  #     dockerfile: crs/Services/Gateways/Gateways.Web/Dockerfile
 
   mssql:
     container_name: mssql
@@ -65,8 +75,13 @@ services:
     networks:
     - elastic
 
+  # influx:
+  #   container_name: influx
+  #   image: influxdb
+
 networks:
   elastic:
     driver: bridge
+
 
 

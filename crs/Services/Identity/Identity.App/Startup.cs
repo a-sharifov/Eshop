@@ -35,6 +35,10 @@ public sealed class Startup(IConfiguration configuration)
         app.UseEndpoints(configure =>
         {
             configure.MapControllers();
+            configure.MapHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
         });
     }
 
