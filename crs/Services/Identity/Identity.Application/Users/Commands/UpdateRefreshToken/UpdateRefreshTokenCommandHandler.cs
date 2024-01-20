@@ -30,14 +30,14 @@ internal sealed class UpdateRefreshTokenCommandHandler(
                 UserErrors.RefreshTokenIsExpired);
         }
 
-        var refreshTokenResult = _jwtProvider.CreateRefreshToken();
+        var refreshToken = _jwtProvider.CreateRefreshToken();
         var userToken = _jwtProvider.CreateTokenString(user, request.Audience);
 
-        user.UpdateRefreshToken(refreshTokenResult.Value);
+        user.UpdateRefreshToken(refreshToken);
 
         _userRepository.UpdateUser(user);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return new UpdateRefreshTokenCommandResponse(userToken, refreshTokenResult.Value.Token);
+        return new UpdateRefreshTokenCommandResponse(userToken, refreshToken.Token);
     }
 }

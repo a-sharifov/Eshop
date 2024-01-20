@@ -1,10 +1,16 @@
+global:
+  scrape_interval: 1s
+
 scrape_configs:
 - job_name: "identity-app"
-  scrape_interval: 25s 
   static_configs:
-  - targets: ["identity.app:80"]
+  - targets: ["identity.app"]
 - job_name: "catalog-app"
-  scrape_interval: 25s 
   static_configs:
-  - targets: ["catalog.app:80"]
+  - targets: ["catalog.app"]
   
+remote_write:
+- url: http://grafana:3000
+  basic_auth:
+    username: admin
+    password: admin

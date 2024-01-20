@@ -13,16 +13,12 @@ internal sealed class AuthenticationAuthorizationServiceInstaller : IServiceInst
                 {
                     ValidateIssuer = true,
                     ValidIssuer = Env.AUTH_ISSUER,
-
                     ValidateAudience = true,
                     ValidAudiences = [Env.WEB_AUDIENCE],
-
                     RoleClaimType = ClaimTypes.Role,
-
                     RequireExpirationTime = true,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero,
-
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(Env.JWT_SECURITY_KEY)),

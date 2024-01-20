@@ -14,7 +14,7 @@ internal sealed class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions)
             ValidateIssuer = true,
             ValidIssuer = Env.AUTH_ISSUER,
             ValidAudiences = [Env.WEB_AUDIENCE],
-
+            RoleClaimType = ClaimTypes.Role,
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,

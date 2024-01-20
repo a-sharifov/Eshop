@@ -27,6 +27,8 @@
 		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.1" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
 		<PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.7.0" />
 		<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
 		<PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
 		<PackageReference Include="Scrutor" Version="4.2.2" />

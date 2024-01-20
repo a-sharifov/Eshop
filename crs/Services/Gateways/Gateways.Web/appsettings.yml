@@ -39,7 +39,7 @@ ReverseProxy:
 
 LettuceEncrypt:
   AcceptTermsOfService: true
-  DomainNames: [ "gatewaysokwsoswoksw.app.com" ]
+  DomainNames: [ "gateway.app.com" ]
   EmailAddress: "akber.sharifov2004@gmail.com"
 
 

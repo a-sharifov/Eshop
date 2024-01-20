@@ -28,6 +28,8 @@
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
 		<PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.7.0-rc.1" />
 		<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.7.0" />
 		<PackageReference Include="Quartz" Version="3.8.0" />
 		<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
 		<PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />

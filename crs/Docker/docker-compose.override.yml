@@ -43,6 +43,12 @@ services:
     - ASPNETCORE_URLS=http://+:80
     - ASPNETCORE_ENVIRONMENT=Development
     - ASPNETCORE_HTTP_PORTS=5065
+    # Custom environment variables
+    - HealthChecksUI__HealthChecks__0__Name=Catalog API
+    - HealthChecksUI__HealthChecks__0__Uri=http://catalog.app/health
+    - HealthChecksUI__HealthChecks__1__Name=Identity API
+    - HealthChecksUI__HealthChecks__1__Uri=http://identity.app/health
+    - HealthChecksUI__HealthChecks_evaluationTimeInSeconds=10
     ports:
     - 5065:80
     volumes:

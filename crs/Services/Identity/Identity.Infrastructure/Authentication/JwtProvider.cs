@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Services.Common.Domain.Primitives.Results;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -72,11 +71,11 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
         GetClaimsInToken(token)
         .First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
 
-    public Result<RefreshToken> CreateRefreshToken()
+    public RefreshToken CreateRefreshToken()
     {
         var refreshTokenValue = CreateRefreshTokenString();
         var refreshTokenExpirationTime = DateTime.UtcNow.AddMinutes(RefreshTokenExpirationTimeMinutes);
 
-        return RefreshToken.Create(refreshTokenValue, refreshTokenExpirationTime);
+        return RefreshToken.Create(refreshTokenValue, refreshTokenExpirationTime).Value;
     }
 }

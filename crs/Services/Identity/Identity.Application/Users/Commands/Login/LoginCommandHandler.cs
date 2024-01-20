@@ -30,7 +30,7 @@ internal sealed class LoginCommandHandler(
                 loginResult.Error);
         }
 
-        var refreshToken = _jwtProvider.CreateRefreshToken().Value;
+        var refreshToken = _jwtProvider.CreateRefreshToken();
 
         user.UpdateRefreshToken(refreshToken);
         var userToken = _jwtProvider.CreateTokenString(user, request.Audience);
