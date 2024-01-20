@@ -22,7 +22,6 @@ public sealed class Startup(IConfiguration configuration)
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-        app.UseHttpsRedirection();
         app.UseCors(SD.DefaultCorsPolicyName);
 
         app.MigrateDbContext<UserDbContext>();
@@ -35,6 +34,7 @@ public sealed class Startup(IConfiguration configuration)
         app.UseEndpoints(configure =>
         {
             configure.MapControllers();
+            configure.MapPrometheusScrapingEndpoint();
             configure.MapHealthChecks("/health", new HealthCheckOptions
             {
                 ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse

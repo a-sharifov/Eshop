@@ -8,11 +8,11 @@ namespace Services.Common.App.Options;
 /// Configure Swagger for each API version discovered.
 /// </summary>
 /// <param name="provider">Provider of API versions.</param>
-public sealed class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
+public sealed class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider, IConfiguration configuration)
     : IConfigureNamedOptions<SwaggerGenOptions>
 {
     private readonly IApiVersionDescriptionProvider _provider = provider;
-
+    private readonly string? _title = configuration["Swagger:Title"];
     /// <summary>
     /// Configure each API discovered for Swagger Documentation.
     /// </summary>
@@ -43,13 +43,12 @@ public sealed class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provi
     /// </summary>
     /// <param name="desc"> Description of the API.</param>
     /// <returns>Information about the API.</returns>
-    private OpenApiInfo CreateVersionInfo(
-            ApiVersionDescription desc)
+    private OpenApiInfo CreateVersionInfo(ApiVersionDescription desc)
     {
         var info = new OpenApiInfo()
         {
-            Title = "",
-            Version = desc.ApiVersion.ToString()
+            Title = _title,
+            Version = desc.ApiVersion.ToString(),
         };
 
         if (desc.IsDeprecated)

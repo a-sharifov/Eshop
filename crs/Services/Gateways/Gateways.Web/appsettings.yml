@@ -1,4 +1,3 @@
-
 Logging:
   LogLevel:
     Default: "Information"
@@ -6,26 +5,42 @@ Logging:
 
 ReverseProxy:
   Routes:
-    catalogroute:
-      ClusterId: catalogservice
+    catalog-route:
+      ClusterId: catalog-cluster
       Match:
-        Path: "{**catch-all}"
+        Path: "/catalog/{**catch-all}"
       Transforms:
-        - PathRemovePrefix: "/api"
-    identityroute:
-      ClusterId: identityservice
+      - PathRemovePrefix: "/catalog"
+    identity-route:
+      ClusterId: identity-cluster
       Match:
-        Path: "{**catch-all}"
+        Path: "/identity/{**catch-all}"
       Transforms:
-        - PathRemovePrefix: "/api"
+      - PathRemovePrefix: "/identity"
+    healthcheck-route:
+      ClusterId: healthcheck-cluster
+      Match:
+        Path: "/healthcheck/{**catch-all}"
+      Transforms:
+      - PathRemovePrefix: "/healthcheck"
   Clusters:
-    catalogservice:
+    catalog-cluster:
       Destinations:
-        catalogservice-1:
-          Address: "https://localhost:5001"
-    identityservice:
+        catalog.app:
+          Address: "http://catalog.app"
+    identity-cluster:
       Destinations:
-        identityservice-1:
-          Address: "https://localhost:5002"
+        identity.app:
+          Address: "http://identity.app"
+    healthcheck-cluster:
+      Destinations:
+        monitoring.app:
+          Address: "http://monitoring.app"
+
+LettuceEncrypt:
+  AcceptTermsOfService: true
+  DomainNames: [ "gatewaysokwsoswoksw.app.com" ]
+  EmailAddress: "akber.sharifov2004@gmail.com"
+
 
 AllowedHosts: "*"

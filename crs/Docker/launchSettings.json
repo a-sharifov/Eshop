@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "catalog.app": "StartDebugging",
+        "mssql": "StartWithoutDebugging",
+        "redis": "StartWithoutDebugging",
+        "identity.app": "StartDebugging",
+        "gateways.web": "StartDebugging",
+        "monitoring.app": "StartDebugging"
+      }
+    }
+  }
+}

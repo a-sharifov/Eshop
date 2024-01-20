@@ -1,4 +1,3 @@
-
 CreateHostBuilder(args).Build().Run();
 
 static IHostBuilder CreateHostBuilder(string[] args) =>

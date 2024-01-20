@@ -1,0 +1,83 @@
+﻿version: '3.4'
+
+services:
+  catalog.app:
+    container_name: catalog.app
+    image: ${DOCKER_REGISTRY-}catalogapp
+    build:
+      context: ..
+      dockerfile: ./Services/Catalog/Catalog.App/Dockerfile
+    depends_on:
+    - mssql
+    - redis
+
+  identity.app:
+    container_name: identity.app
+    image: ${DOCKER_REGISTRY-}identityapp
+    build:
+      context: ..
+      dockerfile: ./Services/Identity/Identity.App/Dockerfile
+    depends_on:
+    - postgres
+
+  monitoring.app:
+    container_name: monitoring.app
+    image: ${DOCKER_REGISTRY-}monitoringapp
+    build:
+      context: ..
+      dockerfile: ./Services/Monitoring/Monitoring.App/Dockerfile
+    depends_on:
+    - catalog.app
+    - identity.app
+
+  gateways.web:
+    container_name: gateways.web
+    image: ${DOCKER_REGISTRY-}gatewaysweb
+    build:
+      context: ..
+      dockerfile: ./Services/Gateways/Gateways.Web/Dockerfile
+    depends_on:
+    - catalog.app
+    - identity.app
+    - monitoring.app
+
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  postgres:
+    container_name: postgres
+    image: postgres
+
+  redis:
+    container_name: redis
+    image: redis
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    depends_on:
+    - catalog.app
+    - identity.app
+    - monitoring.app
+    - gateways.web
+      
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    depends_on: 
+    - prometheus
+
+  # setup certboy if you need
+  # certbot:
+  #   image: certbot/certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL} --agree-tos -d catalog.app -d identity.app -d monitoring.app
+  #   networks:
+  #   - web_services_network
+
+networks:
+  web_services_network:
+    driver: bridge

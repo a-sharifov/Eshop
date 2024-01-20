@@ -1,4 +1,3 @@
-
 Logging:
   LogLevel:
     Default: Information
@@ -7,9 +6,9 @@ Logging:
 HealthChecksUi:
     Healthchecks:
     - Name: "Catalog.App"
-      Uri: "https://host.docker.internal:7061/health"
+      Uri: "http://catalog.app/health"
     - Name: "Identity.App"
-      Uri: "https://host.docker.internal:8081/health"
+      Uri: "http://identity.app/health"
     evaluationTimeInSeconds: 10
 
 AllowedHosts: "*"

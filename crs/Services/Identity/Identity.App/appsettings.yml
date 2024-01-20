@@ -33,4 +33,7 @@ Email:
   Username: "akber.sharifov2004@gmail.com"
   Password: "ueey qfia bnyx atce"
 
+Swagger:
+    Title: "Identity API"
+
 AllowedHosts: "*"

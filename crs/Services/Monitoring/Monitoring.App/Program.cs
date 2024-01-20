@@ -1,8 +1,8 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddYamlFile(
-    "appsettings.yml", optional: true, reloadOnChange: true);
+builder.Configuration
+    .AddYamlFile(
+        "appsettings.yml", optional: true, reloadOnChange: true);
 
 builder.Services
     .AddHealthChecksUI()
@@ -14,8 +14,6 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-
-app.UseHttpsRedirection();
 
 app.MapHealthChecksUI(options =>
 {
