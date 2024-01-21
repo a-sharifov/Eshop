@@ -8,6 +8,12 @@ scrape_configs:
 - job_name: "catalog-app"
   static_configs:
   - targets: ["catalog.app"]
+- job_name: "gateways-web"
+  static_configs:
+  - targets: ["gateways.web"]
+- job_name: "rabbitmq"
+  static_configs:
+  - targets: ["rabbitmq:15692"]
   
 remote_write:
 - url: http://grafana:3000

@@ -25,9 +25,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Templates\" />
-		<Folder Include="Proto\" />
-		<Folder Include="Services\" />
+	  <None Update="Templates\ConfirmEmailTemplate.html">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

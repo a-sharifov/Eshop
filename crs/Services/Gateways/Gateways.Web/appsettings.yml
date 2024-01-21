@@ -39,8 +39,9 @@ ReverseProxy:
 
 LettuceEncrypt:
   AcceptTermsOfService: true
-  DomainNames: [ "gateway.app.com" ]
-  EmailAddress: "akber.sharifov2004@gmail.com"
+  # if you hate env
+  # DomainNames: [ "gateway.app.com" ]
+  # EmailAddress: "akber.sharifov2004@gmail.com"
 
 
 AllowedHosts: "*"

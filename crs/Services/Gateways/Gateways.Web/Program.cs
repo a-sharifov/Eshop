@@ -13,6 +13,7 @@ builder.Services
     .AddRuntimeInstrumentation());
 
 builder.Services.AddLettuceEncrypt();
+
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 

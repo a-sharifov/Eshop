@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Include=".env" />
     <None Include="configs\prometheus.yml" />
+    <None Include="configs\rabbitmq.conf" />
     <None Include="docker-compose-tests.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>

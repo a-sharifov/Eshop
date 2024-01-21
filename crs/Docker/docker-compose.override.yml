@@ -41,8 +41,8 @@ services:
   monitoring.app:
     environment:
     - ASPNETCORE_URLS=http://+:80
-    - ASPNETCORE_ENVIRONMENT=Development
     - ASPNETCORE_HTTP_PORTS=5065
+    - ASPNETCORE_ENVIRONMENT=Development
     # Custom environment variables
     - HealthChecksUI__HealthChecks__0__Name=Catalog API
     - HealthChecksUI__HealthChecks__0__Uri=http://catalog.app/health
@@ -57,16 +57,19 @@ services:
 
   gateways.web:
     environment:
-      - ASPNETCORE_URL=http://+:80;https://+:443
-      - ASPNETCORE_HTTP_PORTS=5039
-      - ASPNETCORE_HTTPS_PORTS=5040   
-      - ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URL=http://+:80;https://+:443
+    - ASPNETCORE_HTTP_PORTS=5039
+    - ASPNETCORE_HTTPS_PORTS=5040   
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - LetuceEncrypt__EmailAdress=akber.sharifov2004@gmail.com
+    - LettuceEncrypt__DomainNames__0=gateway.app.com
     ports:
-      - "5039:80"
-      - "5040:443"
+    - "5039:80"
+    - "5040:443"
     volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+    - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
 
   mssql:
     environment:
@@ -109,9 +112,25 @@ services:
     volumes:
     - grafana:/etc/grafana/provisioning
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+    # http port
+    - 15672:15672
+    # amqp port
+    - 5672:5672
+    environment:
+    - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER} 
+    - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    - RABBITMQ_CONFIG_FILE=./configs/rabbitmq.conf
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
+
 volumes:
   mssql:
   redis:
   elasticsearch-data: 
   postgres:
   grafana:  
+  rabbitmq:
+    

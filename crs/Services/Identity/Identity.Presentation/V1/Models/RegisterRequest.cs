@@ -6,4 +6,5 @@ public record RegisterRequest(
     [Required] string ConfirmPassword,
     [Required] string FirstName,
     [Required] string LastName,
-    [Required] string Role);
+    [Required] string Role,
+    [Required] string ReturnUrl);

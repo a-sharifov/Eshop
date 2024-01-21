@@ -2,6 +2,7 @@
 
 /// <summary>
 /// Interface for domain event.
+/// if you need class. because class can't inherit from record.
 /// </summary>
 public interface IDomainEvent : INotification
 {

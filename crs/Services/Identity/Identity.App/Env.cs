@@ -13,15 +13,7 @@ public static class Env
     public static string WEB_AUDIENCE => GetEnvironmentVariable("WEB_AUDIENCE");
     public static string JWT_SECURITY_KEY => GetEnvironmentVariable("JWT_SECURITY_KEY");
 
-    private static string GetEnvironmentVariable(string key)
-    {
-        var environment = Environment.GetEnvironmentVariable(key);
-
-        if (environment is null)
-        {
-            throw new ArgumentNullException($"Environment {environment} not add.");
-        }
-
-        return environment;
-    }
+    private static string GetEnvironmentVariable(string key) =>
+         Environment.GetEnvironmentVariable(key) ??
+        throw new Exception($"Environment variable {key} not found");
 }
