@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email.Templates", "crs\Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.MassTransit", "crs\CommonComponents\EventBus\EventBus.MassTransit\EventBus.MassTransit.csproj", "{8F295CAC-A3B2-41A8-BBFB-B0C5C79BBF91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.IntegrationEvents", "crs\Services\Catalog\Catalog.IntegrationEvents\Catalog.IntegrationEvents.csproj", "{F451A571-898B-44E0-A3BB-28FFCCB2ABBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{8F295CAC-A3B2-41A8-BBFB-B0C5C79BBF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F295CAC-A3B2-41A8-BBFB-B0C5C79BBF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F295CAC-A3B2-41A8-BBFB-B0C5C79BBF91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F451A571-898B-44E0-A3BB-28FFCCB2ABBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F451A571-898B-44E0-A3BB-28FFCCB2ABBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F451A571-898B-44E0-A3BB-28FFCCB2ABBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F451A571-898B-44E0-A3BB-28FFCCB2ABBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,6 +233,7 @@ Global
 		{D88B8574-F422-40FB-9249-CA36D1BE7DB0} = {7CFB86E0-426D-4822-A84E-D2BC5987D187}
 		{320F5F62-D075-48A4-829E-CF4C8FDAC15A} = {7CFB86E0-426D-4822-A84E-D2BC5987D187}
 		{8F295CAC-A3B2-41A8-BBFB-B0C5C79BBF91} = {A5847876-AA10-49ED-8C6A-D599FE7348E5}
+		{F451A571-898B-44E0-A3BB-28FFCCB2ABBD} = {708EB78A-1D36-4F33-8171-3BC0ADF1C669}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {383EFC19-58A6-4418-98E0-23BD0341BA42}
