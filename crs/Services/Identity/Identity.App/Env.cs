@@ -12,6 +12,22 @@ public static class Env
     public static string AUTH_ISSUER => GetEnvironmentVariable("AUTH_ISSUER");
     public static string WEB_AUDIENCE => GetEnvironmentVariable("WEB_AUDIENCE");
     public static string JWT_SECURITY_KEY => GetEnvironmentVariable("JWT_SECURITY_KEY");
+    public static string RABBITMQ_DEFAULT_USER => GetEnvironmentVariable("RABBITMQ_DEFAULT_USER");
+    public static string RABBITMQ_DEFAULT_PASS => GetEnvironmentVariable("RABBITMQ_DEFAULT_PASS");
+
+    public static class ConnectionStrings
+    {
+        public static string POSTGRES =>
+            $"Server=postgres;" +
+            $"Port=5432;" +
+            $"Database={POSTGRES_DB};" +
+            $"Username={POSTGRES_USER};" +
+            $"Password={POSTGRES_PASSWORD}" +
+            $";TimeZone=UTC;";
+
+        public static string RABBITMQ =>
+           $"amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@rabbitmq:5672";
+    }
 
     private static string GetEnvironmentVariable(string key) =>
          Environment.GetEnvironmentVariable(key) ??

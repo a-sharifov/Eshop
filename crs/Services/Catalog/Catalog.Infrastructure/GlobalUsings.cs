@@ -1,6 +1,5 @@
 ﻿global using Services.Common.Serializers;
 global using Catalog.Persistence;
-global using Catalog.Persistence.Factories.Interfaces;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;
 global using Polly;

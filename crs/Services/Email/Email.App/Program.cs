@@ -1,13 +1,14 @@
-var builder = WebApplication.CreateSlimBuilder(args);
+CreateHostBuilder(args).Build().Run();
 
-builder.Configuration.AddYamlFile(
-    "appsettings.yml", optional: true, reloadOnChange: true);
+static IHostBuilder CreateHostBuilder(string[] args) =>
+      Host.CreateDefaultBuilder(args)
+          .ConfigureWebHostDefaults(webBuilder =>
+          {
+              webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
+              {
+                  config.AddYamlFile(
+                      "appsettings.yml", optional: true, reloadOnChange: true);
+              });
 
-builder.Services
-    .AddOpenTelemetry()
-    .WithMetrics(options => options
-    .AddPrometheusExporter()
-    .AddHttpClientInstrumentation()
-    .AddRuntimeInstrumentation());
-
-var app = builder.Build();
+              webBuilder.UseStartup<Startup>();
+          });

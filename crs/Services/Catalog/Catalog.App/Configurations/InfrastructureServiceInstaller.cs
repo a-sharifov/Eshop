@@ -4,12 +4,7 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString =
-            $"Server=mssql,1433;" +
-            $"Initial Catalog={Env.MSSQL_INITIAL_CATALOG};" +
-            $"User ID={Env.MSSQL_USER_ID};" +
-            $"Password={Env.MSSQL_SA_PASSWORD};" +
-            $"TrustServerCertificate=true";
+        var connectionString = Env.ConnectionStrings.MSSQL;
 
         services.Configure<SqlConnectionFactoryOptions>(options =>
             options.ConnectionString = connectionString

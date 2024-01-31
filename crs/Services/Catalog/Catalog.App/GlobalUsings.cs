@@ -19,3 +19,5 @@ global using Microsoft.IdentityModel.Tokens;
 global using HealthChecks.UI.Client;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using OpenTelemetry.Metrics;
+global using Prometheus;
+global using Services.Common.App.HealthChecks;

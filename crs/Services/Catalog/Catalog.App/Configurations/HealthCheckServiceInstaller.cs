@@ -2,24 +2,21 @@
 
 internal sealed class HealthCheckServiceInstaller : IServiceInstaller
 {
-    public void Install(IServiceCollection services, IConfiguration configuration)
-    {
-        var connectionString =
-           $"Server=mssql,1433;" +
-           $"Initial Catalog={Env.MSSQL_INITIAL_CATALOG};" +
-           $"User ID={Env.MSSQL_USER_ID};" +
-           $"Password={Env.MSSQL_SA_PASSWORD};" +
-           $"TrustServerCertificate=true";
-
-        var redisConnectionString = $"redis:6379,password={Env.REDIS_PASSWORD}";
-
+    public void Install(IServiceCollection services, IConfiguration configuration) =>
         services
         .AddHealthChecks()
         .AddSqlServer(
-            connectionString: connectionString,
+            connectionString: Env.ConnectionStrings.MSSQL,
             name: "CatalogAppDb")
         .AddRedis(
-            redisConnectionString: redisConnectionString,
-            name: "CatalogCaching");
-    }
+            redisConnectionString: Env.ConnectionStrings.REDIS,
+            name: "CatalogCaching")
+        .ForwardToPrometheus(new PrometheusHealthCheckPublisherOptions
+        {
+            Gauge = Metrics.CreateGauge(
+                name: "catalogapi_aspnetcore_healthcheck_status",
+                help: "ASP.NET Core health check status (0 == Unhealthy, 0.5 == Degraded, 1 == Healthy)",
+                labelNames: ["name"]
+                )
+        });
 }

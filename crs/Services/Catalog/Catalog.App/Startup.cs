@@ -37,7 +37,7 @@ public sealed class Startup(IConfiguration configuration)
             endpoints.MapPrometheusScrapingEndpoint();
             endpoints.MapHealthChecks("/health", new HealthCheckOptions
             {
-                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse 
             });
         });
     }

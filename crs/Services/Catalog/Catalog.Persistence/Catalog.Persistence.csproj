@@ -18,7 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\Services.Common\Services.Common.csproj" />
 		<ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
 	</ItemGroup>
 </Project>

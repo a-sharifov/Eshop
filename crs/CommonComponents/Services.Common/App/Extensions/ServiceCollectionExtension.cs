@@ -31,5 +31,4 @@ public static class ServiceCollectionExtension
         !type.IsInterface &&
         !type.IsAbstract &&
         typeof(IServiceInstaller).IsAssignableFrom(type);
-
 }

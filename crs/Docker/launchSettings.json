@@ -9,7 +9,8 @@
         "redis": "StartWithoutDebugging",
         "identity.app": "StartDebugging",
         "gateways.web": "StartDebugging",
-        "monitoring.app": "StartDebugging"
+        "monitoring.app": "StartDebugging",
+        "email.app": "StartDebugging"
       }
     }
   }

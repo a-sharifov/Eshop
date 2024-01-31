@@ -32,6 +32,8 @@ services:
     - AUTH_ISSUER=${AUTH_ISSUER}
     - WEB_AUDIENCE=${WEB_AUDIENCE}
     - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
+    - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+    - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
     ports:
     - 8080:80
     volumes:
@@ -70,6 +72,18 @@ services:
     volumes:
     - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
     - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+
+
+  email.app:
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_HTTP_PORTS=5110
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Custom environment variables
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    ports:
+      - "5110:80"
 
   mssql:
     environment:
@@ -113,7 +127,6 @@ services:
     - grafana:/etc/grafana/provisioning
 
   rabbitmq:
-    image: rabbitmq:3-management
     ports:
     # http port
     - 15672:15672

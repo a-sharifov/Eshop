@@ -1,4 +1,4 @@
-﻿version: '3.4'
+version: '3.4'
 
 services:
   catalog.app:
@@ -20,6 +20,9 @@ services:
     depends_on:
     - postgres
 
+  # is simple healthcheck monitoring app
+  # if you need more complex monitoring, you can use prometheus
+  # i use promeheus and monitoring.app because is test project
   monitoring.app:
     container_name: monitoring.app
     image: ${DOCKER_REGISTRY-}monitoringapp
@@ -40,6 +43,13 @@ services:
     - catalog.app
     - identity.app
     - monitoring.app
+
+  email.app:
+    container_name: email.app
+    image: ${DOCKER_REGISTRY-}emailapp
+    build:
+      context: ../..
+      dockerfile: crs/Services/Email/Email.App/Dockerfile
 
   mssql:
     container_name: mssql
@@ -67,6 +77,10 @@ services:
     image: grafana/grafana:latest
     depends_on: 
     - prometheus
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
 
   # setup certboy if you need
   # certbot:

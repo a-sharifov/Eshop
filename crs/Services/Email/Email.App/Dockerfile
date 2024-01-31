@@ -3,27 +3,23 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-# Install clang/zlib1g-dev dependencies for publishing to native
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    clang zlib1g-dev
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["crs/Services/Email/Email.App/Email.App.csproj", "crs/Services/Email/Email.App/"]
-RUN dotnet restore "./crs/Services/Email/Email.App/./Email.App.csproj"
+COPY ["Email.App/Email.App.csproj", "Email.App/"]
+RUN dotnet restore "./Email.App/./Email.App.csproj"
 COPY . .
-WORKDIR "/src/crs/Services/Email/Email.App"
+WORKDIR "/src/Email.App"
 RUN dotnet build "./Email.App.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Email.App.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=true
+RUN dotnet publish "./Email.App.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0 AS final
+FROM base AS final
 WORKDIR /app
-EXPOSE 8080
 COPY --from=publish /app/publish .
-ENTRYPOINT ["./Email.App"]
+ENTRYPOINT ["Email", "Email.App.dll"]

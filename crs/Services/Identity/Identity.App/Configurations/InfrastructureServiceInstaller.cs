@@ -6,16 +6,8 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = 
-            $"Server=postgres;" +
-            $"Port=5432;" +
-            $"Database={Env.POSTGRES_DB};" +
-            $"Username={Env.POSTGRES_USER};" +
-            $"Password={Env.POSTGRES_PASSWORD}" +
-            $";TimeZone=UTC;";
-
         services.AddDbContext<UserDbContext>(options =>
-            options.UseNpgsql(connectionString));
+            options.UseNpgsql(Env.ConnectionStrings.POSTGRES));
 
         services.AddTransient<IIdentityEmailService, IdentityEmailService>();
 

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonComponents\EventBus\EventBus.Common\EventBus.Common.csproj" />
+    <ProjectReference Include="..\..\..\CommonComponents\Services.Common\Services.Common.csproj" />
+  </ItemGroup>
+
 </Project>
