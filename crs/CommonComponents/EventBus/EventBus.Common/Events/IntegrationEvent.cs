@@ -1,4 +1,4 @@
-﻿namespace EventBus.Common.Abstractions;
+﻿namespace EventBus.Common.Events;
 
 /// <summary>
 /// class for integration event.

@@ -7,12 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\CommonComponents\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.2.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.0" />
 	</ItemGroup>
 
 </Project>

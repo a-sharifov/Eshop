@@ -11,6 +11,6 @@ public interface IEventBus
     /// <param name="event"> The event.</param>
     /// <param name="cancellationToken"> The cancellation token.</param>
     /// <returns> The <see cref="Task"/>.</returns>
-    Task Publish<TIntegrationEvent>(TIntegrationEvent @event, CancellationToken cancellationToken = default)
-        where TIntegrationEvent : IIntegrationEvent;
+    Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
+        where TEvent : IEvent;
 }

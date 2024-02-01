@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\CommonComponents\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 	</ItemGroup>
 

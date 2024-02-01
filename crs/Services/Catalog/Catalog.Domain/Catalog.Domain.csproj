@@ -7,6 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\CommonComponents\Services.Common\Services.Common.csproj" />
+	  <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 	</ItemGroup>
 </Project>

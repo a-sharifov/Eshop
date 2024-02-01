@@ -1,7 +1,4 @@
-﻿using EventBus.MassTransit.RabbitMQ.Options;
-using MassTransit;
-
-namespace Identity.App.Configurations;
+﻿namespace Identity.App.Configurations;
 
 internal sealed class EventBusServiceInstaller : IServiceInstaller
 {
@@ -10,14 +7,15 @@ internal sealed class EventBusServiceInstaller : IServiceInstaller
         services.AddMassTransit(configure =>
         {
             configure.AddConsumers(App.AssemblyReference.Assembly);
+
             configure.UsingRabbitMq((context, configurator) =>
             {
-                var options = configuration.GetSection(nameof(RabitMQOptions)).Get<RabitMQOptions>();
-                configurator.Host(options.Host, options.Port, options.VirtualHost, hostConfigurator =>
+                configurator.Host("rabbitmq", "/",  hostConfigurator =>
                 {
-                    hostConfigurator.Username(options.Username);
-                    hostConfigurator.Password(options.Password);
+                    hostConfigurator.Username(Env.RABBITMQ_DEFAULT_USER);
+                    hostConfigurator.Password(Env.RABBITMQ_DEFAULT_PASS);
                 });
+
                 configurator.ConfigureEndpoints(context);
             });
         });

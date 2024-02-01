@@ -6,14 +6,14 @@ public class Startup(IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services
-            .AddOpenTelemetry()
-            .WithMetrics(options => options
-            .AddPrometheusExporter()
-            .AddHttpClientInstrumentation()
-            .AddRuntimeInstrumentation());
+        //services
+        //    .AddOpenTelemetry()
+        //    .WithMetrics(options => options
+        //    .AddPrometheusExporter()
+        //    .AddHttpClientInstrumentation()
+        //    .AddRuntimeInstrumentation());
 
-        services.AddTransient<IEmailService, EmailService>();
+        //services.AddTransient<IEmailService, EmailService>();
 
         services.AddCors(options =>
         {
@@ -43,7 +43,7 @@ public class Startup(IConfiguration configuration)
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapPrometheusScrapingEndpoint();
+            //endpoints.MapPrometheusScrapingEndpoint();
         });
     }
 }

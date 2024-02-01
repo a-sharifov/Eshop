@@ -1,4 +1,4 @@
-﻿global using Services.Common.Domain.Primitives.Events;
+﻿global using Common.Domain.Primitives.Events;
 global using Catalog.Domain.Common.Errors;
 global using Catalog.Domain.Common.Repositories;
 global using Catalog.Domain.Common.ValueObjects;
@@ -22,7 +22,7 @@ global using Catalog.Domain.CategoryAggregate.Errors;
 global using Catalog.Domain.CategoryAggregate.Ids;
 global using Catalog.Domain.CategoryAggregate.ValueObjects;
 global using Catalog.Domain.SellerAggregate.ValueObjects;
-global using Services.Common.Domain.Primitives;
-global using Services.Common.Domain.Primitives.Results;
-global using Services.Common.Extensions;
+global using Common.Domain.Primitives;
+global using Common.Domain.Primitives.Results;
+global using Common.Extensions;
 global using System.Text.RegularExpressions;

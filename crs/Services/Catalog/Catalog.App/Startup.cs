@@ -1,4 +1,6 @@
-﻿namespace Catalog.App;
+﻿using Microsoft.Extensions.Options;
+
+namespace Catalog.App;
 
 public sealed class Startup(IConfiguration configuration)
 {

@@ -1,5 +1,5 @@
 ﻿global using Asp.Versioning;
-global using Services.Common.App;
+global using Common.App;
 global using MediatR;
 global using Microsoft.AspNetCore.Mvc;
 global using System.ComponentModel.DataAnnotations;

@@ -11,7 +11,7 @@ internal sealed class DocumentationServiceInstaller : IServiceInstaller
         {
             setup.SwaggerDoc(
                 SD.ProjectName,
-                new() { Title = SD.ProjectName });
+                info: new() { Title = SD.ProjectName });
 
             setup.AddSecurityDefinition(
                 JwtBearerDefaults.AuthenticationScheme,
@@ -38,7 +38,7 @@ internal sealed class DocumentationServiceInstaller : IServiceInstaller
                             Type = ReferenceType.SecurityScheme
                         }
                     },
-                    new string[] {}
+                    []
                 }
             });
         });

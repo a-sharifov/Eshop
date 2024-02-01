@@ -3,7 +3,7 @@
 /// <summary>
 /// Inteface for integration event.
 /// </summary>
-public interface IIntegrationEvent
+public interface IIntegrationEvent: IEvent
 {
     /// <summary>
     /// The id event.
