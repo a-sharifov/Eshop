@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Polly;
 
 namespace Common.App.Extensions;
 
@@ -19,10 +20,13 @@ public static class ApplictionBuilderExtension
     {
         using var scope = builder.ApplicationServices.CreateScope();   
         using var dbContext = scope.ServiceProvider.GetRequiredService<TDbContext>();
-        
-       
 
-        dbContext.Database.Migrate();
+        Policy
+            .Handle<Exception>()
+            .WaitAndRetry(
+            retryCount: 3,
+            _ => TimeSpan.FromSeconds(15))
+            .Execute(dbContext.Database.Migrate);
 
         return builder;
     }

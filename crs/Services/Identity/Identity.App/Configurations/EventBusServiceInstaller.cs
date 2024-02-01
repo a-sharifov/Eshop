@@ -6,11 +6,11 @@ internal sealed class EventBusServiceInstaller : IServiceInstaller
     {
         services.AddMassTransit(configure =>
         {
-            configure.AddConsumers(App.AssemblyReference.Assembly);
+            configure.SetKebabCaseEndpointNameFormatter();
 
             configure.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host("rabbitmq", "/",  hostConfigurator =>
+                configurator.Host("rabbitmq", "/", hostConfigurator =>
                 {
                     hostConfigurator.Username(Env.RABBITMQ_DEFAULT_USER);
                     hostConfigurator.Password(Env.RABBITMQ_DEFAULT_PASS);
@@ -18,7 +18,10 @@ internal sealed class EventBusServiceInstaller : IServiceInstaller
 
                 configurator.ConfigureEndpoints(context);
             });
+
+            configure.AddConsumers(App.AssemblyReference.Assembly);
         });
 
+        services.AddTransient<IEventBus, EventBusRabitMQ>();
     }
 }

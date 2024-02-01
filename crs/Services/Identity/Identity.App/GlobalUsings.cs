@@ -27,3 +27,5 @@ global using OpenTelemetry.Metrics;
 global using Prometheus;
 global using Common.App.HealthChecks;
 global using MassTransit;
+global using EventBus.Common.Abstractions;
+global using EventBus.MassTransit.RabbitMQ.Services;

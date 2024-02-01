@@ -25,4 +25,8 @@
 	  <ProjectReference Include="..\Email.Infrastructure\Email.Infrastructure.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Configurations\" />
+	</ItemGroup>
+
 </Project>
