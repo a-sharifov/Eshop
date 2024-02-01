@@ -24,6 +24,11 @@ internal sealed class CreateBrandCommandHandler(
             isBrandNameUnique
             );
 
+        if (brand.IsFailure)
+        {
+            return Result.Failure(brand.Error);
+        }
+
         await _brandRepository.AddAsync(brand.Value, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 

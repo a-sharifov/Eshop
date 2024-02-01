@@ -1,0 +1,17 @@
+﻿global using Microsoft.Extensions.Configuration;
+global using Asp.Versioning.ApiExplorer;
+global using JsonNet.ContractResolvers;
+global using MediatR;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Newtonsoft.Json;
+global using Common.Domain.Primitives;
+global using Common.Domain.Primitives.Events;
+global using Common.Domain.Primitives.Results;
+global using Common.Extensions;
+global using System.Reflection;
+global using Common.Application.Validations;
+global using FluentValidation;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Http;
+global using Common.Events;

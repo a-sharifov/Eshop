@@ -7,30 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Using Include=" Microsoft.EntityFrameworkCore.Metadata.Builders" />
-		<Using Include=" Identity.Domain.UserAggregate.ValueObjects" />
-		<Using Include="Identity.Domain.UserAggregate" />
-		<Using Include="Identity.Domain.UserAggregate.Ids" />
-		<Using Include="Identity.Domain.UserAggregate.Repositories" />
-		<Using Include="Identity.Persistence" />
-		<Using Include="Microsoft.EntityFrameworkCore" />
-		<Using Include="Microsoft.EntityFrameworkCore.Storage.ValueConversion" />
-		<Using Include="Services.Common.Domain.Primitives" />
-		<Using Include="Services.Common.Domain.Primitives.Events" />
-		<Using Include="Services.Common.Extensions" />
-		<Using Include="Services.Common.Serializers" />
-		<Using Include="System.Reflection" />
 	</ItemGroup>
 
 </Project>

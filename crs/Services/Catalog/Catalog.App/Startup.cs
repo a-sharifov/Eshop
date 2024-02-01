@@ -1,4 +1,6 @@
-﻿namespace Catalog.App;
+﻿using Microsoft.Extensions.Options;
+
+namespace Catalog.App;
 
 public sealed class Startup(IConfiguration configuration)
 {
@@ -20,18 +22,25 @@ public sealed class Startup(IConfiguration configuration)
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+        
         app.UseCors(SD.DefaultCorsPolicyName);
 
         app.MigrateDbContext<CatalogDbContext>();
 
         app.UseRouting();
-
+        
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
+            endpoints.MapPrometheusScrapingEndpoint();
+            endpoints.MapHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse 
+            });
         });
     }
 }

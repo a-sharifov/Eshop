@@ -7,26 +7,36 @@
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<UserSecretsId>3b4429b5-68de-4c7b-9a0b-e67530967187</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+		<DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
 		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.0.0" />
+		<PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.1.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+		<PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+		<PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.7.0-rc.1" />
+		<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.7.0" />
 		<PackageReference Include="Quartz" Version="3.8.0" />
 		<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
 		<PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
 		<PackageReference Include="Scrutor" Version="4.2.2" />
 		<PackageReference Include="Serilog" Version="3.1.1" />
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
 		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
 		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
@@ -34,41 +44,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\EventBus\EventBus.MassTransit.RabbitMQ\EventBus.MassTransit.RabbitMQ.csproj" />
 		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 		<ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
 		<ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
 		<ProjectReference Include="..\Identity.Presentation\Identity.Presentation.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Using Include="FluentValidation" />
-		<Using Include="Identity.App" />
-		<Using Include="Identity.App.OptionsSetup" />
-		<Using Include="Identity.Infrastructure.Authentication" />
-		<Using Include="Identity.Infrastructure.BackgroundJobs" />
-		<Using Include="Identity.Infrastructure.Email" />
-		<Using Include="Identity.Infrastructure.Idempotence" />
-		<Using Include="Identity.Persistence" />
-		<Using Include="MediatR" />
-		<Using Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-		<Using Include="Microsoft.EntityFrameworkCore" />
-		<Using Include="Microsoft.Extensions.Options" />
-		<Using Include="Microsoft.IdentityModel.Tokens" />
-		<Using Include="Microsoft.OpenApi.Models" />
-		<Using Include="Quartz" />
-		<Using Include="Serilog" />
-		<Using Include="Serilog.Sinks.Elasticsearch" />
-		<Using Include="Services.Common.App.Extensions" />
-		<Using Include="Services.Common.App.Options" />
-		<Using Include="Services.Common.Application.Behaviors" />
-		<Using Include="System.Reflection" />
-		<Using Include="System.Text" />
-		<Using Include="Asp.Versioning" />
-		<Using Include="Asp.Versioning.ApiExplorer" />
-		<Using Include="Swashbuckle.AspNetCore.SwaggerGen" />
-		<Using Include=" Services.Common.Infrastructure.Middleware" />
 	</ItemGroup>
 
 </Project>

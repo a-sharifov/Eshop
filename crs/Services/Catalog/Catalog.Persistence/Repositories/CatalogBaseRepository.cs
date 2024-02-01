@@ -17,16 +17,14 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
         ICachedCatalogService<TEntity, TStrongestId> cached,
         TimeSpan expirationTime)
     {
-        _entityName = typeof(TStrongestId).Name;
+        _entityName = typeof(TEntity).Name;
         _dbContext = dbContext;
         _sqlConnectionFactory = sqlConnectionFactory;
         _cached = cached;
         _expirationTime = expirationTime;
     }
 
-    public async Task AddAsync(
-        TEntity entity,
-        CancellationToken cancellationToken = default)
+    public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await _cached.SetAsync(entity, _expirationTime, cancellationToken);
 
@@ -65,12 +63,13 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
     public async Task<IEnumerable<TEntity>> GetPagedAsync(int skip, int take, CancellationToken cancellationToken = default)
     {
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
-
         var query =
-            $"SELECT * FROM [{_entityName}]" +
-            "ORDER BY [Id]" +
-            "OFFSET @Skip ROWS" +
-            "FETCH NEXT @Take ROWS ONLY";
+            $"""
+            SELECT * FROM [{_entityName}] 
+            ORDER BY [Id] 
+            OFFSET @Skip ROWS 
+            FETCH NEXT @Take ROWS ONLY
+            """;
 
         var parameters = new
         {
@@ -90,7 +89,6 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
     public async Task<int> CountAsync(CancellationToken cancellationToken = default)
     {
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
-
         var query = $"SELECT COUNT(*) FROM {_entityName}";
 
         return await sqlConnection.ExecuteScalarAsync<int>(query, cancellationToken);
@@ -106,10 +104,11 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
         }
 
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
-
         var query = 
-            $"SELECT * FROM {_entityName}" +
-            "WHERE [Id] = @Id";
+            $"""
+            SELECT * FROM {_entityName}
+            WHERE [Id] = @Id
+            """;
 
         var parameters = new { Id = id.Value };
 

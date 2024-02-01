@@ -11,5 +11,8 @@ internal sealed class LoginCommandVaidator : AbstractValidator<LoginCommand>
 
         RuleFor(x => x.Password)
             .NotEmpty();
+
+        RuleFor(x => x.Audience)
+            .NotEmpty();
     }
 }

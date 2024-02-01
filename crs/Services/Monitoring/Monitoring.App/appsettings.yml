@@ -1,0 +1,15 @@
+Logging:
+  LogLevel:
+    Default: Information
+    Microsoft.AspNetCore: Warning
+
+#  if you dont like add in env variables, you can add here
+# HealthChecksUi:
+#     Healthchecks:
+#     - Name: "Catalog.App"
+#       Uri: "http://catalog.app/health"
+#     - Name: "Identity.App"
+#       Uri: "http://identity.app/health"
+#     evaluationTimeInSeconds: 10
+
+AllowedHosts: "*"

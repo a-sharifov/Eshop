@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Services.Common.Domain.Primitives.Results;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -16,9 +15,9 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
     public int TokenExpirationTimeMinutes => 
         _jwtOptions.TokenExpirationTimeMinutes;
 
-    public string CreateTokenString(User user)
+    public string CreateTokenString(User user, string audience)
     {
-        var claims = CreateClaims(user);
+        var claims = CreateClaims(user, audience);
 
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_jwtOptions.Key));
@@ -38,25 +37,18 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
         return tokenValue;
     }
 
-    private Claim[] CreateClaims(User user)
-    {
-        Claim[] claims = [
+    private Claim[] CreateClaims(User user, string audience) =>
+        [
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.Value.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email.Value),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Iss, _jwtOptions.Issuer),
+            new Claim(JwtRegisteredClaimNames.Aud, audience),
             new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(),
             ClaimValueTypes.Integer64),
             new Claim(ClaimTypes.Role, user.Role.ToString())
-                ];
+            ];
 
-        foreach (var item in _jwtOptions.Audiences)
-        {
-            claims.Append(new Claim(JwtRegisteredClaimNames.Aud, item));
-        }
-
-        return claims;
-    }
 
     public string CreateRefreshTokenString()
     {
@@ -68,31 +60,22 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
 
     public IEnumerable<Claim> GetClaimsInToken(string token)
     {
-        var tokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateAudience = false,
-            ValidateIssuer = false,
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key)),
-            ValidateLifetime = false
-        };
-
         var tokenHandler = new JwtSecurityTokenHandler();
-        var securityToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
 
-        if (securityToken is null)
-        {
+        return tokenHandler.ReadToken(token) is JwtSecurityToken securityToken ?
+            securityToken.Claims :
             throw new SecurityTokenException("Invalid token");
-        }
-
-        return securityToken.Claims;
     }
 
-    public Result<RefreshToken> CreateRefreshToken()
+    public string GetEmailFromToken(string token) =>
+        GetClaimsInToken(token)
+        .First(x => x.Type == JwtRegisteredClaimNames.Email).Value;
+
+    public RefreshToken CreateRefreshToken()
     {
         var refreshTokenValue = CreateRefreshTokenString();
         var refreshTokenExpirationTime = DateTime.UtcNow.AddMinutes(RefreshTokenExpirationTimeMinutes);
 
-        return RefreshToken.Create(refreshTokenValue, refreshTokenExpirationTime);
+        return RefreshToken.Create(refreshTokenValue, refreshTokenExpirationTime).Value;
     }
 }

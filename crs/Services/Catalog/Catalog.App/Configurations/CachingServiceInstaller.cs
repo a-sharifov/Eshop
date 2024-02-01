@@ -2,13 +2,7 @@
 
 internal sealed class CachingServiceInstaller : IServiceInstaller
 {
-    public void Install(IServiceCollection services, IConfiguration configuration)
-    {
-        var redisConnectionString = configuration[SD.CacheConfigurationKey];
-
+    public void Install(IServiceCollection services, IConfiguration configuration) => 
         services.AddStackExchangeRedisCache(redisOptions =>
-        {
-            redisOptions.Configuration = redisConnectionString;
-        });
-    }
+        redisOptions.Configuration = $"redis:6379,password={Env.REDIS_PASSWORD}");
 }

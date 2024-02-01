@@ -6,10 +6,8 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration[SD.DbConfigurationKey];
-
         services.AddDbContext<UserDbContext>(options =>
-            options.UseNpgsql(connectionString));
+            options.UseNpgsql(Env.ConnectionStrings.POSTGRES));
 
         services.AddTransient<IIdentityEmailService, IdentityEmailService>();
 

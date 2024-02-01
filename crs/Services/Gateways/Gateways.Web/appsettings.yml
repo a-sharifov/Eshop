@@ -1,0 +1,47 @@
+Logging:
+  LogLevel:
+    Default: "Information"
+    Microsoft.AspNetCore: "Warning"
+
+ReverseProxy:
+  Routes:
+    catalog-route:
+      ClusterId: catalog-cluster
+      Match:
+        Path: "/catalog/{**catch-all}"
+      Transforms:
+      - PathRemovePrefix: "/catalog"
+    identity-route:
+      ClusterId: identity-cluster
+      Match:
+        Path: "/identity/{**catch-all}"
+      Transforms:
+      - PathRemovePrefix: "/identity"
+    healthcheck-route:
+      ClusterId: healthcheck-cluster
+      Match:
+        Path: "/healthcheck/{**catch-all}"
+      Transforms:
+      - PathRemovePrefix: "/healthcheck"
+  Clusters:
+    catalog-cluster:
+      Destinations:
+        catalog.app:
+          Address: "http://catalog.app"
+    identity-cluster:
+      Destinations:
+        identity.app:
+          Address: "http://identity.app"
+    healthcheck-cluster:
+      Destinations:
+        monitoring.app:
+          Address: "http://monitoring.app"
+
+LettuceEncrypt:
+  AcceptTermsOfService: true
+  # if you hate env
+  # DomainNames: [ "gateway.app.com" ]
+  # EmailAddress: "akber.sharifov2004@gmail.com"
+
+
+AllowedHosts: "*"

@@ -10,8 +10,8 @@ public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
     public DbSet<Product> Products { get; set; }
 
     //Outbox pattern
-    public DbSet<OutboxMessage> outboxMessages { get; set; }
-    public DbSet<OutboxMessageConsumer> outboxMessageConsumers { get; set; }
+    public DbSet<OutboxMessage> OutboxMessages { get; set; }
+    public DbSet<OutboxMessageConsumer> OutboxMessageConsumers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

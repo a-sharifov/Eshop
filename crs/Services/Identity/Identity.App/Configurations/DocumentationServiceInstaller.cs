@@ -7,11 +7,10 @@ internal sealed class DocumentationServiceInstaller : IServiceInstaller
         services.AddSwaggerGen(setup =>
         {
             setup.SwaggerDoc(
-                SD.ProjectVersion,
+                SD.ProjectName,
                 new()
                 {
                     Title = SD.ProjectName,
-                    Version = $"{SD.ProjectMinorVersion}.{SD.ProjectMajorVersion}"
                 });
 
             setup.AddSecurityDefinition(
@@ -39,7 +38,7 @@ internal sealed class DocumentationServiceInstaller : IServiceInstaller
                             Type = ReferenceType.SecurityScheme
                         }
                     },
-                    new string[] {}
+                    Array.Empty<string>()
                 }
             });
 

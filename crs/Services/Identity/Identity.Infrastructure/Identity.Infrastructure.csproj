@@ -8,32 +8,14 @@
 
 	<ItemGroup>
 		<PackageReference Include="MailKit" Version="4.3.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
 		<PackageReference Include="Polly" Version="8.2.1" />
 		<PackageReference Include="Quartz" Version="3.8.0" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Using Include="Identity.Application.Abstractions" />
-		<Using Include="Identity.Domain.UserAggregate" />
-		<Using Include="Identity.Persistence" />
-		<Using Include="MailKit.Net.Smtp" />
-		<Using Include="MediatR" />
-		<Using Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-		<Using Include="Microsoft.EntityFrameworkCore" />
-		<Using Include="Polly" />
-		<Using Include="Quartz" />
-		<Using Include="Services.Common.Domain.Primitives" />
-		<Using Include="Services.Common.Domain.Primitives.Events" />
-		<Using Include="Services.Common.Serializers" />
-		<Using Include="System.Reflection" />
-		<Using Include="System.Text" />
-		<Using Include="Microsoft.Extensions.Options" />
-		<Using Include="Identity.Domain.UserAggregate.ValueObjects" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 		<ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />

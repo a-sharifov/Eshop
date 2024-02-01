@@ -16,9 +16,11 @@ internal sealed class CategoryRepository(
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
         string query =
-            "TOP 1" +
-            $"SELECT * FROM {_entityName}" +
-            "WHERE [Name] = @CategoryName";
+            $"""
+            TOP 1 SELECT * 
+            FROM {_entityName}
+            WHERE [Name] = @CategoryName
+            """;
 
         var parameters = new { CategoryName = name.Value };
 
@@ -41,13 +43,16 @@ internal sealed class CategoryRepository(
         using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
 
         string query =
-            $"SELECT COUNT(*) FROM {_entityName}" +
-            "WHERE [Name] = @CategoryName";
+            $"""
+            SELECT COUNT(*) 
+            FROM {_entityName}
+            WHERE [Name] = @CategoryName
+            """;
 
         var parameters = new { CategoryName = name.Value };
 
         var isUnigue = !await sqlConnection
-            .QueryFirstAsync<bool>(query, parameters);
+            .ExecuteScalarAsync<bool>(query, parameters);
 
         return isUnigue;
     }

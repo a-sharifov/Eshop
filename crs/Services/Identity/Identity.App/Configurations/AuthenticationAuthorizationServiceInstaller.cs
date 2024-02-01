@@ -12,18 +12,16 @@ internal sealed class AuthenticationAuthorizationServiceInstaller : IServiceInst
                 configureOptions.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = configuration[SD.JwtIssuerKey],
-
+                    ValidIssuer = Env.AUTH_ISSUER,
                     ValidateAudience = true,
-                    ValidAudiences = configuration.GetSection(SD.JwtAudiencesKey).Get<string[]>(),
-
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(configuration[SD.JwtSecurityKey]!)),
-
+                    ValidAudiences = [Env.WEB_AUDIENCE],
+                    RoleClaimType = ClaimTypes.Role,
                     RequireExpirationTime = true,
                     ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(Env.JWT_SECURITY_KEY)),
                 };
             });
 

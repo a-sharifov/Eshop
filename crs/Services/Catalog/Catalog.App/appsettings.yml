@@ -1,0 +1,16 @@
+Serilog: 
+  MinimumLevel:
+    Default: "Information"
+    Override:
+      Microsoft: "Warning"
+      System: "Warning"
+
+Logging:
+  LogLevel:
+    Default: "Information"
+    Microsoft.AspNetCore: "Warning"
+
+Swagger:
+  Title: "Catalog API"
+
+AllowedHosts: "*"

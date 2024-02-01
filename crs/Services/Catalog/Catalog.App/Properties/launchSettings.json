@@ -8,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:7061"
+      "applicationUrl": "http://localhost:7060"
     },
     "https": {
       "commandName": "Project",
@@ -18,15 +18,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7060;http://localhost:7061"
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "applicationUrl": "https://localhost:7061;http://localhost:7060"
     },
     "Docker": {
       "commandName": "Docker",
@@ -36,13 +28,5 @@
       "useSSL": true
     }
   },
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:18754",
-      "sslPort": 44310
-    }
-  }
+  "$schema": "https://json.schemastore.org/launchsettings.json"
 }

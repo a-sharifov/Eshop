@@ -7,7 +7,7 @@ public sealed class Startup(IConfiguration configuration)
     public void ConfigureServices(IServiceCollection services)
     {
         services.InstallServicesFromAssembly(
-            _configuration, 
+            _configuration,
             App.AssemblyReference.Assembly);
     }
 
@@ -22,7 +22,6 @@ public sealed class Startup(IConfiguration configuration)
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-        app.UseHttpsRedirection();
         app.UseCors(SD.DefaultCorsPolicyName);
 
         app.MigrateDbContext<UserDbContext>();
@@ -35,8 +34,12 @@ public sealed class Startup(IConfiguration configuration)
         app.UseEndpoints(configure =>
         {
             configure.MapControllers();
+            configure.MapPrometheusScrapingEndpoint();
+            configure.MapHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
         });
-
     }
 
 }

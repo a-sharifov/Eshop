@@ -11,17 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
+    <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
     <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
+	<ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="Asp.Versioning" />
-    <Using Include="Services.Common.App" />
-    <Using Include="MediatR" />
-    <Using Include="Microsoft.AspNetCore.Mvc" />
-    <Using Include="System.ComponentModel.DataAnnotations" />
-    <Using Include="System.Reflection" />
-  </ItemGroup>
-
 </Project>

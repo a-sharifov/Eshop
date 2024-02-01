@@ -1,0 +1,15 @@
+﻿global using Catalog.Domain.BrandAggregate.ValueObjects;
+global using Catalog.Domain.BrandAggregate;
+global using Catalog.Domain.BrandAggregate.DomainEvents;
+global using Catalog.Domain.BrandAggregate.Errors;
+global using Catalog.Domain.BrandAggregate.Repositories;
+global using Catalog.Domain.BrandAggregate.Ids;
+global using Catalog.Domain.ProductAggregate.Repositories;
+global using Catalog.Domain.ProductAggregate;
+global using Common.Application.Abstractions.Messaging.Command;
+global using Common.Application.Abstractions.Messaging.Query;
+global using Common.Domain.Primitives.Events;
+global using Common.Domain.Primitives.Results;
+global using Common.Domain.Primitives;
+global using FluentValidation;
+global using System.Reflection;

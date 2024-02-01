@@ -11,9 +11,9 @@ public class Product : AggregateRoot<ProductId>
     public ImageUrl ProductImage { get; private set; }
     public ProductDescription Description { get; private set; }
 
-    private Product()
-    {
-    }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Product() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     private Product(
         ProductId id,

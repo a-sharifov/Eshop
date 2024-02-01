@@ -2,5 +2,6 @@
 
 public sealed record LoginCommand(
     string Email,
-    string Password)
+    string Password,
+    string Audience)
     : ICommand<LoginCommanResponse>;

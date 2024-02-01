@@ -1,0 +1,149 @@
+version: "3.4"
+
+services:
+  catalog.app:
+    environment:
+    - ASPNETCORE_URLS=http://+:80
+    - ASPNETCORE_HTTP_PORTS=7060
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - REDIS_PASSWORD=${REDIS_PASSWORD}
+    - MSSQL_INITIAL_CATALOG=${MSSQL_INITIAL_CATALOG}
+    - MSSQL_USER_ID=${MSSQL_USER_ID}
+    - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+    - AUTH_ISSUER=${AUTH_ISSUER}
+    - WEB_AUDIENCE=${WEB_AUDIENCE}
+    - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
+    volumes:
+    - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+    - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+    ports:
+    - 7060:80
+
+  identity.app:
+    environment:
+    - ASPNETCORE_URLS=http://+:80
+    - ASPNETCORE_HTTP_PORTS=8080
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - POSTGRES_USER=${POSTGRES_USER}
+    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    - POSTGRES_DB=${POSTGRES_DB}
+    - AUTH_ISSUER=${AUTH_ISSUER}
+    - WEB_AUDIENCE=${WEB_AUDIENCE}
+    - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
+    - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+    - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    ports:
+    - 8080:80
+    volumes:
+    - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+    - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+ 
+  monitoring.app:
+    environment:
+    - ASPNETCORE_URLS=http://+:80
+    - ASPNETCORE_HTTP_PORTS=5065
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - HealthChecksUI__HealthChecks__0__Name=Catalog API
+    - HealthChecksUI__HealthChecks__0__Uri=http://catalog.app/health
+    - HealthChecksUI__HealthChecks__1__Name=Identity API
+    - HealthChecksUI__HealthChecks__1__Uri=http://identity.app/health
+    - HealthChecksUI__HealthChecks_evaluationTimeInSeconds=10
+    ports:
+    - 5065:80
+    volumes:
+    - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+    - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+
+  gateways.web:
+    environment:
+    - ASPNETCORE_URL=http://+:80;https://+:443
+    - ASPNETCORE_HTTP_PORTS=5039
+    - ASPNETCORE_HTTPS_PORTS=5040   
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - LetuceEncrypt__EmailAdress=akber.sharifov2004@gmail.com
+    - LettuceEncrypt__DomainNames__0=gateway.app.com
+    ports:
+    - "5039:80"
+    - "5040:443"
+    volumes:
+    - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+    - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+
+
+  email.app:
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_HTTP_PORTS=5110
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Custom environment variables
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    ports:
+      - "5110:80"
+
+  mssql:
+    environment:
+    - ACCEPT_EULA=Y
+    - MSSQL_USER=${MSSQL_USER_ID}
+    - SA_PASSWORD=${MSSQL_SA_PASSWORD}
+    - MSSQL_DB=${MSSQL_INITIAL_CATALOG}
+    volumes:
+    - mssql:/var/opt/mssql
+    ports:
+    - 1433:1433
+
+  postgres:
+    environment:
+    - POSTGRES_USER=${POSTGRES_USER}
+    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+    - postgres:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+
+  redis:
+    environment:
+    - REDIS_ARGS=--requirepass ${REDIS_PASSWORD}
+    volumes:
+    - redis:/data
+    ports:
+    - 6379:6379
+
+  prometheus:
+    ports:
+    - 9090:9090
+    volumes:
+    - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    ports:
+    - 3000:3000
+    volumes:
+    - grafana:/etc/grafana/provisioning
+
+  rabbitmq:
+    ports:
+    # http port
+    - 15672:15672
+    # amqp port
+    - 5672:5672
+    environment:
+    - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER} 
+    - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    - RABBITMQ_CONFIG_FILE=./configs/rabbitmq.conf
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
+
+volumes:
+  mssql:
+  redis:
+  elasticsearch-data: 
+  postgres:
+  grafana:  
+  rabbitmq:
+    

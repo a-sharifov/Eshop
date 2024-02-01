@@ -13,9 +13,14 @@ namespace Identity.Presentation.V1.Controllers;
 public sealed class UserController(ISender sender) : ApiController(sender)
 {
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    public async Task<IActionResult> Login(
+        [FromHeader] string audience,
+        [FromBody] LoginRequest request)
     {
-        var command = new LoginCommand(request.Email, request.Password);
+        var command = new LoginCommand(
+            request.Email,
+            request.Password,
+            audience!);
 
         var result = await _sender.Send(command);
         return result.IsSuccess ? Ok(result.Value)
@@ -32,18 +37,21 @@ public sealed class UserController(ISender sender) : ApiController(sender)
             request.FirstName,
             request.LastName,
             request.Role,
-            EmailConfirmPagePath: $@"{Presentation.AssemblyReference.AssemblyPath}\\V1\Templates\ConfirmEmailTemplate.html",
-            ReturnUrl: @"https://api/v1/users/confirm-email");
-        
+            EmailConfirmPagePath: $@"{Presentation.AssemblyReference.AssemblyPath}/V1/Templates/ConfirmEmailTemplate.html",
+            request.ReturnUrl);
+
         var result = await _sender.Send(command);
         return result.IsSuccess ? Ok()
             : HandleFailure(result);
     }
 
     [HttpPost("update-refresh-token")]
-    public async Task<IActionResult> UpdateRefreshToken([FromBody] UpdateRefreshTokenRequest request)
+    public async Task<IActionResult> UpdateRefreshToken([FromHeader] UpdateRefreshTokenRequest request)
     {
-        var command = new UpdateRefreshTokenCommand(request.Token, request.RefreshToken);
+        var command = new UpdateRefreshTokenCommand(
+            request.Token,
+            request.RefreshToken,
+            request.Audience);
 
         var result = await _sender.Send(command);
         return result.IsSuccess ? Ok(result.Value)
@@ -54,9 +62,9 @@ public sealed class UserController(ISender sender) : ApiController(sender)
     public async Task<IActionResult> RetryConfirmEmailSend([FromBody] RetryConfirmEmailSendRequest request)
     {
         var command = new RetryConfirmEmailSendCommand(
-            request.UserId,
-            EmailConfirmPagePath: $@"{Presentation.AssemblyReference.AssemblyPath}\Templates\ConfirmEmailTemplate.html",
-            ReturnUrl: @"https://api/v1/users/confirm-email");
+            request.Email,
+            EmailConfirmPagePath: $@"{Presentation.AssemblyReference.AssemblyPath}/V1/Templates/ConfirmEmailTemplate.html",
+            request.ReturnUrl);
 
         var result = await _sender.Send(command);
         return result.IsSuccess ? Ok()

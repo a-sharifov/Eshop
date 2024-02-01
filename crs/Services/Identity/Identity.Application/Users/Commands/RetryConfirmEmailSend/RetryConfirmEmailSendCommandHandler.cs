@@ -12,8 +12,9 @@ public class RetryConfirmEmailSendCommandHandler(
 
     public async Task<Result> Handle(RetryConfirmEmailSendCommand request, CancellationToken cancellationToken)
     {
-        var userId = new UserId(request.UserId);
-        var user = await _userRepository.GetUserByIdAsync(userId);
+        var emailResult = Email.Create(request.Email);
+        var user = await _userRepository
+            .GetUserByEmailAsync(emailResult.Value, cancellationToken);
 
         if (user is null)
         {

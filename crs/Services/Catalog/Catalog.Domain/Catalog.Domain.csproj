@@ -7,40 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Services.Common\Services.Common.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Using Include=" Services.Common.Domain.Primitives.Events" />
-		<Using Include="Catalog.Domain.Common.Errors" />
-		<Using Include="Catalog.Domain.Common.Repositories" />
-		<Using Include="Catalog.Domain.Common.ValueObjects" />
-		<Using Include="Catalog.Domain.BrandAggregate" />
-		<Using Include="Catalog.Domain.BrandAggregate.DomainEvents" />
-		<Using Include="Catalog.Domain.BrandAggregate.Errors" />
-		<Using Include="Catalog.Domain.BrandAggregate.Ids" />
-		<Using Include="Catalog.Domain.BrandAggregate.ValueObjects" />
-		<Using Include="Catalog.Domain.SellerAggregate" />
-		<Using Include="Catalog.Domain.SellerAggregate.DomainEvents" />
-		<Using Include="Catalog.Domain.SellerAggregate.Errors" />
-		<Using Include="Catalog.Domain.SellerAggregate.Ids" />
-		<Using Include="Catalog.Domain.ProductAggregate" />
-		<Using Include="Catalog.Domain.ProductAggregate.DomainEvents" />
-		<Using Include="Catalog.Domain.ProductAggregate.Errors" />
-		<Using Include="Catalog.Domain.ProductAggregate.Ids" />
-		<Using Include="Catalog.Domain.ProductAggregate.ValueObjects" />
-		<Using Include="Catalog.Domain.CategoryAggregate" />
-		<Using Include="Catalog.Domain.CategoryAggregate.DomainEvents" />
-		<Using Include="Catalog.Domain.CategoryAggregate.Errors" />
-		<Using Include="Catalog.Domain.CategoryAggregate.Ids" />
-		<Using Include="Catalog.Domain.CategoryAggregate.ValueObjects" />
-		<Using Include="Catalog.Domain.SellerAggregate.ValueObjects" />
-		<Using Include="Services.Common.Domain" />
-		<Using Include="Services.Common.Domain.Primitives" />
-		<Using Include="Services.Common.Domain.Primitives.Events" />
-		<Using Include="Services.Common.Domain.Primitives.Results" />
-		<Using Include="Services.Common.Extensions" />
-		<Using Include="System.Text.RegularExpressions" />
-		<Using Include="System.Collections.Immutable" />
+	  <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 	</ItemGroup>
 </Project>

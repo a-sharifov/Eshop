@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333333;
+        }
+
+        p {
+            color: #666666;
+        }
+
+        .confirmation-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #ffffff !important;
+            border-radius: 30px;
+            text-decoration: none;
+        }
+
+        form {
+            display: inline-block; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Email Confirmation</h2>
+        <p>Hello {{firstName}} {{lastName}},</p>
+        <p>Thank you for signing up. Please click the button below to confirm your email address.</p>
+        <form action="{{confirmationLink}}" method="post">
+            <button type="submit" class="confirmation-button">Confirm</button>
+        </form>
+    </div>
+</body>
+</html>
