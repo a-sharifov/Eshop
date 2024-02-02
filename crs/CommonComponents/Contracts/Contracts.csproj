@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Abstractions\" />
-    <Folder Include="Services\Identity\Events\" />
   </ItemGroup>
 
 </Project>
