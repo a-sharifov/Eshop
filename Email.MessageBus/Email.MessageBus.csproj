@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Commands\" />
     <Folder Include="Handlers\Events\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\crs\CommonComponents\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\crs\CommonComponents\EventBus\EventBus.MassTransit\EventBus.MassTransit.csproj" />
   </ItemGroup>
 
 </Project>
