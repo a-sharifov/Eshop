@@ -9,4 +9,9 @@
   <ItemGroup>
     <Folder Include="Emails\Queries\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
+    <ProjectReference Include="..\Email.Infrastructure\Email.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

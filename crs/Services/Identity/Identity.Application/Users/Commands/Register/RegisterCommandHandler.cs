@@ -8,7 +8,7 @@ internal sealed class RegisterCommandHandler(
     IUserRepository userRepository,
     IUnitOfWork unitOfWork,
     IMessageBus eventBus)
-    : Common.Application.Abstractions.Messaging.Command.ICommandHandler<RegisterCommand>
+    : ICommandHandler<RegisterCommand>
 {
     private readonly IHashingService _hashingService = hashingService;
     private readonly IIdentityEmailService _emailService = emailService;
@@ -19,7 +19,7 @@ internal sealed class RegisterCommandHandler(
 
     public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var userResult = await CreateUserResult(request);
+        var userResult = await CreateUserResultAsync(request, cancellationToken);
 
         if (userResult.IsFailure)
         {
@@ -32,13 +32,13 @@ internal sealed class RegisterCommandHandler(
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         await _eventBus.Send(
-            new UserCreatedConfirmationEmailSendCommand(Guid.NewGuid(), user.Id.Value, request.ReturnUrl), 
+            new UserCreatedConfirmationEmailSendCommand(Guid.NewGuid(), user.Id.Value, user.EmailConfirmationToken, request.ReturnUrl), 
             cancellationToken);
 
         return Result.Success();
     }
 
-    private async Task<Result<User>> CreateUserResult(
+    private async Task<Result<User>> CreateUserResultAsync(
         RegisterCommand request,
         CancellationToken cancellationToken = default)
     {

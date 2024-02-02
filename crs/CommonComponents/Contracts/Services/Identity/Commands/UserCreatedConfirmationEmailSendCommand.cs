@@ -3,4 +3,5 @@
 public sealed record UserCreatedConfirmationEmailSendCommand(
     Guid Id,
     Guid UserId,
-    string returnUrl) : IntegrationCommand(Id);
+    string ConfirmationEmailToken,
+    string ReturnUrl) : IntegrationCommand(Id);

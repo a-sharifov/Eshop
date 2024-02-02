@@ -36,6 +36,7 @@ internal sealed class LoginCommandHandler(
         var userToken = _jwtProvider.CreateTokenString(user, request.Audience);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+
         return new LoginCommanResponse(userToken, refreshToken.Token);
     }
 
@@ -45,7 +46,7 @@ internal sealed class LoginCommandHandler(
         return await _userRepository.GetUserByEmailAsync(emailResult.Value, cancellationToken);
     }
 
-    private Result Login(User user ,string password)
+    private Result Login(User user, string password)
     {
         var passwordIsCorrect = _hashingService.Verify(
             password, user.PasswordSalt.Value, user.PasswordHash.Value);

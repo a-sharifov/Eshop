@@ -1,6 +1,6 @@
 ﻿namespace Email.Infrastructure.Email;
 
-public class EmailService(IOptions<EmailOptions> options) : IEmailService
+public abstract class EmailBaseService(IOptions<EmailOptions> options) : IEmailService
 {
     private readonly EmailOptions _options = options.Value;
 

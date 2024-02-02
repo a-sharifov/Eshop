@@ -2,13 +2,11 @@
 
 public class RetryConfirmEmailSendCommandHandler(
     IUserRepository userRepository, 
-    IIdentityEmailService emailService, 
-    IUnitOfWork unitOfWork)
-    : Common.Application.Abstractions.Messaging.Command.ICommandHandler<RetryConfirmEmailSendCommand>
+    IIdentityEmailService emailService)
+    : ICommandHandler<RetryConfirmEmailSendCommand>
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IIdentityEmailService _emailService = emailService;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<Result> Handle(RetryConfirmEmailSendCommand request, CancellationToken cancellationToken)
     {

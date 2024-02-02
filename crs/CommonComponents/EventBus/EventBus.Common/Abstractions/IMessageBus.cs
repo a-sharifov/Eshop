@@ -6,7 +6,7 @@
 public interface IMessageBus
 {
     /// <summary>
-    /// Publish event.
+    /// Publish event to the bus.
     /// </summary>
     /// <param name="event"> The event.</param>
     /// <param name="cancellationToken"> The cancellation token.</param>
@@ -15,7 +15,7 @@ public interface IMessageBus
         where TEvent : IIntegrationEvent;
 
     /// <summary>
-    /// Send command.
+    /// Send command to the bus.
     /// </summary>
     /// <param name="command"> The command.</param>
     /// <param name="cancellationToken"> The cancellation token.</param>
