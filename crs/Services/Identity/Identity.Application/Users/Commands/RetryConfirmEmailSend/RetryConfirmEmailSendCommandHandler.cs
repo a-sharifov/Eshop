@@ -4,7 +4,7 @@ public class RetryConfirmEmailSendCommandHandler(
     IUserRepository userRepository, 
     IIdentityEmailService emailService, 
     IUnitOfWork unitOfWork)
-    : ICommandHandler<RetryConfirmEmailSendCommand>
+    : Common.Application.Abstractions.Messaging.Command.ICommandHandler<RetryConfirmEmailSendCommand>
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IIdentityEmailService _emailService = emailService;
@@ -33,11 +33,11 @@ public class RetryConfirmEmailSendCommandHandler(
                 RetryEmailConfirmationResult.Error);
         }
 
-        await _emailService.SendConfirmationEmailAsync(
-            user,
-            request.EmailConfirmPagePath,
-            request.ReturnUrl,
-            cancellationToken);
+        //await _emailService.SendConfirmationEmailAsync(
+        //    user,
+        //    request.EmailConfirmPagePath,
+        //    request.ReturnUrl,
+        //    cancellationToken);
 
         return Result.Success();
     }

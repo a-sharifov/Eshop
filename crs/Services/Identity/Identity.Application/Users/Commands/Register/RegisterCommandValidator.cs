@@ -20,17 +20,19 @@ internal sealed class RegisterCommandValidator : AbstractValidator<RegisterComma
             .NotEmpty()
             .MaximumLength(LastName.MaxLength);
 
-        RuleFor(x => x.Role)
-            .NotEmpty()
-            .Must(x => Enum.TryParse<Role>(x, out _))
-            .WithMessage("Role is not valid");
-
         RuleFor(x => x.ConfirmPassword)
             .Equal(x => x.Password)
             .WithMessage("Passwords do not match");
 
-        RuleFor(x => x.EmailConfirmPagePath)
-            .NotEmpty();
+        RuleFor(x => x.Role)
+            .NotEmpty()
+            .Must(x => Role.FromName("") is not null)
+            .WithMessage("Role is not exist");
+
+        RuleFor(x => x.Gender)
+            .NotEmpty()
+            .Must(x => Gender.FromName("") is not null)
+            .WithMessage("Gender is not exist");
 
         RuleFor(x => x.ReturnUrl);
     }

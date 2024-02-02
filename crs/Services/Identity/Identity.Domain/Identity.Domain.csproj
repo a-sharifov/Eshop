@@ -12,5 +12,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
+	  <ProjectReference Include="..\..\..\CommonComponents\Contracts\Contracts.csproj" />
 	</ItemGroup>
 </Project>

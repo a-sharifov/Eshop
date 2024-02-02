@@ -4,7 +4,7 @@ internal sealed class GetRolesQueryHandler : IQueryHandler<GetRolesQuery, GetRol
 {
     public Task<Result<GetRolesQueryResponse>> Handle(GetRolesQuery request, CancellationToken cancellationToken)
     {
-        var roles = Enum.GetNames(typeof(Role));
+        var roles = Role.GetNames();
         var response = Result.Success(new GetRolesQueryResponse(roles));
 
         return Task.FromResult(response);

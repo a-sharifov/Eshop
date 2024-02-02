@@ -1,3 +1,3 @@
 ﻿namespace Identity.Application.Users.Queries.GetRoles;
 
-public record GetRolesQueryResponse(string[] Roles);
+public record GetRolesQueryResponse(IEnumerable<string> Roles);

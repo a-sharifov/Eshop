@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package Contracts.Services.Idenitty.Protobuf;
+
+import "Abstractions/Abstractions.proto";
+
+service IdenittyService {
+	rpc GetUser(GetUserRequest) returns (Abstractions.Protobuf.GetResponse);
+}
+
+message GetUserRequest {
+	string Id = 1;
+}
+
+message GetUserResponse {
+	oneof OneOf{
+		User 
+	}
+}
+
+message User {
+	string 
+}

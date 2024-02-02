@@ -1,6 +1,6 @@
 ﻿namespace EventBus.Common.Abstractions;
 
-public interface IEventBusBuilder
+public interface IMessageBusBuilder
 {
     IServiceCollection Services { get; }
 }

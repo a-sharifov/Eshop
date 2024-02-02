@@ -2,7 +2,6 @@
 global using Identity.Application.Abstractions;
 global using Identity.Domain.UserAggregate;
 global using Identity.Domain.UserAggregate.DomainEvents;
-global using Identity.Domain.UserAggregate.Enums;
 global using Identity.Domain.UserAggregate.Errors;
 global using Identity.Domain.UserAggregate.Repositories;
 global using Identity.Domain.UserAggregate.ValueObjects;
@@ -13,6 +12,7 @@ global using Common.Domain.Primitives;
 global using Common.Domain.Primitives.Events;
 global using Common.Domain.Primitives.Results;
 global using FluentValidation;
-global using System.IdentityModel.Tokens.Jwt;
 global using System.Reflection;
 global using System.Security.Claims;
+global using Contracts.Enumurations;
+global using EventBus.Common.Abstractions;

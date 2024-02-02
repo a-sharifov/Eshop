@@ -3,6 +3,6 @@
 /// <summary>
 /// The integration command interface.
 /// </summary>
-public interface IIntegrationEvent : IMessage
+public interface IIntegrationCommand : IMessage
 {
 }

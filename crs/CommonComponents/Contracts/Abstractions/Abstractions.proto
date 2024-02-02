@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Contracts.Abstractions.Protobuf;
+
+message GetResponse{
+  oneof OneOf{
+    google.protobuf.Any Projection = 1;
+    NotFound NotFound = 2;
+  }
+}
+
+message NotFound {}
+
+message Result {
+
+}

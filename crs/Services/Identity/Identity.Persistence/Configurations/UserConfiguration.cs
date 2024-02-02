@@ -57,5 +57,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.IsEmailConfirmed).IsRequired();
 
         builder.Property(x => x.Role).IsRequired();
+
+        builder.Property(x => x.Gender).IsRequired();
     }
 }

@@ -37,7 +37,7 @@ public sealed class UserController(ISender sender) : ApiController(sender)
             request.FirstName,
             request.LastName,
             request.Role,
-            EmailConfirmPagePath: $@"{Presentation.AssemblyReference.AssemblyPath}/V1/Templates/ConfirmEmailTemplate.html",
+            request.Gender,
             request.ReturnUrl);
 
         var result = await _sender.Send(command);
@@ -63,7 +63,6 @@ public sealed class UserController(ISender sender) : ApiController(sender)
     {
         var command = new RetryConfirmEmailSendCommand(
             request.Email,
-            EmailConfirmPagePath: $@"{Presentation.AssemblyReference.AssemblyPath}/V1/Templates/ConfirmEmailTemplate.html",
             request.ReturnUrl);
 
         var result = await _sender.Send(command);
@@ -77,7 +76,7 @@ public sealed class UserController(ISender sender) : ApiController(sender)
         var command = new ConfirmEmailCommand(request.UserId, request.EmailConfirmationToken);
 
         var result = await _sender.Send(command);
-        return result.IsSuccess ? Ok()
+        return result.IsSuccess ? Redirect(request.returnUrl)
             : HandleFailure(result);
     }
 

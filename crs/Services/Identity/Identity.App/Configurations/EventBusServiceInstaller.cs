@@ -22,6 +22,6 @@ internal sealed class EventBusServiceInstaller : IServiceInstaller
             configure.AddConsumers(App.AssemblyReference.Assembly);
         });
 
-        services.AddTransient<IEventBus, EventBusRabitMQ>();
+        services.AddTransient<IMessageBus, EventBusRabitMQ>();
     }
 }

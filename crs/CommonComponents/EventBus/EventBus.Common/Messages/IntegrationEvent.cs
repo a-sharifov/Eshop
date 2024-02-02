@@ -1,15 +1,11 @@
-﻿namespace EventBus.Common.Events;
+﻿namespace EventBus.Common.Messages;
 
 /// <summary>
-/// class for integration event.
+/// The integration event.
 /// </summary>
+/// <param name="Id">The identifier event.</param>
 public abstract record IntegrationEvent(Guid Id) : IIntegrationEvent
 {
-    /// <summary>
-    /// The id event.
-    /// </summary>
-    public Guid Id { get; private set; } = Id;
-
     /// <summary>
     /// The creation date of the event.
     /// </summary>
