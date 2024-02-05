@@ -21,3 +21,4 @@ global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using OpenTelemetry.Metrics;
 global using Prometheus;
 global using Common.App.HealthChecks;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 		<Protobuf Include="Abstractions\Abstractions.proto" GrpcServices="Both" />
-		<Protobuf Include="Services\Identity\Identity.proto" GrpcServices="Both" />
+		<Protobuf Include="Services\Identity\identity.v1.proto" GrpcServices="Both" />
 	</ItemGroup>
 
 	<ItemGroup>

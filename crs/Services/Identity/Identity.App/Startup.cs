@@ -31,7 +31,7 @@ public sealed class Startup(IConfiguration configuration)
         {
             configure.MapControllers();
             configure.MapPrometheusScrapingEndpoint();
-            configure.MapGrpcService<IdentityGrpcService>();
+            configure.MapGrpcService<IdentityGrpcServiceV1>();
             configure.MapHealthChecks("/health", new HealthCheckOptions
             {
                 ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
