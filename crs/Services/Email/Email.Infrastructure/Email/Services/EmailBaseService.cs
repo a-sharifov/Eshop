@@ -1,10 +1,17 @@
 ﻿namespace Email.Infrastructure.Email;
 
-public abstract class EmailBaseService(IOptions<EmailOptions> options) : IEmailService
+internal abstract class EmailBaseService(IOptions<EmailOptions> options) : IEmailService
 {
     private readonly EmailOptions _options = options.Value;
 
-    public async Task SendAsync(SendMessageRequest request, CancellationToken cancellationToken = default)
+    public async Task SendMessageAsync(SendMessageRequest request, CancellationToken cancellationToken = default) => 
+        await Policy.Handle<Exception>()
+        .WaitAndRetryAsync(
+            _options.RetryMessageSendCount,
+            retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)))
+        .ExecuteAsync(async () => await SendAsync(request, cancellationToken));
+
+    private async Task SendAsync(SendMessageRequest request, CancellationToken cancellationToken = default)
     {
         MimeMessage message = new();
         message.From.Add(MailboxAddress.Parse(_options.From));

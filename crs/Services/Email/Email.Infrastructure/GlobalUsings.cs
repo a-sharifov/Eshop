@@ -6,3 +6,4 @@ global using MimeKit;
 global using MailKit.Net.Smtp;
 global using System.Reflection;
 global using System.Text.Encodings.Web;
+global using Polly;

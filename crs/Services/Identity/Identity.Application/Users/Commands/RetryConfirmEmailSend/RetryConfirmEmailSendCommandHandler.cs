@@ -1,12 +1,14 @@
 ﻿namespace Identity.Application.Users.Commands.RetryConfirmEmailSend;
 
 public class RetryConfirmEmailSendCommandHandler(
-    IUserRepository userRepository, 
-    IIdentityEmailService emailService)
+    IUserRepository userRepository,
+    IMessageBus messageBus,
+    IHashingService hashingService)
     : ICommandHandler<RetryConfirmEmailSendCommand>
 {
     private readonly IUserRepository _userRepository = userRepository;
-    private readonly IIdentityEmailService _emailService = emailService;
+    private readonly IHashingService _hashingService = hashingService;
+    private readonly IMessageBus _messageBus = messageBus;
 
     public async Task<Result> Handle(RetryConfirmEmailSendCommand request, CancellationToken cancellationToken)
     {
@@ -20,7 +22,7 @@ public class RetryConfirmEmailSendCommandHandler(
                 UserErrors.UserDoesNotExist);
         }
 
-        var confirmationEmailToken = _emailService.CreateConfirmationEmailToken();
+        var confirmationEmailToken = _hashingService.GenerateToken();
 
         var RetryEmailConfirmationResult =
             user.RetryEmailConfirmation(confirmationEmailToken);
@@ -31,11 +33,12 @@ public class RetryConfirmEmailSendCommandHandler(
                 RetryEmailConfirmationResult.Error);
         }
 
-        //await _emailService.SendConfirmationEmailAsync(
-        //    user,
-        //    request.EmailConfirmPagePath,
-        //    request.ReturnUrl,
-        //    cancellationToken);
+        await _messageBus.Send(new UserCreatedConfirmationEmailSendCommand(
+            Guid.NewGuid(),
+            user.Id.Value,
+            confirmationEmailToken,
+            request.ReturnUrl),
+            cancellationToken);
 
         return Result.Success();
     }

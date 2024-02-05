@@ -29,6 +29,6 @@ internal sealed class IdentityEmailService
             Body: confirmEmailTemplate
             );
 
-        await SendAsync(sendMessageRequest, cancellationToken);
+        await SendMessageAsync(sendMessageRequest, cancellationToken);
     }
 }

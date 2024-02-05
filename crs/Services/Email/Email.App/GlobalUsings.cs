@@ -8,3 +8,4 @@ global using Common.Application.Behaviors;
 global using FluentValidation;
 global using Email.App.OptionsSetup;
 global using Common.Infrastructure.Middleware;
+global using Contracts.Services.Identity;

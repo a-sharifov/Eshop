@@ -3,7 +3,7 @@
 /// <summary>
 /// This class is used to get the path of the email templates.
 /// </summary>
-public static class EmailTemplatePath
+internal static class EmailTemplatePath
 {
     /// <summary>
     /// required change this template: {{firstName}}, {{lastName}}, {{confirmationLink}}

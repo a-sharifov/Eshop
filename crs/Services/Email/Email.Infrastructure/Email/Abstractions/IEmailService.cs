@@ -8,5 +8,5 @@ public interface IEmailService
     /// <param name="request">The <see cref="SendMessageRequest"/>.</param>
     /// <param name="cancellationToken">The <see cref="CancellationToken"/>.</param>
     /// <returns></returns>
-    Task SendAsync(SendMessageRequest request, CancellationToken cancellationToken = default);
+    Task SendMessageAsync(SendMessageRequest request, CancellationToken cancellationToken = default);
 }

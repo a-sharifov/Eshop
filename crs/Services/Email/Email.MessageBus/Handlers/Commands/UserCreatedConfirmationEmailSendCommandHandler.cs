@@ -1,10 +1,23 @@
-﻿namespace Email.MessageBus.Handlers.Commands;
+﻿using Email.Application.Emails.Commands.SendConfirmationUserMessage;
 
-public sealed class UserCreatedConfirmationEmailSendCommandHandler
-    : IntegrationCommandHandler<UserCreatedConfirmationEmailSendCommand>
+namespace Email.MessageBus.Handlers.Commands;
+
+internal sealed class UserCreatedConfirmationEmailSendCommandHandler(ISender sender)
+        : IntegrationCommandHandler<UserCreatedConfirmationEmailSendCommand>
 {
-    public override Task Handle(ConsumeContext<UserCreatedConfirmationEmailSendCommand> context)
+    private readonly ISender _sender = sender;
+
+    public override async Task Handle(ConsumeContext<UserCreatedConfirmationEmailSendCommand> context)
     {
-        throw new NotImplementedException();
+        var request = new SendConfirmationUserMessageCommand(
+            context.Message.UserId,
+            context.Message.ReturnUrl);
+
+        var result = await _sender.Send(request);
+
+        if (result.IsFailure)
+        {
+            throw new Exception(result.Error);
+        }
     }
 }

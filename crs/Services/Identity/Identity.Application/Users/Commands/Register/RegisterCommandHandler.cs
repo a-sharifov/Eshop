@@ -1,20 +1,16 @@
-﻿using Contracts.Services.Identity.Commands;
-
-namespace Identity.Application.Users.Commands.Register;
+﻿namespace Identity.Application.Users.Commands.Register;
 
 internal sealed class RegisterCommandHandler(
     IHashingService hashingService,
-    IIdentityEmailService emailService,
     IUserRepository userRepository,
     IUnitOfWork unitOfWork,
-    IMessageBus eventBus)
+    IMessageBus messageBus)
     : ICommandHandler<RegisterCommand>
 {
     private readonly IHashingService _hashingService = hashingService;
-    private readonly IIdentityEmailService _emailService = emailService;
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IMessageBus _eventBus = eventBus;
+    private readonly IMessageBus _messageBus = messageBus;
 
 
     public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -31,8 +27,8 @@ internal sealed class RegisterCommandHandler(
         await _userRepository.AddUserAsync(user, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        await _eventBus.Send(
-            new UserCreatedConfirmationEmailSendCommand(Guid.NewGuid(), user.Id.Value, user.EmailConfirmationToken, request.ReturnUrl), 
+        await _messageBus.Send(
+            new UserCreatedConfirmationEmailSendCommand(Guid.NewGuid(), user.Id.Value, user.EmailConfirmationToken.Value, request.ReturnUrl), 
             cancellationToken);
 
         return Result.Success();
@@ -53,7 +49,7 @@ internal sealed class RegisterCommandHandler(
         var hash = _hashingService.Hash(request.Password, generateSalt);
         var passwordHashResult = PasswordHash.Create(hash);
 
-        var emailConfirmationToken = _emailService.CreateConfirmationEmailToken();
+        var emailConfirmationToken = _hashingService.GenerateToken();
 
         var role = Role.FromName(request.Role);
         var gender = Gender.FromName(request.Gender);

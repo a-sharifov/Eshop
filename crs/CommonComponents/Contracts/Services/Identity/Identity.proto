@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package Contracts.Services.Idenitty.Protobuf;
+option csharp_namespace = "Contracts.Services.Identity";
 
-import "Abstractions/Abstractions.proto";
+package identity;
 
-service IdenittyService {
+service IdentityService {
 	rpc GetUser(GetUserRequest) returns (User);
 }
 
@@ -12,14 +12,14 @@ message GetUserRequest {
 	string id = 1;
 }
 
-message UserDetails {
+message User {
 	string user_id = 1;
-	string email = 3;
-	string first_name = 2;
-	string last_name = 2;
-	bool is_email_confirmed = 4;
-	Role role = 5;
-	Gender gender = 6;
+	string email = 2;
+	string first_name = 3;
+	string last_name = 4;
+	bool is_email_confirmed = 5;
+	Role role = 6;
+	Gender gender = 7;
 }
 
 enum Role {

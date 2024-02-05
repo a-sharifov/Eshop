@@ -5,6 +5,7 @@
 /// </summary>
 internal static class Env
 {
+    public static string IDENTITY_URL => GetEnvironmentVariable("IDENTITY_URL");
     public static string RABBITMQ_DEFAULT_USER => GetEnvironmentVariable("RABBITMQ_DEFAULT_USER");
     public static string RABBITMQ_DEFAULT_PASS => GetEnvironmentVariable("RABBITMQ_DEFAULT_PASS");
 

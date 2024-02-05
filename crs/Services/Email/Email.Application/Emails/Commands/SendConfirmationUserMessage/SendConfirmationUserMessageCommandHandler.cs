@@ -4,11 +4,13 @@ internal sealed class SendConfirmationUserMessageCommandHandler(IIdentityEmailSe
     : ICommandHandler<SendConfirmationUserMessageCommand>
 {
     private readonly IIdentityEmailService _emailService = emailService;
-    private readonly I
 
 
     public Task<Result> Handle(SendConfirmationUserMessageCommand request, CancellationToken cancellationToken)
     {
+
+
+
         _emailService.SendConfirmationEmailAsync(
                        new SendConfirmationEmailRequest
                        {

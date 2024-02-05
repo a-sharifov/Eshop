@@ -4,12 +4,7 @@ namespace Identity.Infrastructure.Hashing;
 
 public class HashingService : IHashingService
 {
-    public string GenerateSalt()
-    {
-        using var hmac = new HMACSHA256();
-        var salt = ConvertToString(hmac.Key);
-        return salt;
-    }
+    public string GenerateSalt() => GenerateToken();
 
     public string Hash(string password, string salt)
     {
@@ -32,4 +27,11 @@ public class HashingService : IHashingService
 
     private static string ConvertToString(byte[] value) =>
         Convert.ToBase64String(value);
+
+    public string GenerateToken()
+    {
+        using var hmac = new HMACSHA256();
+        var token = ConvertToString(hmac.Key);
+        return token;
+    }
 }

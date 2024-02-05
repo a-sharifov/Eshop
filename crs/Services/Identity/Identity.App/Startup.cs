@@ -14,7 +14,7 @@ public sealed class Startup(IConfiguration configuration)
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
-        }   
+        }
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
@@ -31,11 +31,11 @@ public sealed class Startup(IConfiguration configuration)
         {
             configure.MapControllers();
             configure.MapPrometheusScrapingEndpoint();
+            configure.MapGrpcService<IdentityGrpcService>();
             configure.MapHealthChecks("/health", new HealthCheckOptions
             {
                 ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
         });
     }
-
 }

@@ -1,4 +1,4 @@
-﻿namespace Identity.Application.Abstractions;
+﻿namespace Identity.Infrastructure.Authentication;
 
 public interface IJwtProvider
 {
