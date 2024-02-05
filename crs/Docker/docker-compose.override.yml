@@ -80,10 +80,18 @@ services:
       - ASPNETCORE_HTTP_PORTS=5110
       - ASPNETCORE_ENVIRONMENT=Development
       # Custom environment variables
+      - Email__From=${EMAIL_FROM}}
+      - Email__Host=${EMAIL_HOST}
+      - Email__Port=${EMAIL_PORT}
+      - Email__Username=${EMAIL_USERNAME}
+      - Email__Password=${EMAIL_PASSWORD}
+      - Retry__Message__Send__Count=3
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
     ports:
       - "5110:80"
+
+
 
   mssql:
     environment:

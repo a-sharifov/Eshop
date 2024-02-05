@@ -4,12 +4,8 @@ public sealed class Startup(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.InstallServicesFromAssembly(
-            _configuration,
-            App.AssemblyReference.Assembly);
-    }
+    public void ConfigureServices(IServiceCollection services) =>
+        services.InstallServicesFromAssembly(_configuration, App.AssemblyReference.Assembly);
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
@@ -35,11 +31,11 @@ public sealed class Startup(IConfiguration configuration)
         {
             configure.MapControllers();
             configure.MapPrometheusScrapingEndpoint();
+            configure.MapGrpcService<IdentityGrpcService>();
             configure.MapHealthChecks("/health", new HealthCheckOptions
             {
                 ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
         });
     }
-
 }

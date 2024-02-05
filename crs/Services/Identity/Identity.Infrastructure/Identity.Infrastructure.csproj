@@ -9,14 +9,13 @@
 	<ItemGroup>
 		<PackageReference Include="MailKit" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
-		<PackageReference Include="Polly" Version="8.2.1" />
+		<PackageReference Include="Polly" Version="8.3.0" />
 		<PackageReference Include="Quartz" Version="3.8.0" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
-		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 		<ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
 	</ItemGroup>

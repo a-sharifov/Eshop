@@ -9,8 +9,6 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         services.AddDbContext<UserDbContext>(options =>
             options.UseNpgsql(Env.ConnectionStrings.POSTGRES));
 
-        services.AddTransient<IIdentityEmailService, IdentityEmailService>();
-
         services.Scan(selector =>
         selector.FromAssemblies(
             Infrastructure.AssemblyReference.Assembly,

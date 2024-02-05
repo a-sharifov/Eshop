@@ -2,12 +2,8 @@ Logging:
   LogLevel:
     Default: Information
     Microsoft.AspNetCore: Warning
-
-Email:
-  From: Eshop
-  Host: smtp.gmail.com
-  Port: 587
-  Username: akber.sharifov2004@gmail.com
-  Password: ueey qfia bnyx atce
+  
+Swagger:
+    Title: "Email API"
 
 AllowedHosts: "*"

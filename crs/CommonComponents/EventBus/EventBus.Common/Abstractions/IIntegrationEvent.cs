@@ -1,17 +1,8 @@
 ﻿namespace EventBus.Common.Abstractions;
 
 /// <summary>
-/// Inteface for integration event.
+/// The integration command interface.
 /// </summary>
-public interface IIntegrationEvent: IEvent
+public interface IIntegrationEvent : IMessage
 {
-    /// <summary>
-    /// The id event.
-    /// </summary>
-    Guid Id { get; }
-
-    /// <summary>
-    /// The creation date of the event.
-    /// </summary>
-    DateTime CreatedAt { get; }
 }

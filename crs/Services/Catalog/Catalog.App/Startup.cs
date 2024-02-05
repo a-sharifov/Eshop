@@ -1,17 +1,11 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace Catalog.App;
+﻿namespace Catalog.App;
 
 public sealed class Startup(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.InstallServicesFromAssembly(
-            _configuration, 
-            App.AssemblyReference.Assembly);
-    }
+    public void ConfigureServices(IServiceCollection services) =>
+        services.InstallServicesFromAssembly(_configuration, App.AssemblyReference.Assembly);
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {

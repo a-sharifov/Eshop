@@ -46,7 +46,7 @@ public class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
             new Claim(JwtRegisteredClaimNames.Aud, audience),
             new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(),
             ClaimValueTypes.Integer64),
-            new Claim(ClaimTypes.Role, user.Role.ToString())
+            new Claim(ClaimTypes.Role, (string)user.Role)
             ];
 
 

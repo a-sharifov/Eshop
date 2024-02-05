@@ -7,4 +7,5 @@ public class EmailOptions
     public int Port { get; set; }
     public string Username { get; set; } = null!;
     public string Password { get; set; } = null!;
+    public int RetryMessageSendCount { get; set; }
 }

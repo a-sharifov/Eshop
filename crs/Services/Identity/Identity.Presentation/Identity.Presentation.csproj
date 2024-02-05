@@ -15,10 +15,4 @@
 		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="V1\Templates\ConfirmEmailTemplate.html">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	</ItemGroup>
-
 </Project>

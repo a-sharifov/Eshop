@@ -1,2 +1,3 @@
 ﻿global using MassTransit;
-global using Common.Events;
+global using EventBus.Common.Abstractions;
+global using EventBus.MassTransit.Abstractions;

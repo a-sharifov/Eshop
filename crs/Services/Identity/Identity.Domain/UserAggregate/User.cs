@@ -11,6 +11,7 @@ public sealed class User : AggregateRoot<UserId>
     public EmailConfirmationToken EmailConfirmationToken { get; private set; }
     public bool IsEmailConfirmed { get; private set; }
     public Role Role { get; private set; }
+    public Gender Gender { get; private set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     private User() { }
@@ -25,7 +26,8 @@ public sealed class User : AggregateRoot<UserId>
         PasswordSalt passwordSalt,
         EmailConfirmationToken emailConfirmationToken,
         bool isEmailConfirmed,
-        Role role)
+        Role role,
+        Gender gender)
     {
         Id = id;
         Email = email;
@@ -36,6 +38,7 @@ public sealed class User : AggregateRoot<UserId>
         EmailConfirmationToken = emailConfirmationToken;
         IsEmailConfirmed = isEmailConfirmed;
         Role = role;
+        Gender = gender;
     }
 
     public static Result<User> Create(
@@ -47,7 +50,8 @@ public sealed class User : AggregateRoot<UserId>
         PasswordSalt passwordSalt,
         EmailConfirmationToken emailConfirmationToken,
         bool isEmailUnique,
-        Role role)
+        Role role,
+        Gender gender)
     {
         if (!isEmailUnique)
         {
@@ -64,7 +68,8 @@ public sealed class User : AggregateRoot<UserId>
             passwordSalt,
             emailConfirmationToken,
             isEmailConfirmed: false,
-            role);
+            role,
+            gender);
 
         user.AddDomainEvent(
             new UserCreatedDomainEvent(Guid.NewGuid(), id));

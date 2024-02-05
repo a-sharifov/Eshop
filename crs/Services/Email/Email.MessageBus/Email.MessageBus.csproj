@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\Events\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonComponents\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\..\..\CommonComponents\EventBus\EventBus.MassTransit\EventBus.MassTransit.csproj" />
+    <ProjectReference Include="..\Email.Application\Email.Application.csproj" />
+  </ItemGroup>
+
+</Project>

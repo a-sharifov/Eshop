@@ -2,19 +2,20 @@
 
 internal sealed class RegisterCommandHandler(
     IHashingService hashingService,
-    IIdentityEmailService emailService,
     IUserRepository userRepository,
-    IUnitOfWork unitOfWork)
+    IUnitOfWork unitOfWork,
+    IMessageBus messageBus)
     : ICommandHandler<RegisterCommand>
 {
     private readonly IHashingService _hashingService = hashingService;
-    private readonly IIdentityEmailService _emailService = emailService;
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMessageBus _messageBus = messageBus;
+
 
     public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var userResult = await CreateUserResult(request);
+        var userResult = await CreateUserResultAsync(request, cancellationToken);
 
         if (userResult.IsFailure)
         {
@@ -26,17 +27,15 @@ internal sealed class RegisterCommandHandler(
         await _userRepository.AddUserAsync(user, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        await _emailService.SendConfirmationEmailAsync(
-            user,
-            request.EmailConfirmPagePath,
-            request.ReturnUrl,
+        await _messageBus.Send(
+            new UserCreatedConfirmationEmailSendCommand(Guid.NewGuid(), user.Id.Value, user.EmailConfirmationToken.Value, request.ReturnUrl), 
             cancellationToken);
 
         return Result.Success();
     }
 
-    private async Task<Result<User>> CreateUserResult(
-        RegisterCommand request , 
+    private async Task<Result<User>> CreateUserResultAsync(
+        RegisterCommand request,
         CancellationToken cancellationToken = default)
     {
         var userId = new UserId(Guid.NewGuid());
@@ -50,7 +49,10 @@ internal sealed class RegisterCommandHandler(
         var hash = _hashingService.Hash(request.Password, generateSalt);
         var passwordHashResult = PasswordHash.Create(hash);
 
-        var emailConfirmationToken = _emailService.CreateConfirmationEmailToken();
+        var emailConfirmationToken = _hashingService.GenerateToken();
+
+        var role = Role.FromName(request.Role);
+        var gender = Gender.FromName(request.Gender);
 
         var isEmailUnique = await _userRepository
             .IsEmailUnigueAsync(emailResult.Value, cancellationToken);
@@ -64,7 +66,8 @@ internal sealed class RegisterCommandHandler(
             passwordSaltResult.Value,
             emailConfirmationToken,
             isEmailUnique,
-            Enum.Parse<Role>(request.Role));
+            role,
+            gender);
 
         return user;
     }

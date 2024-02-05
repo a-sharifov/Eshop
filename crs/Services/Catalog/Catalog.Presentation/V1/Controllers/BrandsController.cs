@@ -20,10 +20,10 @@ public sealed class BrandsController(ISender sender) : ApiController(sender)
             : HandleFailure(result);
     }
 
-    //[HttpGet]
-    //[Authorize(Roles = "User")]
-    //public async Task<IActionResult> Test()
-    //{
-    //    return Ok("hi");
-    //}
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Test()
+    {
+        return Ok("hi");
+    }
 }
