@@ -1,29 +1,11 @@
 ﻿namespace Email.App;
 
-public class Startup(IConfiguration configuration)
+public sealed class Startup(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        //services
-        //    .AddOpenTelemetry()
-        //    .WithMetrics(options => options
-        //    .AddPrometheusExporter()
-        //    .AddHttpClientInstrumentation()
-        //    .AddRuntimeInstrumentation());
-
-        //services.AddTransient<IEmailService, EmailService>();
-
-        services.AddCors(options =>
-        {
-            options.AddPolicy(SD.DefaultCorsPolicyName,
-                builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-        });
-    }
+    public void ConfigureServices(IServiceCollection services) =>
+        services.InstallServicesFromAssembly(_configuration, App.AssemblyReference.Assembly);
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
@@ -31,8 +13,10 @@ public class Startup(IConfiguration configuration)
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Email.App v1"));
+            app.UseSwaggerUI();
         }
+        
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
 
@@ -43,7 +27,7 @@ public class Startup(IConfiguration configuration)
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            //endpoints.MapPrometheusScrapingEndpoint();
+            endpoints.MapPrometheusScrapingEndpoint();
         });
     }
 }

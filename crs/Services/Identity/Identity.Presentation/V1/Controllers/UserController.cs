@@ -76,7 +76,7 @@ public sealed class UserController(ISender sender) : ApiController(sender)
         var command = new ConfirmEmailCommand(request.UserId, request.EmailConfirmationToken);
 
         var result = await _sender.Send(command);
-        return result.IsSuccess ? Redirect(request.returnUrl)
+        return result.IsSuccess ? Redirect(request.ReturnUrl)
             : HandleFailure(result);
     }
 

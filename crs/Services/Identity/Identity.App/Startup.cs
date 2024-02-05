@@ -4,12 +4,8 @@ public sealed class Startup(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.InstallServicesFromAssembly(
-            _configuration,
-            App.AssemblyReference.Assembly);
-    }
+    public void ConfigureServices(IServiceCollection services) =>
+        services.InstallServicesFromAssembly(_configuration, App.AssemblyReference.Assembly);
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
@@ -18,7 +14,7 @@ public sealed class Startup(IConfiguration configuration)
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
-        }
+        }   
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 

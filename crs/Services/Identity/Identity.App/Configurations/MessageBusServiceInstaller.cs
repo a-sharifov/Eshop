@@ -1,6 +1,6 @@
 ﻿namespace Identity.App.Configurations;
 
-internal sealed class EventBusServiceInstaller : IServiceInstaller
+internal sealed class MessageBusServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {

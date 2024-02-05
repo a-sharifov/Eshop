@@ -1,4 +1,4 @@
-﻿namespace Catalog.App.Configurations;
+﻿namespace Email.App.Configurations;
 
 internal sealed class TelemetryServiceInstaller : IServiceInstaller
 {

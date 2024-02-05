@@ -3,4 +3,4 @@
 public sealed record ConfirmEmailRequest(
     [Required] Guid UserId,
     [Required] string EmailConfirmationToken,
-    [Required] string returnUrl);
+    [Required] string ReturnUrl);

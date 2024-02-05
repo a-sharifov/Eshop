@@ -12,4 +12,8 @@
     <PackageReference Include="MimeKit" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Email.Templates\Email.Templates.csproj" />
+  </ItemGroup>
+
 </Project>

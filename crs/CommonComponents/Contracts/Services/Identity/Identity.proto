@@ -5,19 +5,30 @@ package Contracts.Services.Idenitty.Protobuf;
 import "Abstractions/Abstractions.proto";
 
 service IdenittyService {
-	rpc GetUser(GetUserRequest) returns (Abstractions.Protobuf.GetResponse);
+	rpc GetUser(GetUserRequest) returns (User);
 }
 
 message GetUserRequest {
-	string Id = 1;
+	string id = 1;
 }
 
-message GetUserResponse {
-	oneof OneOf{
-		User 
-	}
+message UserDetails {
+	string user_id = 1;
+	string email = 3;
+	string first_name = 2;
+	string last_name = 2;
+	bool is_email_confirmed = 4;
+	Role role = 5;
+	Gender gender = 6;
 }
 
-message User {
-	string 
+enum Role {
+	USER = 0;
+	ADMIN = 1;
+}
+
+enum Gender {
+	MALE = 0;
+	FEMALE = 1;
+	UNDEFINED = 2;
 }

@@ -4,8 +4,6 @@ internal sealed class EmailOptionsSetup(IConfiguration configuration) : IConfigu
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public void Configure(EmailOptions options)
-    {
+    public void Configure(EmailOptions options) =>
         _configuration.GetSection(SD.EmailSectionKey).Bind(options);
-    }
 }
