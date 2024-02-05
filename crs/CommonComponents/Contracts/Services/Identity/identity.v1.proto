@@ -1,18 +1,16 @@
 syntax = "proto3";
 
-option csharp_namespace = "Contracts.Services.Identity";
-
-package identity;
+package identity.v1;
 
 service IdentityService {
-	rpc GetUser(GetUserRequest) returns (User);
+	rpc GetUserInfo(GetUserRequest) returns (UserInfo);
 }
 
 message GetUserRequest {
 	string id = 1;
 }
 
-message User {
+message UserInfo {
 	string user_id = 1;
 	string email = 2;
 	string first_name = 3;

@@ -76,18 +76,21 @@ services:
 
   email.app:
     environment:
-      - ASPNETCORE_URLS=http://+:80
-      - ASPNETCORE_HTTP_PORTS=5110
-      - ASPNETCORE_ENVIRONMENT=Development
-      # Custom environment variables
-      - Email__From=${EMAIL_FROM}}
-      - Email__Host=${EMAIL_HOST}
-      - Email__Port=${EMAIL_PORT}
-      - Email__Username=${EMAIL_USERNAME}
-      - Email__Password=${EMAIL_PASSWORD}
-      - Retry__Message__Send__Count=3
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    - ASPNETCORE_URLS=http://+:80
+    - ASPNETCORE_HTTP_PORTS=5110
+    - ASPNETCORE_ENVIRONMENT=Development
+    # Custom environment variables
+    - Email__From=${EMAIL_FROM}}
+    - Email__Host=${EMAIL_HOST}
+    - Email__Port=${EMAIL_PORT}
+    - Email__Username=${EMAIL_USERNAME}
+    - Email__Password=${EMAIL_PASSWORD}
+    - Retry__Message__Send__Count=3
+    - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+    - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    - AUTH_ISSUER=${AUTH_ISSUER}
+    - WEB_AUDIENCE=${WEB_AUDIENCE}
+    - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
     ports:
       - "5110:80"
 

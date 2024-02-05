@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\CommonComponents\Contracts\Contracts.csproj" />
+		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
 	</ItemGroup>
 
 </Project>

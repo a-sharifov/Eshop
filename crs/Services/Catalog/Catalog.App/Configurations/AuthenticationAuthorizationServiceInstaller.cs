@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-
-namespace Catalog.App.Configurations;
+﻿namespace Catalog.App.Configurations;
 
 internal sealed class AuthenticationAuthorizationServiceInstaller : IServiceInstaller
 {
