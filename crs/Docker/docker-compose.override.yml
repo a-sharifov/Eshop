@@ -73,7 +73,6 @@ services:
     - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
     - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
 
-
   email.app:
     environment:
     - ASPNETCORE_URLS=http://+:80
@@ -91,10 +90,9 @@ services:
     - AUTH_ISSUER=${AUTH_ISSUER}
     - WEB_AUDIENCE=${WEB_AUDIENCE}
     - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
+    - IDENTITY_URL=${AUTH_ISSUER}
     ports:
       - "5110:80"
-
-
 
   mssql:
     environment:

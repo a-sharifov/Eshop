@@ -6,7 +6,5 @@ public record SendConfirmationEmailRequest(
     string UserId,
     string Email,
     string EmailConfirmationToken,
-    string ReturnUrl,
-    string Subject,
-    string EmailConfirmPagePath
+    string ReturnUrl
     );

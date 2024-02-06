@@ -13,7 +13,7 @@ internal sealed class IdentityEmailService
             await File.ReadAllTextAsync(confirmEmailTemplatePath, cancellationToken);
 
         var confirmUrl =
-           $@"{thi}?UserId={request.UserId}&EmailConfirmationToken={request.EmailConfirmationToken}&ReturnUrl={request.ReturnUrl}";
+           $@"?UserId={request.UserId}&EmailConfirmationToken={request.EmailConfirmationToken}&ReturnUrl={request.ReturnUrl}";
 
         var confirmUrlEncode = HtmlEncoder.Default.Encode(confirmUrl);
 
@@ -25,7 +25,7 @@ internal sealed class IdentityEmailService
 
         var sendMessageRequest = new SendMessageRequest(
             To: request.Email,
-            Subject: request.Subject,
+            Subject: $"Eshop - confirm email",
             Body: confirmEmailTemplate
             );
 

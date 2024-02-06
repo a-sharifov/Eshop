@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package identity.v1;
+package identity.protobuf;
 
 service IdentityService {
 	rpc GetUserInfo(GetUserRequest) returns (UserInfo);

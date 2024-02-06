@@ -1,14 +1,27 @@
 ﻿namespace Identity.Persistence;
 
-public sealed class UserDbContext(DbContextOptions<UserDbContext> options)
-    : DbContext(options)
+public class UserDbContext : DbContext
 {
     //IdentityDbContext
     public DbSet<User> Users { get; set; }
 
     //Outbox pattern
     public DbSet<OutboxMessage> OutboxMessages { get; set; } 
-    public DbSet<OutboxMessageConsumer> outboxMessageConsumers { get; set; }
+    public DbSet<OutboxMessageConsumer> OutboxMessageConsumers { get; set; }
+
+    public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+    {
+    }
+
+    public UserDbContext() : base()
+    {
+        //For migrations
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql();
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

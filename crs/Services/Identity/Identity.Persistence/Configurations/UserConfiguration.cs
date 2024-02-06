@@ -58,6 +58,14 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.Role).IsRequired();
 
-        builder.Property(x => x.Gender).IsRequired();
+        builder.Property(x => x.Role).HasConversion(
+           gender => gender.Name,
+           name => Role.FromName(name)
+           ).IsRequired();
+
+        builder.Property(x => x.Gender).HasConversion(
+            gender => gender.Name,
+            name => Gender.FromName(name)
+            ).IsRequired();
     }
 }

@@ -1,5 +1,5 @@
-﻿using Identity.Application.Users.Queries.GetUserInfoById;
-using Identity.V1;
+﻿using Identity.Application.Users.Queries.GetUserInfoByIdString;
+using Identity.Protobuf;
 
 namespace Idenitty.Grpc;
 
@@ -9,16 +9,27 @@ public sealed class IdentityGrpcServiceV1(ISender sender) : IdentityService.Iden
 
     public override async Task<UserInfo> GetUserInfo(GetUserRequest request, ServerCallContext context)
     {
-        Guid.TryParse(request.Id, out Guid userId);
+        var query = new GetUserInfoByIdStringQuery(request.Id);
+        var result = await _sender.Send(query, context.CancellationToken);
 
-        //if(userId == Guid.Empty)
-        //{
-        //    context.Status = new Status(StatusCode.InvalidArgument, "Invalid user id");
-        //}
+        if (result.IsFailure)
+        {
+            throw new RpcException(new Status(StatusCode.NotFound, result.Error));
+        }
 
-        var query = new GetUserInfoByIdQuery(userId);
-        var result = await _sender.Send(query);
-        var response = new UserInfo() { s};
-        return base.GetUser(request, context);
+        var user = result.Value;
+
+        var response = new UserInfo()
+        {
+            UserId = user.UserId.ToString(),
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            IsEmailConfirmed = user.IsEmailConfirmed,
+            Role = Enum.Parse<Role>(user.Role),
+            Gender = Enum.Parse<Gender>(user.Gender)
+        };
+
+        return response;
     }
 }

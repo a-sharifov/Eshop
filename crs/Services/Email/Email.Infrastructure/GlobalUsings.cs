@@ -7,3 +7,5 @@ global using MailKit.Net.Smtp;
 global using System.Reflection;
 global using System.Text.Encodings.Web;
 global using Polly;
+global using Grpc.Core;
+global using Identity.Protobuf;

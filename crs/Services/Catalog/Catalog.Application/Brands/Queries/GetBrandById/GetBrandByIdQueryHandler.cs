@@ -8,7 +8,7 @@ internal sealed class GetBrandByIdQueryHandler(IBrandRepository brandRepository)
     {
         var brandId = new BrandId(request.Id);
 
-        var brand = await _brandRepository.GetByIdAsync(brandId);
+        var brand = await _brandRepository.GetByIdAsync(brandId, cancellationToken);
 
         return brand ?? Result.Failure<Brand>(
             BrandErrors.BrandNotFound);

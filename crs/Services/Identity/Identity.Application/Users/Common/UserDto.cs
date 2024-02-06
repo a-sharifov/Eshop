@@ -1,6 +1,6 @@
-﻿namespace Identity.Application.Users.Common;
+namespace Identity.Application.Users.Common;
 
-public sealed record UserInfo(
+public sealed record UserDto(
     Guid UserId,
     string Email,
     string FirstName,

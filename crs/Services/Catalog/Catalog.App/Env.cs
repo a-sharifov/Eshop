@@ -15,7 +15,7 @@ public static class Env
     public static string JWT_SECURITY_KEY => GetEnvironmentVariable("JWT_SECURITY_KEY");
 
     private static string GetEnvironmentVariable(string key) =>
-         Environment.GetEnvironmentVariable(key) ?? 
+         Environment.GetEnvironmentVariable(key) ??
         throw new Exception($"Environment variable {key} not found");
 
     public static class ConnectionStrings

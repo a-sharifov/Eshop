@@ -9,3 +9,4 @@ global using Common.Domain.Primitives.Events;
 global using Common.Extensions;
 global using Common.Serializers;
 global using System.Reflection;
+global using Contracts.Enumurations;

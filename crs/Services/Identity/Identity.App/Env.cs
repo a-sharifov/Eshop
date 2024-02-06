@@ -31,5 +31,5 @@ public static class Env
 
     private static string GetEnvironmentVariable(string key) =>
          Environment.GetEnvironmentVariable(key) ??
-        throw new Exception($"Environment variable {key} not found");
+        throw new Exception($"environment variable {key} not found");
 }
