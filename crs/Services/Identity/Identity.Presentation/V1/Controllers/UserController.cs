@@ -3,6 +3,7 @@ using Identity.Application.Users.Commands.Login;
 using Identity.Application.Users.Commands.Register;
 using Identity.Application.Users.Commands.RetryConfirmEmailSend;
 using Identity.Application.Users.Commands.UpdateRefreshToken;
+using Identity.Application.Users.Queries.GetGenders;
 using Identity.Application.Users.Queries.GetRoles;
 using Identity.Presentation.V1.Models;
 
@@ -84,6 +85,16 @@ public sealed class UserController(ISender sender) : ApiController(sender)
     public async Task<IActionResult> GetRoles()
     {
         var query = new GetRolesQuery();
+
+        var result = await _sender.Send(query);
+        return result.IsSuccess ? Ok(result.Value)
+            : HandleFailure(result);
+    }
+
+    [HttpGet("genders")]
+    public async Task<IActionResult> GetGenders()
+    {
+        var query = new GetGendersQuery();
 
         var result = await _sender.Send(query);
         return result.IsSuccess ? Ok(result.Value)
