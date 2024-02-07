@@ -18,6 +18,7 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
             Infrastructure.AssemblyReference.Assembly,
             Persistence.AssemblyReference.Assembly)
         .AddClasses(false)
+        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
         .AsImplementedInterfaces()
         .WithScopedLifetime());
     }

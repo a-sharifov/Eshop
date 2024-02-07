@@ -26,12 +26,12 @@ internal sealed class RegisterCommandValidator : AbstractValidator<RegisterComma
 
         RuleFor(x => x.Role)
             .NotEmpty()
-            .Must(x => Role.FromName("") is not null)
+            .Must(x => Role.FromNameOrDefault(x) is not null)
             .WithMessage("Role is not exist");
 
         RuleFor(x => x.Gender)
             .NotEmpty()
-            .Must(x => Gender.FromName("") is not null)
+            .Must(x => Gender.FromNameOrDefault(x) is not null)
             .WithMessage("Gender is not exist");
 
         RuleFor(x => x.ReturnUrl);

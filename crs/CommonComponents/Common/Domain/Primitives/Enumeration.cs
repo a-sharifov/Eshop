@@ -8,12 +8,15 @@ public abstract class Enumeration<TEnum>(int value, string name)
 
     private static readonly Dictionary<int, TEnum> _enumerations = GetEnumerations();
 
-    public static TEnum? FromValue(int value) =>
+    public static TEnum? FromValueOrDefault(int value) =>
         _enumerations.TryGetValue(value, out var enumeration)
         ? enumeration : null;
 
     public static TEnum FromName(string name) =>
         _enumerations.Values.Single(x => x.Name == name);
+
+    public static TEnum? FromNameOrDefault(string name) =>
+      _enumerations.Values.SingleOrDefault(x => x.Name == name);
 
     public static IEnumerable<string> GetNames() =>
         _enumerations.Values.Select(x => x.Name);

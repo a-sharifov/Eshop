@@ -7,6 +7,7 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         services.Scan(services => services
         .FromAssemblies(Infrastructure.AssemblyReference.Assembly)
         .AddClasses(false)
+        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
         .AsImplementedInterfaces()
         .WithScopedLifetime());
 
