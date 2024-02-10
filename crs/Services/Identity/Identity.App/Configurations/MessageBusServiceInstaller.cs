@@ -18,7 +18,6 @@ internal sealed class MessageBusServiceInstaller : IServiceInstaller
 
                 configurator.ConfigureEndpoints(context);
             });
-
             configure.AddConsumers(MessageBus.AssemblyReference.Assembly);
         });
 

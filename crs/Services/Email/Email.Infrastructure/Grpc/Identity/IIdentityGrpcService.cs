@@ -1,4 +1,4 @@
-﻿namespace Email.Infrastructure.Grpc.Idenitty;
+﻿namespace Email.Infrastructure.Grpc.Identity;
 
 public interface IIdentityGrpcService
 {

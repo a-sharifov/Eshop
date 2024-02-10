@@ -1,6 +1,6 @@
 ﻿using static Identity.Protobuf.IdentityService;
 
-namespace Email.Infrastructure.Grpc.Idenitty;
+namespace Email.Infrastructure.Grpc.Identity;
 
 internal sealed class IdentityGrpcService(IdentityServiceClient client) : IIdentityGrpcService
 {

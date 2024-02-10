@@ -3,7 +3,7 @@ using Identity.Protobuf;
 
 namespace Idenitty.Grpc;
 
-public sealed class IdentityGrpcServiceV1(ISender sender) : IdentityService.IdentityServiceBase
+public sealed class IdentityGrpcService(ISender sender) : IdentityService.IdentityServiceBase
 {
     private readonly ISender _sender = sender;
 

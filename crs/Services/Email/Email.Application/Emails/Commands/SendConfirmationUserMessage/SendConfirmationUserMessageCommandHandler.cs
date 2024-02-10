@@ -1,5 +1,5 @@
 ﻿using Email.Infrastructure.Email.Models;
-using Email.Infrastructure.Grpc.Idenitty;
+using Email.Infrastructure.Grpc.Identity;
 
 namespace Email.Application.Emails.Commands.SendConfirmationUserMessage;
 

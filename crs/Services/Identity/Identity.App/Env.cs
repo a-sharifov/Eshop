@@ -14,6 +14,8 @@ public static class Env
     public static string JWT_SECURITY_KEY => GetEnvironmentVariable("JWT_SECURITY_KEY");
     public static string RABBITMQ_DEFAULT_USER => GetEnvironmentVariable("RABBITMQ_DEFAULT_USER");
     public static string RABBITMQ_DEFAULT_PASS => GetEnvironmentVariable("RABBITMQ_DEFAULT_PASS");
+    public static int GRPC_PORT = int.Parse(GetEnvironmentVariable("GRPC_PORT"));
+    public static int HTTP_PORT = int.Parse(GetEnvironmentVariable("HTTP_PORT"));
 
     public static class ConnectionStrings
     {

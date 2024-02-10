@@ -2,7 +2,7 @@
 
 namespace Email.MessageBus.Handlers.Commands;
 
-internal sealed class UserCreatedConfirmationEmailSendCommandHandler(ISender sender)
+public sealed class UserCreatedConfirmationEmailSendCommandHandler(ISender sender)
         : IntegrationCommandHandler<UserCreatedConfirmationEmailSendCommand>
 {
     private readonly ISender _sender = sender;

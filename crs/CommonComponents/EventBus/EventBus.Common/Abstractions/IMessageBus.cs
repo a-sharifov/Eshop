@@ -3,7 +3,7 @@
 /// <summary>
 /// Base interfase for event bus.
 /// </summary>
-public interface IMessageBus
+public interface IMessageBusBase
 {
     /// <summary>
     /// Publish event to the bus.

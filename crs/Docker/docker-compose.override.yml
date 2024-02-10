@@ -3,8 +3,7 @@ version: "3.4"
 services:
   catalog.app:
     environment:
-    - ASPNETCORE_URLS=http://+:80
-    - ASPNETCORE_HTTP_PORTS=7060
+    - ASPNETCORE_HTTP_PORTS=80
     - ASPNETCORE_ENVIRONMENT=Development
     # Custom environment variables
     - REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -22,9 +21,9 @@ services:
 
   identity.app:
     environment:
-    - ASPNETCORE_URLS=http://+:80
-    - ASPNETCORE_HTTP_PORTS=8080
+    - ASPNETCORE_HTTP_PORTS=80
     - ASPNETCORE_ENVIRONMENT=Development
+    # - Kestrel__EndpointDefaults__Protocols=Http2
     # Custom environment variables
     - POSTGRES_USER=${POSTGRES_USER}
     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -34,6 +33,8 @@ services:
     - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
     - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
     - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    - HTTP_PORT=80
+    - GRPC_PORT=81
     ports:
     - 8080:80
     volumes:
@@ -42,8 +43,7 @@ services:
  
   monitoring.app:
     environment:
-    - ASPNETCORE_URLS=http://+:80
-    - ASPNETCORE_HTTP_PORTS=5065
+    - ASPNETCORE_HTTP_PORTS=80
     - ASPNETCORE_ENVIRONMENT=Development
     # Custom environment variables
     - HealthChecksUI__HealthChecks__0__Name=Catalog API
@@ -59,9 +59,8 @@ services:
 
   gateways.web:
     environment:
-    - ASPNETCORE_URL=http://+:80;https://+:443
-    - ASPNETCORE_HTTP_PORTS=5039
-    - ASPNETCORE_HTTPS_PORTS=5040   
+    - ASPNETCORE_HTTP_PORTS=80
+    - ASPNETCORE_HTTPS_PORTS=443
     - ASPNETCORE_ENVIRONMENT=Development
     # Custom environment variables
     - LetuceEncrypt__EmailAdress=akber.sharifov2004@gmail.com
@@ -75,8 +74,7 @@ services:
 
   email.app:
     environment:
-    - ASPNETCORE_URLS=http://+:80
-    - ASPNETCORE_HTTP_PORTS=5110
+    - ASPNETCORE_HTTP_PORTS=80
     - ASPNETCORE_ENVIRONMENT=Development
     # Custom environment variables
     - Email__From=${EMAIL_FROM}}
@@ -90,7 +88,7 @@ services:
     - AUTH_ISSUER=${AUTH_ISSUER}
     - WEB_AUDIENCE=${WEB_AUDIENCE}
     - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
-    - IDENTITY_URL=${AUTH_ISSUER}
+    - IDENTITY_GRPC_URL=${IDENTITY_GRPC_URL}
     ports:
       - "5110:80"
 

@@ -17,4 +17,9 @@ public sealed class EventBusRabitMQ(IBusControl busControl) : IMessageBus
     {
         await _busControl.Send(command, cancellationToken);
     }
+
+    public async Task<ISendEndpoint> GetSendEndpoint(Uri address) 
+    {
+        return await _busControl.GetSendEndpoint(address);
+    }
 }

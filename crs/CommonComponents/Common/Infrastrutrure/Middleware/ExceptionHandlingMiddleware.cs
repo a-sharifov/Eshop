@@ -32,8 +32,8 @@ public sealed class ExceptionHandlingMiddleware(
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
-           
+            _logger.LogError(ex, "the error: {0}", ex.Message);
+
             var problemDetails = new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,

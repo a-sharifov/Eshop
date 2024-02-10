@@ -6,7 +6,7 @@ internal sealed class GrpcServiceInstaller : IServiceInstaller
     {
         services.AddGrpcClient<IdentityService.IdentityServiceClient>(options =>
         {
-            options.Address = new Uri(Env.IDENTITY_URL);
+            options.Address = new Uri(Env.IDENTITY_GRPC_URL);
         });
 
         services.AddGrpc();

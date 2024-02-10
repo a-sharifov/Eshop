@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
 		<ProjectReference Include="..\..\..\CommonComponents\EventBus\EventBus.Common\EventBus.Common.csproj" />
+		<ProjectReference Include="..\..\..\CommonComponents\EventBus\EventBus.MassTransit\EventBus.MassTransit.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 		<ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
 	</ItemGroup>
