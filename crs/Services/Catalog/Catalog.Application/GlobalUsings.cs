@@ -13,3 +13,5 @@ global using Common.Domain.Primitives.Results;
 global using Common.Domain.Primitives;
 global using FluentValidation;
 global using System.Reflection;
+global using Catalog.Domain.SellerAggregate.Repositories;
+global using Catalog.Domain.SellerAggregate;

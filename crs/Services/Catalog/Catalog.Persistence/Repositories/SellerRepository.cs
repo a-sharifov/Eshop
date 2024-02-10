@@ -37,4 +37,22 @@ internal sealed class SellerRepository(
 
         return entity;
     }
+
+    public async Task<bool> IsSellerNameExist(SellerName name, CancellationToken cancellationToken = default)
+    {
+        using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
+
+        string query =
+            $"""
+            SELECT 1 FROM {_entityName}
+            WHERE [Name] = @SellerName
+            """;
+
+        var parameters = new { SellerName = name.Value };
+
+        var result = await sqlConnection
+          .QueryFirstOrDefaultAsync<bool>(query, cancellationToken);
+
+        return result;  
+    }
 }
