@@ -12,6 +12,8 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         .AsImplementedInterfaces()
         .WithScopedLifetime());
 
-        services.ConfigureOptions<EmailOptionsSetup>();
+        services.AddOptions<EmailOptions>()
+            .Bind(configuration.GetSection(SD.EmailSectionKey))
+            .ValidateDataAnnotations();
     }
 }

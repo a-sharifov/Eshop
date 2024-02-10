@@ -82,7 +82,8 @@ services:
     - Email__Port=${EMAIL_PORT}
     - Email__Username=${EMAIL_USERNAME}
     - Email__Password=${EMAIL_PASSWORD}
-    - Retry__Message__Send__Count=3
+    - Email__RetryMessageSendCount=3
+    - IdentityEndpoint__BaseUrl=${AUTH_ISSUER}}
     - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
     - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
     - AUTH_ISSUER=${AUTH_ISSUER}

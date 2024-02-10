@@ -8,3 +8,4 @@ global using System.Reflection;
 global using System.Text.Encodings.Web;
 global using Polly;
 global using Identity.Protobuf;
+global using Email.Infrastructure.EndpointOptions;
