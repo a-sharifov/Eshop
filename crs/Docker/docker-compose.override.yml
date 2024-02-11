@@ -13,6 +13,8 @@ services:
     - AUTH_ISSUER=${AUTH_ISSUER}
     - WEB_AUDIENCE=${WEB_AUDIENCE}
     - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
+    - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+    - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
     volumes:
     - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
     - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 

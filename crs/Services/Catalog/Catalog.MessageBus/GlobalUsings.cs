@@ -2,3 +2,4 @@
 global using EventBus.MassTransit.Handlers;
 global using MassTransit;
 global using MediatR;
+global using System.Reflection;
