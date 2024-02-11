@@ -10,7 +10,6 @@ global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.IdentityModel.Tokens;
 global using System.Security.Claims;
 global using System.Text;
-global using Identity.Protobuf;
 global using MassTransit;
 global using Scrutor;
 global using Email.Infrastructure.EndpointOptions;

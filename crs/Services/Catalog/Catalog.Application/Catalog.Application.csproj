@@ -20,7 +20,9 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
+		<ProjectReference Include="..\..\Identity\Idenitty.Grpc\Idenitty.Grpc.csproj" />
 		<ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
+		<ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
 		<ProjectReference Include="..\Catalog.Persistence\Catalog.Persistence.csproj" />
 	</ItemGroup>
 </Project>

@@ -15,6 +15,7 @@ services:
     - JWT_SECURITY_KEY=${JWT_SECURITY_KEY}
     - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
     - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS} 
+    - IDENTITY_GRPC_URL=${IDENTITY_GRPC_URL}
     volumes:
     - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
     - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 

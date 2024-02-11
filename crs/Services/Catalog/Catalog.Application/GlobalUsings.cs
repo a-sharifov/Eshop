@@ -15,3 +15,6 @@ global using FluentValidation;
 global using System.Reflection;
 global using Catalog.Domain.SellerAggregate.Repositories;
 global using Catalog.Domain.SellerAggregate;
+global using MediatR;
+global using Idenitty.Grpc;
+global using Catalog.Infrastructure.Grpc.Identity;

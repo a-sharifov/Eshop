@@ -1,6 +1,6 @@
 ﻿using Identity.Protobuf;
 
-namespace Email.App.Configurations;
+namespace Catalog.App.Configurations;
 
 internal sealed class GrpcServiceInstaller : IServiceInstaller
 {
@@ -12,5 +12,6 @@ internal sealed class GrpcServiceInstaller : IServiceInstaller
         });
 
         services.AddGrpc();
+
     }
 }

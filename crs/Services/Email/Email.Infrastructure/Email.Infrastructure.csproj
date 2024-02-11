@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Email.Templates\Email.Templates.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Grpc\Identity\Models\" />
+  </ItemGroup>
+
 </Project>

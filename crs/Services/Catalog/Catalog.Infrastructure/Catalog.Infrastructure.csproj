@@ -14,6 +14,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
+	  <ProjectReference Include="..\..\..\CommonComponents\Contracts\Contracts.csproj" />
 	  <ProjectReference Include="..\Catalog.Persistence\Catalog.Persistence.csproj" />
 	</ItemGroup>
 </Project>
