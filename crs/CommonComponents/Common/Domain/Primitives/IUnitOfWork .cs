@@ -10,6 +10,11 @@ public interface IUnitOfWork
     /// </summary>
     /// <param name="cancellationToken"> The <see cref="CancellationToken" />.</param>
     /// <returns> A <see cref="Task"/> representing the asynchronous operation.</returns>
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-    int SaveChanges();
+    Task<int> CommitAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Gets the database context.
+    /// </summary>
+    /// <returns> The <see cref="int"/>.</returns>
+    int Commit();
 }

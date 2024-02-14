@@ -32,7 +32,7 @@ internal sealed class CreateSellerCommandHandler(
         }
 
         await _sellerRepository.AddAsync(sellerResult.Value, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
 
         return Result.Success();
     }

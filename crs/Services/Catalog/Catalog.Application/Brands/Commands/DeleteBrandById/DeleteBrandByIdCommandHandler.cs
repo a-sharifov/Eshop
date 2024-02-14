@@ -13,7 +13,7 @@ internal sealed class DeleteBrandByIdCommandHandler(
         var brandId = new BrandId(request.Id);
 
         await _brandRepository.DeleteByIdAsync(brandId, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
 
         return Result.Success();
     }

@@ -30,7 +30,7 @@ internal sealed class CreateBrandCommandHandler(
         }
 
         await _brandRepository.AddAsync(brand.Value, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
 
         return Result.Success();
     }
