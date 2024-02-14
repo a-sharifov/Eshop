@@ -12,9 +12,9 @@ internal sealed class AddSellerCommandHandler(
 
     public async Task<Result> Handle(AddSellerCommand request, CancellationToken cancellationToken)
     {
-        var userInfo = await _identityGrpcService.GetUserInfoAsync(request.UserId);
+        var userInfo = await _identityGrpcService.GetUserInfoAsync(request.UserId, cancellationToken);
 
         var command = new CreateSellerCommand(userInfo.Email, userInfo.Email);
-        return await _sender.Send(command);
+        return await _sender.Send(command, cancellationToken);
     }
 }

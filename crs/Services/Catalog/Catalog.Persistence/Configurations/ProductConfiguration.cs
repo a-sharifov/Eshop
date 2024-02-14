@@ -7,6 +7,8 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.ToTable(nameof(Product));
         builder.HasKey(p => p.Id);
 
+        builder.HasAlternateKey(p => p.Sku);
+
         builder.Property(p => p.Id).HasConversion(
             productId => productId.Value,
             value => new ProductId(value)).IsRequired();
@@ -42,6 +44,13 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
             value => ProductName.Create(value).Value
             )
             .HasMaxLength(ProductName.ProductNameMaxLength)
+            .IsRequired();
+
+        builder.Property(p => p.Quantity)
+            .HasConversion(
+            productQuantity => productQuantity.Value,
+            value => Quantity.Create(value).Value
+            )
             .IsRequired();
 
         builder.HasOne(p => p.Category)

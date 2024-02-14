@@ -43,7 +43,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.OwnsOne(x => x.RefreshToken, refreshTokenBuilder =>
         {
             refreshTokenBuilder.Property(x => x.Token)
-                .IsRequired();
+            .IsRequired();
 
             refreshTokenBuilder.Property(x => x.Expired)
             .IsRequired();

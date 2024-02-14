@@ -1,7 +1,4 @@
-﻿using Catalog.Domain.ProductAggregate;
-using Catalog.Domain.ProductAggregate.Repositories;
-
-namespace Catalog.Application.Products.Queries.GetProductsByFilter;
+﻿namespace Catalog.Application.Products.Queries.GetProductsByFilter;
 
 public sealed class GetProductsByFilterQuerieHandler(IProductRepository productRepository) : IQueryHandler<GetProductsByFilterQuerie, IEnumerable<Product>>
 {
