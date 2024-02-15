@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Common.Errors;
+﻿namespace Basket.Domain.BasketAggregate.ValueObjects;
 
 public static class ImageUrlErrors
 {

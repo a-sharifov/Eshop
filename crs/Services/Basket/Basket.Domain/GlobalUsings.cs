@@ -7,4 +7,4 @@ global using Common.Extensions;
 global using Basket.Domain.BasketAggregate.ValueObjects;
 global using Common.Domain.Primitives.Events;
 global using Basket.Domain.BasketAggregate.DomainEvents;
-
+global using System.Text.RegularExpressions;

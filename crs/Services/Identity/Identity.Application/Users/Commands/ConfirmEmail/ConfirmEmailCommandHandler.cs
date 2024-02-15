@@ -35,7 +35,7 @@ internal sealed class ConfirmEmailCommandHandler(
         await _unitOfWork.CommitAsync(cancellationToken);
 
         await _messageBus.Publish(
-            new IdentityVerificationConfirmedEvent(Guid.NewGuid(), user.Id.Value));
+            new IdentityVerificationConfirmedEvent(Guid.NewGuid(), user.Id.Value), cancellationToken);
 
         return Result.Success();
     }

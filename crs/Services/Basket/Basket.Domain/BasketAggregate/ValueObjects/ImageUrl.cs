@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Common.ValueObjects;
+﻿namespace Basket.Domain.BasketAggregate.ValueObjects;
 
 public sealed partial class ImageUrl : ValueObject
 {
@@ -28,7 +28,7 @@ public sealed partial class ImageUrl : ValueObject
         return new ImageUrl(imageUrl);
     }
 
-    public static bool IsImageUrl(string imageUrl) => ImageRegex().IsMatch(imageUrl);
+    public static bool IsImageUrl(string imageUrl) => ImageUrlRegex().IsMatch(imageUrl);
 
     public override IEnumerable<object> GetEqualityComponents()
     {
@@ -38,5 +38,5 @@ public sealed partial class ImageUrl : ValueObject
     public static implicit operator string(ImageUrl imageUrl) => imageUrl.Value;
 
     [GeneratedRegex(ImageUrlPattern)]
-    private static partial Regex ImageRegex();
+    private static partial Regex ImageUrlRegex();
 }

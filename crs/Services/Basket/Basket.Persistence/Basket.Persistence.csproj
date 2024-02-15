@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Configurations\" />
+    <Folder Include="Services\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 

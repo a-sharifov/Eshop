@@ -1,6 +1,6 @@
 ﻿namespace Identity.Domain.UserAggregate.ValueObjects;
 
-public sealed class Email : ValueObject
+public sealed partial class Email : ValueObject
 {
     private const string EmailPattern = @"^(.+)@(.+)$";
     public const int MaxLength = 100;
@@ -39,8 +39,11 @@ public sealed class Email : ValueObject
         yield return Value;
     }
 
-    public static bool IsEmail(string email) => Regex.IsMatch(email, EmailPattern);
+    public static bool IsEmail(string email) => EmailRegex().IsMatch(email);
 
 
     public static implicit operator string(Email email) => email.Value;
+
+    [GeneratedRegex(EmailPattern)]
+    private static partial Regex EmailRegex();
 }
