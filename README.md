@@ -1,4 +1,4 @@
-# [Eshop](https://github.com/a-sharifov/Eshop) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/a-sharifov/Eshop/blob/master/LICENSE)
+# [Eshop](https://github.com/a-sharifov/Eshop) [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/a-sharifov/Eshop/blob/master/LICENSE)
 
 ## 🚀 Project Overview
 
