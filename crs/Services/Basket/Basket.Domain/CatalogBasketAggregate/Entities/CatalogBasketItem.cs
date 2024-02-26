@@ -10,32 +10,26 @@ public class CatalogBasketItem : Entity<CatalogBasketItemId>
 
     public static Result<CatalogBasketItem> Create(CatalogBasketItemId id, CatalogProduct product, Quantity quantity)
     {
-        if (quantity <= 0)
-        {
-            return Result.Failure<CatalogBasketItem>(
-                CatalogBasketItemErrors.QuantityMustBeGreaterThanZero);
-        }
+        var catalogBasketItem = new CatalogBasketItem(id, product, quantity);
 
-        return new CatalogBasketItem(id, product, quantity);
+        return catalogBasketItem;
     }
-
-    public Result AddQuantity(int quantity) => SetQuantity(Quantity + quantity);
 
     public Result SetQuantity(int quantity)
     {
-        if (quantity < 0)
-        {
-            return Result.Failure(
-                CatalogBasketItemErrors.QuantityMustBeGreaterThanZero);
-        }
-
         if (quantity > Product.Quantity)
         {
             return Result.Failure(
                 CatalogBasketItemErrors.QuantityExceedsProductCount);
         }
 
-        Quantity = quantity;
+        var quantityResult = Quantity.Create(quantity);
+
+        if(quantityResult.IsFailure)
+        {
+            return Result.Failure(quantityResult.Error);
+        }
+
         return Result.Success();
     }
 }

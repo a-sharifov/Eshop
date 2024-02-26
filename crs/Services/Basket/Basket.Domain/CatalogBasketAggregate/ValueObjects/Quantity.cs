@@ -19,8 +19,24 @@ public sealed class Quantity : ValueObject
 
     public static Quantity Empty => new(0);
 
+
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
+
+    public static bool operator ==(Quantity left, int right) => left.Value == right;
+    public static bool operator !=(Quantity left, int right) => left.Value != right;
+    public static bool operator >(Quantity left, int right) => left.Value > right;
+    public static bool operator <(Quantity left, int right) => left.Value < right;
+    public static bool operator >=(Quantity left, int right) => left.Value >= right;
+    public static bool operator <=(Quantity left, int right) => left.Value <= right;
+
+    public static bool operator ==(int left, Quantity right) => left == right.Value;
+    public static bool operator !=(int left, Quantity right) => left != right.Value;
+    public static bool operator >(int left, Quantity right) => left > right.Value;
+    public static bool operator <(int left, Quantity right) => left < right.Value;
+    public static bool operator >=(int left, Quantity right) => left >= right.Value;
+    public static bool operator <=(int left, Quantity right) => left <= right.Value;
+
 }
