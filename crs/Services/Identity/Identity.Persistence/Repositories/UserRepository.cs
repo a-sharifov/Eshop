@@ -40,10 +40,10 @@ internal sealed class UserRepository(UserDbContext dbContext) : IUserRepository
         .Set<User>()
         .SingleOrDefaultAsync(u => u.Email == email, cancellationToken);
 
-    public async Task<User?> GetUserByIdAsync(UserId userId, CancellationToken cancellationToken = default) => 
+    public async Task<User> GetUserByIdAsync(UserId userId, CancellationToken cancellationToken = default) => 
         await _dbContext
         .Set<User>()
-        .SingleOrDefaultAsync(u => u.Id == userId, cancellationToken);
+        .SingleAsync(u => u.Id == userId, cancellationToken);
 
     public Task<bool> IsEmailConfirmedAsync(UserId userId, CancellationToken cancellationToken = default)
     {

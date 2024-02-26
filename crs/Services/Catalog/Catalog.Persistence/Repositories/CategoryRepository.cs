@@ -3,7 +3,7 @@
 internal sealed class CategoryRepository(
     CatalogDbContext dbContext, 
     ISqlConnectionFactory sqlConnectionFactory,
-    ICachedCatalogService<Category, CategoryId> cached) 
+    ICachedEntityService<Category, CategoryId> cached) 
     : CatalogBaseRepository<Category, CategoryId>(
         dbContext, 
         sqlConnectionFactory, 

@@ -7,13 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Abstractions\" />
     <Folder Include="Configurations\" />
-    <Folder Include="Services\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="DbContext\" />
+    <Folder Include="Options\" />
+    <Folder Include="Services\Abstractions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.23.1" />
+    <PackageReference Include="MongoDB.EntityFrameworkCore" Version="7.0.0-preview.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonComponents\Common\Common.csproj" />
+    <ProjectReference Include="..\Basket.Domain\Basket.Domain.csproj" />
   </ItemGroup>
 
 </Project>

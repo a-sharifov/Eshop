@@ -1,2 +1,10 @@
 ﻿global using Common.Domain.Primitives;
 global using System.Reflection;
+global using Common.Extensions;
+global using Basket.Domain.CatalogBasketAggregate.Repositories;
+global using Basket.Domain.CatalogBasketAggregate;
+global using Common.Domain.Primitives.Events;
+global using Basket.Domain.CatalogBasketAggregate.Ids;
+global using Microsoft.EntityFrameworkCore;
+global using Basket.Domain.CatalogBasketAggregate.Entities;
+global using MongoDB.EntityFrameworkCore.Extensions;

@@ -3,7 +3,7 @@
 internal sealed class SellerRepository(
     CatalogDbContext dbContext,
     ISqlConnectionFactory sqlConnectionFactory,
-    ICachedCatalogService<Seller, SellerId> cached) 
+    ICachedEntityService<Seller, SellerId> cached) 
     : CatalogBaseRepository<Seller, SellerId>(
         dbContext, 
         sqlConnectionFactory, 

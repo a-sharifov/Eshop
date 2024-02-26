@@ -3,9 +3,9 @@
 /// <summary>
 /// Abstract class for aggregate root.
 /// </summary>
-/// <typeparam name="StrongestId"> The strongest id type.</typeparam>
-public class AggregateRoot<StrongestId> : Entity<StrongestId>
-    where StrongestId : IStrongestId
+/// <typeparam name="TStrongestId"> The strongest id type.</typeparam>
+public abstract class AggregateRoot<TStrongestId> : Entity<TStrongestId>
+    where TStrongestId : IStrongestId
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="AggregateRoot{StrongestId}"/> class.
@@ -16,5 +16,5 @@ public class AggregateRoot<StrongestId> : Entity<StrongestId>
     /// Initializes a new instance of the <see cref="AggregateRoot{StrongestId}"/> class.
     /// </summary>
     /// <param name="id"> The id.</param>
-    protected AggregateRoot(StrongestId id) : base(id) { }
+    protected AggregateRoot(TStrongestId id) : base(id) { }
 }

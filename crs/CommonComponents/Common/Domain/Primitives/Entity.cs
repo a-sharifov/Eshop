@@ -35,7 +35,7 @@ public abstract class Entity<TStrongestId>
     /// <summary>
     /// Gets the domain events.
     /// </summary>
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.ToList();
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     /// <summary>
     /// Add a domain event.
@@ -53,11 +53,6 @@ public abstract class Entity<TStrongestId>
     public override bool Equals(object? obj)
     {
         if(obj == null)
-        {
-            return false;
-        }
-
-        if(obj.GetType() != GetType())
         {
             return false;
         }

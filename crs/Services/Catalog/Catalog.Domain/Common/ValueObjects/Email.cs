@@ -1,8 +1,9 @@
-﻿namespace Catalog.Domain.Common.ValueObjects;
+﻿using Catalog.Domain.Common.Regexes;
+
+namespace Catalog.Domain.Common.ValueObjects;
 
 public sealed partial class Email : ValueObject
 {
-    private const string EmailPattern = @"^(.+)@(.+)$";
     public const int EmailMaxLength = 100;
 
     public string Value { get; private set; }
@@ -39,11 +40,8 @@ public sealed partial class Email : ValueObject
         yield return Value;
     }
 
-    public static bool IsEmail(string email) => EmailRegex().IsMatch(email);
-
+    public static bool IsEmail(string email) =>
+        EmailRegex.Regex().IsMatch(email);
 
     public static implicit operator string(Email email) => email.Value;
-
-    [GeneratedRegex(EmailPattern)]
-    private static partial Regex EmailRegex();
 }

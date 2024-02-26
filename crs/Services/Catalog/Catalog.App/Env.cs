@@ -23,12 +23,13 @@ public static class Env
 
     public static class ConnectionStrings
     {
-        public static string MSSQL => 
-            $"Server=mssql,1433;" +
-            $"Initial Catalog={MSSQL_INITIAL_CATALOG};" +
-            $"User ID={MSSQL_USER_ID};" +
-            $"Password={MSSQL_SA_PASSWORD};" +
-            $"TrustServerCertificate=true";
+        public static string MSSQL => $"""
+            Server=mssql,1433;
+            Initial Catalog={MSSQL_INITIAL_CATALOG};
+            User ID={MSSQL_USER_ID};
+            Password={MSSQL_SA_PASSWORD};
+            TrustServerCertificate=true;
+            """;
 
         public static string REDIS => $"redis:6379,password={REDIS_PASSWORD}";
     }

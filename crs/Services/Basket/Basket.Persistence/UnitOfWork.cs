@@ -1,14 +1,12 @@
 ﻿namespace Basket.Persistence;
 
-internal sealed class UnitOfWork : IUnitOfWork
+internal sealed class UnitOfWork(BasketDbContext dbContext) : IUnitOfWork
 {
-    public int Commit()
-    {
-        throw new NotImplementedException();
-    }
+    private readonly BasketDbContext _dbContext = dbContext;
 
-    public Task<int> CommitAsync(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
+    public int Commit() => 
+        _dbContext.SaveChanges();
+
+    public async Task<int> CommitAsync(CancellationToken cancellationToken = default) => 
+        await _dbContext.SaveChangesAsync(cancellationToken);
 }

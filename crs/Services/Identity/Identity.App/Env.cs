@@ -19,13 +19,14 @@ public static class Env
 
     public static class ConnectionStrings
     {
-        public static string POSTGRES =>
-            $"Server=postgres;" +
-            $"Port=5432;" +
-            $"Database={POSTGRES_DB};" +
-            $"Username={POSTGRES_USER};" +
-            $"Password={POSTGRES_PASSWORD}" +
-            $";TimeZone=UTC;";
+        public static string POSTGRES => $"""
+            Server=postgres;
+            Port=5432;
+            Database={POSTGRES_DB};
+            Username={POSTGRES_USER};
+            Password={POSTGRES_PASSWORD};
+            TimeZone=UTC;
+            """;
 
         public static string RABBITMQ =>
            $"amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@rabbitmq:5672";

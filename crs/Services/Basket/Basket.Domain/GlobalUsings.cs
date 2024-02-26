@@ -1,10 +1,11 @@
 ﻿global using Common.Domain.Primitives;
-global using Basket.Domain.BasketAggregate.Ids;
+global using Basket.Domain.CatalogBasketAggregate.Ids;
 global using Common.Domain.Primitives.Results;
-global using Basket.Domain.BasketAggregate.Errors;
-global using Basket.Domain.BasketAggregate.Entities;
+global using Basket.Domain.CatalogBasketAggregate.Errors;
+global using Basket.Domain.CatalogBasketAggregate.Entities;
 global using Common.Extensions;
-global using Basket.Domain.BasketAggregate.ValueObjects;
+global using Basket.Domain.CatalogBasketAggregate.ValueObjects;
 global using Common.Domain.Primitives.Events;
-global using Basket.Domain.BasketAggregate.DomainEvents;
+global using Basket.Domain.CatalogBasketAggregate.DomainEvents;
 global using System.Text.RegularExpressions;
+global using Basket.Domain.CatalogBasketAggregate.Regexes;
