@@ -25,11 +25,14 @@ public class CatalogBasketItem : Entity<CatalogBasketItemId>
 
         var quantityResult = Quantity.Create(quantity);
 
-        if(quantityResult.IsFailure)
+        if (quantityResult.IsFailure)
         {
             return Result.Failure(quantityResult.Error);
         }
 
         return Result.Success();
     }
+
+    public Result AddQuantity(int quantity) =>
+        SetQuantity(Quantity.Value + quantity);
 }
