@@ -10,4 +10,4 @@ public interface IDomainEvent : INotification
     /// Gets the id of the event.
     /// </summary>
     Guid Id { get; }
-}
+}   

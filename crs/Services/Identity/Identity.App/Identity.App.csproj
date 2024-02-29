@@ -51,6 +51,7 @@
 		<ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
 		<ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
 		<ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+		<ProjectReference Include="..\Identity.MessageBus\Identity.MessageBus.csproj" />
 		<ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
 		<ProjectReference Include="..\Identity.Presentation\Identity.Presentation.csproj" />
 	</ItemGroup>

@@ -4,13 +4,13 @@ internal sealed class UnitOfWork(CatalogDbContext dbContext) : IUnitOfWork
 {
     private readonly CatalogDbContext _dbContext = dbContext;
 
-    public int SaveChanges()
+    public int Commit()
     {
         SendDomainEventsToOutboxMessagesAsync().GetResult();
         return _dbContext.SaveChanges();
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public async Task<int> CommitAsync(CancellationToken cancellationToken = default)
     {
         await SendDomainEventsToOutboxMessagesAsync(cancellationToken);
         return await _dbContext.SaveChangesAsync(cancellationToken);

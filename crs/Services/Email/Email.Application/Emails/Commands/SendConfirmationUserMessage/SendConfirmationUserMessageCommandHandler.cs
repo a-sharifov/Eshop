@@ -1,25 +1,30 @@
-﻿namespace Email.Application.Emails.Commands.SendConfirmationUserMessage;
+﻿using Email.Infrastructure.Email.Models;
+using Email.Infrastructure.Grpc.Identity;
 
-internal sealed class SendConfirmationUserMessageCommandHandler(IIdentityEmailService emailService)
+namespace Email.Application.Emails.Commands.SendConfirmationUserMessage;
+
+internal sealed class SendConfirmationUserMessageCommandHandler(
+    IIdentityEmailService emailService,
+    IIdentityGrpcService identityGrpcService)
     : ICommandHandler<SendConfirmationUserMessageCommand>
 {
     private readonly IIdentityEmailService _emailService = emailService;
+    private readonly IIdentityGrpcService _identityGrpcService = identityGrpcService;
 
-
-    public Task<Result> Handle(SendConfirmationUserMessageCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(SendConfirmationUserMessageCommand request, CancellationToken cancellationToken)
     {
+        var userInfo = await _identityGrpcService.GetUserInfoAsync(request.UserId, cancellationToken);
 
+        var emailRequest = new SendConfirmationEmailRequest(
+            userInfo.FirstName,
+            userInfo.LastName,
+            userInfo.UserId,
+            userInfo.Email,
+            request.ConfirmationEmailToken,
+            request.ReturnUrl);
 
+        await _emailService.SendConfirmationEmailAsync(emailRequest, cancellationToken);
 
-        _emailService.SendConfirmationEmailAsync(
-                       new SendConfirmationEmailRequest
-                       {
-                UserId = request.UserId,
-                EmailConfirmationToken = request.EmailConfirmationToken,
-                ReturnUrl = request.ReturnUrl,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email
-            }, cancellationToken);
+        return Result.Success();
     }
 }

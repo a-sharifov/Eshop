@@ -22,3 +22,6 @@ global using OpenTelemetry.Metrics;
 global using Prometheus;
 global using Common.App.HealthChecks;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Scrutor;
+global using MassTransit;
+

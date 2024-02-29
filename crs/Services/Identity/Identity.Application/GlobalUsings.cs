@@ -17,3 +17,6 @@ global using Contracts.Services.Identity.Commands;
 global using Identity.Infrastructure.Hashing;
 global using Identity.Infrastructure.Authentication;
 global using Identity.Application.Users.Common;
+global using MediatR;
+global using EventBus.MassTransit.Abstractions;
+global using Contracts.Services.Identity.Events;

@@ -2,3 +2,4 @@
 global using Contracts.Services.Identity.Commands;
 global using MassTransit;
 global using MediatR;
+global using System.Reflection;

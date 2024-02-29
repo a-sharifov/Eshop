@@ -10,6 +10,7 @@ public class Product : AggregateRoot<ProductId>
     public Brand Brand { get; private set; }
     public ImageUrl ProductImage { get; private set; }
     public ProductDescription Description { get; private set; }
+    public Quantity Quantity { get; private set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     private Product() { }
@@ -24,7 +25,8 @@ public class Product : AggregateRoot<ProductId>
         Seller seller,
         Brand brand,
         ImageUrl productImage,
-        ProductDescription description)
+        ProductDescription description,
+        Quantity quantity)
         : base(id)
     {
         Sku = sku;
@@ -35,6 +37,7 @@ public class Product : AggregateRoot<ProductId>
         Brand = brand;
         ProductImage = productImage;
         Description = description;
+        Quantity = quantity;
     }
 
     public static Result<Product> Create(
@@ -46,7 +49,8 @@ public class Product : AggregateRoot<ProductId>
         Seller seller,
         Brand brand,
         ImageUrl productImage,
-        ProductDescription description)
+        ProductDescription description,
+        Quantity quantity)
     {
         var product = new Product(
             id,
@@ -57,7 +61,8 @@ public class Product : AggregateRoot<ProductId>
             seller,
             brand,
             productImage,
-            description);
+            description,
+            quantity);
 
         product.AddDomainEvent(
             new ProductCreatedDomainEvent(Guid.NewGuid(), id));

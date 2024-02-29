@@ -35,7 +35,7 @@ internal sealed class LoginCommandHandler(
         user.UpdateRefreshToken(refreshToken);
         var userToken = _jwtProvider.CreateTokenString(user, request.Audience);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
 
         return new LoginCommanResponse(userToken, refreshToken.Token);
     }

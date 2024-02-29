@@ -8,13 +8,13 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
     protected readonly string _entityName;
     protected readonly CatalogDbContext _dbContext;
     protected readonly ISqlConnectionFactory _sqlConnectionFactory;
-    protected readonly ICachedCatalogService<TEntity, TStrongestId> _cached;
+    protected readonly ICachedEntityService<TEntity, TStrongestId> _cached;
     protected readonly TimeSpan _expirationTime;
 
     protected CatalogBaseRepository(
         CatalogDbContext dbContext,
         ISqlConnectionFactory sqlConnectionFactory,
-        ICachedCatalogService<TEntity, TStrongestId> cached,
+        ICachedEntityService<TEntity, TStrongestId> cached,
         TimeSpan expirationTime)
     {
         _entityName = typeof(TEntity).Name;
@@ -42,10 +42,7 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
 
     public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        _dbContext
-            .Set<TEntity>()
-            .Update(entity);
-
+        _dbContext.Update(entity);
         await _cached.RefreshAsync(entity.Id, cancellationToken);
     }
 
@@ -94,7 +91,7 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
         return await sqlConnection.ExecuteScalarAsync<int>(query, cancellationToken);
     }
 
-    public async Task<TEntity?> GetByIdAsync(TStrongestId id, CancellationToken cancellationToken = default)
+    public async Task<TEntity> GetByIdAsync(TStrongestId id, CancellationToken cancellationToken = default)
     {
         var entity = await _cached.GetAsync(id, cancellationToken);
 
@@ -128,6 +125,8 @@ internal abstract class CatalogBaseRepository<TEntity, TStrongestId>
 
     public async Task DeleteByIdAsync(TStrongestId id, CancellationToken cancellationToken = default)
     {
+        await _cached.DeleteAsync(id, cancellationToken);
+
         await _dbContext
             .Set<TEntity>()
             .Where(entity => entity.Id == id)

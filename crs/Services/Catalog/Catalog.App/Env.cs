@@ -13,19 +13,23 @@ public static class Env
     public static string AUTH_ISSUER => GetEnvironmentVariable("AUTH_ISSUER");
     public static string WEB_AUDIENCE => GetEnvironmentVariable("WEB_AUDIENCE");
     public static string JWT_SECURITY_KEY => GetEnvironmentVariable("JWT_SECURITY_KEY");
+    public static string RABBITMQ_DEFAULT_USER => GetEnvironmentVariable("RABBITMQ_DEFAULT_USER");
+    public static string RABBITMQ_DEFAULT_PASS => GetEnvironmentVariable("RABBITMQ_DEFAULT_PASS");
+    public static string IDENTITY_GRPC_URL => GetEnvironmentVariable("IDENTITY_GRPC_URL");
 
     private static string GetEnvironmentVariable(string key) =>
-         Environment.GetEnvironmentVariable(key) ?? 
+         Environment.GetEnvironmentVariable(key) ??
         throw new Exception($"Environment variable {key} not found");
 
     public static class ConnectionStrings
     {
-        public static string MSSQL => 
-            $"Server=mssql,1433;" +
-            $"Initial Catalog={MSSQL_INITIAL_CATALOG};" +
-            $"User ID={MSSQL_USER_ID};" +
-            $"Password={MSSQL_SA_PASSWORD};" +
-            $"TrustServerCertificate=true";
+        public static string MSSQL => $"""
+            Server=mssql,1433;
+            Initial Catalog={MSSQL_INITIAL_CATALOG};
+            User ID={MSSQL_USER_ID};
+            Password={MSSQL_SA_PASSWORD};
+            TrustServerCertificate=true;
+            """;
 
         public static string REDIS => $"redis:6379,password={REDIS_PASSWORD}";
     }

@@ -1,10 +1,13 @@
 ﻿namespace Email.Infrastructure.Email.Services;
 
 internal sealed class IdentityEmailService
-    (IOptions<EmailOptions> options) : 
+    (IOptions<EmailOptions> options,
+     IOptions<IdentityEndpointOptions> identityEndpointOptions) : 
     EmailBaseService(options), 
     IIdentityEmailService
 {
+    private readonly IdentityEndpointOptions _identityEndpointOptions = identityEndpointOptions.Value;
+
     public async Task SendConfirmationEmailAsync(SendConfirmationEmailRequest request, CancellationToken cancellationToken = default)
     {
         var confirmEmailTemplatePath = EmailTemplatePath.ConfirmEmailTemplate;
@@ -13,7 +16,7 @@ internal sealed class IdentityEmailService
             await File.ReadAllTextAsync(confirmEmailTemplatePath, cancellationToken);
 
         var confirmUrl =
-           $@"{thi}?UserId={request.UserId}&EmailConfirmationToken={request.EmailConfirmationToken}&ReturnUrl={request.ReturnUrl}";
+           $@"{_identityEndpointOptions.BaseUrl}/confirm-email?UserId={request.UserId}&EmailConfirmationToken={request.EmailConfirmationToken}&ReturnUrl={request.ReturnUrl}";
 
         var confirmUrlEncode = HtmlEncoder.Default.Encode(confirmUrl);
 
@@ -25,7 +28,7 @@ internal sealed class IdentityEmailService
 
         var sendMessageRequest = new SendMessageRequest(
             To: request.Email,
-            Subject: request.Subject,
+            Subject: $"Eshop - confirm email",
             Body: confirmEmailTemplate
             );
 

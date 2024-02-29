@@ -2,11 +2,13 @@
 
 internal sealed class ConfirmEmailCommandHandler(
     IUnitOfWork unitOfWork, 
-    IUserRepository userRepository) 
+    IUserRepository userRepository,
+    IMessageBus messageBus) 
     : ICommandHandler<ConfirmEmailCommand>
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMessageBus _messageBus = messageBus;
 
     public async Task<Result> Handle(ConfirmEmailCommand request, CancellationToken cancellationToken)
     {
@@ -30,7 +32,10 @@ internal sealed class ConfirmEmailCommandHandler(
                 confirmEmailResult.Error);
         }
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
+
+        await _messageBus.Publish(
+            new IdentityVerificationConfirmedEvent(Guid.NewGuid(), user.Id.Value), cancellationToken);
 
         return Result.Success();
     }

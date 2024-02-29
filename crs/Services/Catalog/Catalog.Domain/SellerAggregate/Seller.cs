@@ -26,16 +26,15 @@ public sealed class Seller : AggregateRoot<SellerId>
         SellerId id,
         SellerName sellerName,
         Email email,
-        List<Product> products,
-        bool isSellerNameUnique)
+        bool isSellerNameExist)
     {
-        if (!isSellerNameUnique)
+        if (isSellerNameExist)
         {
             return Result.Failure<Seller>(
                 SellerErrors.SellerNameIsNotUnique(sellerName.Value));
         }
 
-        var seller = new Seller(id, sellerName, email, products);
+        var seller = new Seller(id, sellerName, email, products: []);
 
         seller.AddDomainEvent(
             new SellerCreatedDomainEvent(Guid.NewGuid(), id));

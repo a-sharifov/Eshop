@@ -18,8 +18,7 @@ internal sealed class MessageBusServiceInstaller : IServiceInstaller
 
                 configurator.ConfigureEndpoints(context);
             });
-
-            configure.AddConsumers(App.AssemblyReference.Assembly);
+            configure.AddConsumers(MessageBus.AssemblyReference.Assembly);
         });
 
         services.AddTransient<IMessageBus, EventBusRabitMQ>();

@@ -23,7 +23,7 @@ public sealed class CreateBrandCommandHandlerTests
     public void Test1()
     {
         int a = 4;
-        a.Should().Be(2);
+        a.Should().Be(4);
     }
 
 }

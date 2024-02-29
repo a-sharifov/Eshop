@@ -1,6 +1,4 @@
-﻿using Identity.Application.Abstractions;
-
-namespace Identity.App.Configurations;
+﻿namespace Identity.App.Configurations;
 
 internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 {
@@ -13,10 +11,10 @@ internal sealed class InfrastructureServiceInstaller : IServiceInstaller
         selector.FromAssemblies(
             Infrastructure.AssemblyReference.Assembly,
             Persistence.AssemblyReference.Assembly)
-        .AddClasses(false)
+        .AddClasses(classes => classes
+        .Where(type => !type.Namespace!.Contains("Models")))
+        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
         .AsImplementedInterfaces()
         .WithScopedLifetime());
-
-        services.ConfigureOptions<EmailOptionsSetup>();
     }
 }

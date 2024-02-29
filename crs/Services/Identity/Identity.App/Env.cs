@@ -14,16 +14,19 @@ public static class Env
     public static string JWT_SECURITY_KEY => GetEnvironmentVariable("JWT_SECURITY_KEY");
     public static string RABBITMQ_DEFAULT_USER => GetEnvironmentVariable("RABBITMQ_DEFAULT_USER");
     public static string RABBITMQ_DEFAULT_PASS => GetEnvironmentVariable("RABBITMQ_DEFAULT_PASS");
+    public static int GRPC_PORT = int.Parse(GetEnvironmentVariable("GRPC_PORT"));
+    public static int HTTP_PORT = int.Parse(GetEnvironmentVariable("HTTP_PORT"));
 
     public static class ConnectionStrings
     {
-        public static string POSTGRES =>
-            $"Server=postgres;" +
-            $"Port=5432;" +
-            $"Database={POSTGRES_DB};" +
-            $"Username={POSTGRES_USER};" +
-            $"Password={POSTGRES_PASSWORD}" +
-            $";TimeZone=UTC;";
+        public static string POSTGRES => $"""
+            Server=postgres;
+            Port=5432;
+            Database={POSTGRES_DB};
+            Username={POSTGRES_USER};
+            Password={POSTGRES_PASSWORD};
+            TimeZone=UTC;
+            """;
 
         public static string RABBITMQ =>
            $"amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@rabbitmq:5672";
@@ -31,5 +34,5 @@ public static class Env
 
     private static string GetEnvironmentVariable(string key) =>
          Environment.GetEnvironmentVariable(key) ??
-        throw new Exception($"Environment variable {key} not found");
+        throw new Exception($"environment variable {key} not found");
 }

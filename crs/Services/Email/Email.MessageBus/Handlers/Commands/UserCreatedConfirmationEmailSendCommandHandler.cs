@@ -11,13 +11,9 @@ internal sealed class UserCreatedConfirmationEmailSendCommandHandler(ISender sen
     {
         var request = new SendConfirmationUserMessageCommand(
             context.Message.UserId,
-            context.Message.ReturnUrl);
+            context.Message.ReturnUrl,
+            context.Message.ConfirmationEmailToken);
 
-        var result = await _sender.Send(request);
-
-        if (result.IsFailure)
-        {
-            throw new Exception(result.Error);
-        }
+        await _sender.Send(request);
     }
 }

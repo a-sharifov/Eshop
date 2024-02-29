@@ -12,5 +12,9 @@ internal sealed class PresentationServiceInstaller : IServiceInstaller
                 .AllowAnyMethod()
                 .AllowAnyHeader());
         });
+
+        services.AddOptions<IdentityEndpointOptions>()
+        .Bind(configuration.GetSection(SD.IdentityEndpointSectionKey))
+        .ValidateDataAnnotations();
     }
 }

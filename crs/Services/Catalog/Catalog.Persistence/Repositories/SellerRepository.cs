@@ -3,7 +3,7 @@
 internal sealed class SellerRepository(
     CatalogDbContext dbContext,
     ISqlConnectionFactory sqlConnectionFactory,
-    ICachedCatalogService<Seller, SellerId> cached) 
+    ICachedEntityService<Seller, SellerId> cached) 
     : CatalogBaseRepository<Seller, SellerId>(
         dbContext, 
         sqlConnectionFactory, 
@@ -36,5 +36,23 @@ internal sealed class SellerRepository(
             .SetAsync(entity, _expirationTime, cancellationToken);
 
         return entity;
+    }
+
+    public async Task<bool> IsSellerNameExist(SellerName name, CancellationToken cancellationToken = default)
+    {
+        using var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
+
+        string query =
+            $"""
+            SELECT 1 FROM {_entityName}
+            WHERE [Name] = @SellerName
+            """;
+
+        var parameters = new { SellerName = name.Value };
+
+        var result = await sqlConnection
+          .QueryFirstOrDefaultAsync<bool>(query, cancellationToken);
+
+        return result;  
     }
 }

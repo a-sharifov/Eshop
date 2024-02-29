@@ -1,3 +1,6 @@
 ﻿namespace Email.Application.Emails.Commands.SendConfirmationUserMessage;
 
-public sealed record SendConfirmationUserMessageCommand(Guid UserId, string ReturnUrl) : ICommand;
+public sealed record SendConfirmationUserMessageCommand(
+    Guid UserId, 
+    string ReturnUrl, 
+    string ConfirmationEmailToken) : ICommand;

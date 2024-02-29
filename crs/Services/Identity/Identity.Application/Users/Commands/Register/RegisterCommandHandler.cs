@@ -25,9 +25,12 @@ internal sealed class RegisterCommandHandler(
         var user = userResult.Value;
 
         await _userRepository.AddUserAsync(user, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
 
-        await _messageBus.Send(
+        var endpoint = await _messageBus.GetSendEndpoint(
+            new Uri("queue:user-created-confirmation-email-send-command-handler"));
+
+        await endpoint.Send(
             new UserCreatedConfirmationEmailSendCommand(Guid.NewGuid(), user.Id.Value, user.EmailConfirmationToken.Value, request.ReturnUrl), 
             cancellationToken);
 
