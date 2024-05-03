@@ -22,13 +22,13 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies solution
-      run: dotnet restore ./Eshop.sln
+      run: dotnet restore ./Ebook.sln
       
     - name: Build solution
-      run: dotnet build ./Eshop.sln --configuration Debug
+      run: dotnet build ./Ebook.sln --configuration Debug
       
     - name: Test
-      run: dotnet test ./Eshop.sln --configuration Debug --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test ./Ebook.sln --configuration Debug --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Test Report
       uses:  dorny/test-reporter@v1.7.0
